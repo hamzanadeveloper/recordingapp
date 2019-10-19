@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-
 #**Product Details**:
----
-=======
+
 # Sick Kids
 > _Note:_ This document is meant to evolve throughout the planning phase of your project.    
  > That is, it makes sense for you commit regularly to this file while working on the project (especially edits/additions/deletions to the _Highlights_ section).
@@ -10,10 +7,6 @@
  > **This document will serve as an agreement between your team and your partner.**
 
 ## Product Details
-This product allows patients to remoetely send their voiding audio record to the hospital, where it will be received by doctors and analzyed.
- 
-#### Q1: What are you planning to build?
->>>>>>> 2bc3302004a8e0d5102d817c20a88966e57fba3b
 
 #### **Q1: What are you planning to build?**
 
@@ -210,7 +203,7 @@ to its full functionality.
 
         3.  Testing
 
-    -   Weakness
+    -   Weakness:
 
         1.  Documentation
 
@@ -228,19 +221,19 @@ to its full functionality.
 
     -   Strength:
 
-      1.  Black Box Testing
+        1.  Black Box Testing
 
-      2.  API Design
+        2.  API Design
 
-      3.  Database Manipulation
+        3.  Database Manipulation
 
     -   Weakness:
 
-      1.  Large Scale Software Segregation
+        1.  Large Scale Software Segregation
 
-      2.  Front end interaction
+        2.  Front end interaction
 
-      3.  Documentation
+        3.  Documentation
 
 -   Youxuan Ma
 
@@ -258,13 +251,13 @@ to its full functionality.
 
         3.  Database (SQL & a bit Spring Boot)
 
-  -   Weakness:
+    -   Weakness:
 
-      1.  C
+        1.  C
 
-      2.  Documentation
+        2.  Documentation
 
-      3.  Design patterns (inexperienced with organizing large projects)
+        3.  Design patterns (inexperienced with organizing large projects)
 
 #### **Team Rules:**
 
