@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+
+#**Product Details**:
+---
+=======
 # Sick Kids
 > _Note:_ This document is meant to evolve throughout the planning phase of your project.    
  > That is, it makes sense for you commit regularly to this file while working on the project (especially edits/additions/deletions to the _Highlights_ section).
@@ -8,118 +13,333 @@
 This product allows patients to remoetely send their voiding audio record to the hospital, where it will be received by doctors and analzyed.
  
 #### Q1: What are you planning to build?
+>>>>>>> 2bc3302004a8e0d5102d817c20a88966e57fba3b
 
- * Short (1 - 2 min' read)
- * Start with a single sentence, high-level description of the product.
- * Be clear - Describe the problem you are solving in simple terms.
- * Be concrete. For example:
-    * What are you planning to build? Is it a website, mobile app,
-   browser extension, command-line app, etc.?      
-    * When describing the problem/need, give concrete examples of common use cases.
- * Focus on *what* your product does, and avoid discussing *how* you're going to implement it.      
-   For example: This is not the time or the place to talk about which programming language and/or framework you are planning to use.
- * **Feel free (and very much encouraged) to include useful diagrams, mock-ups and/or links**.
+#### **Q1: What are you planning to build?**
 
+This product is a mobile application that allows patients to remotely send audio
+recordings of urinary voids to the hospital, where it will be received by
+doctors and analyzed. This app will be deployed on both Android and iOS
+platforms.
 
-#### Q2: Who are your target users?
+Currently, patients use medical equipment known as a uroflowmeter to produce
+graphs outlining their ability to empty their bladder. This equipment can be
+expensive and is not widely available outside of urologist offices and
+hospitals. To increase accessibility and reduce the cost of equipment, the
+Urology department at SickKids is attempting to develop technology that will
+allow the diagnosis of urinary voiding conditions without a visit to the
+hospital.
 
- * Short (1 - 2 min' read max)
- * Be specific (e.g. a 'a third-year university student studying Computer Science' and not 'a student')
- * Feel free (but not obligated) to use personas.         
-   You can create your personas as part of this Markdown file, or add a link to an external site (for example, [Xtensio](https://xtensio.com/user-persona/)).
+The proposed technology is that the patient will, using their mobile device,
+record the sound of themselves/their child voiding. This audio data will be
+relayed to the hospital and mapped to a urinary flow model built by SickKids so
+that a prediction of the patient’s voiding condition can be made. If further
+actions are needed, the doctors can then conduct an in-person appointment with
+the patient.
 
-#### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
+Helpful Links: <https://www.healthline.com/health/uroflowmetry>
 
- * Short (1 - 2 min' read max)
- * We want you to "connect the dots" for us - Why does your product (as described in your answer to Q1) fits the needs of your users (as described in your answer to Q2)?
- * Explain the benefits of your product explicitly & clearly. For example:
-    * Save users time (how much?)
-    * Allow users to discover new information (which information? And, why couldn't they discover it before?)
-    * Provide users with more accurate and/or informative data (what kind of data? Why is it useful to them?)
-    * Does this application exist in another form? If so, how does your differ and provide value to the users?
-    * How does this align with your partner's organization's values/mission/mandate?
+#### **Q2: Who are your target users?**
 
-#### Q4: How will you build it?
+The user group will consist initially of pediatric patients with voiding
+conditions such as urethral strictures and meatal stenosis. This technology may
+eventually be translated for use in adult patients with urinary voiding
+conditions.
 
- * Short (1-2 min' read max)
- * What is the technology stack? Specify any and all languages, frameworks, libraries, PaaS products or tools. 
- * How will you deploy the application?
- * Describe the architecture - what are the high level components or patterns you will use? Diagrams are useful here. 
- * Will you be using third party applications or APIs? If so, what are they?
- * What is your testing strategy?
+#### **Q3: Why would your users choose your product? What are they using today to solve their problem/need?**
 
-#### Q5: What are the user stories that make up the MVP?
+This product has not been built before. This product will reduce the patient’s
+frequency of visits to the hospital. For patients living in remote areas, this
+will be a very convenient alternative. There is potential for significant
+patient and healthcare system cost savings.
 
- * At least 5 user stories concerning the main features of the application - note that this can broken down further
- * You must follow proper user story format (as taught in lecture) ```As a <user of the app>, I want to <do something in the app> in order to <accomplish some goal>```
- * If you have a partner, these must be reviewed and accepted by them
- * The user stories should be written in Github and each one must have clear acceptance criteria
+#### **Q4: How will you build it?**
 
-----
+The app will be built using React Native, this is to ensure the product’s
+compatibility on both Android and IOS platforms. The application will use a
+front-end structure that will be built to interact with the existing database
+and servers provided by Sick Kids. This app will be written in JavaScript. React
+Native, Expo and Feather.js will be used in the app. Front-end scripting logic
+will be completed by JS, including sending and receiving HTTP requests to and
+from API. Feather.js will be used to build a custom API that responds to such
+requests as well as reading and saving to Sick Kids databases. This app will be
+tested both with Jest and on physical devices including both Android and iOS.
+Expo will enable us to carry out such testings.
 
-## Process Details
+The application will be deployed in the App Store and Google Play Store, where
+they can be downloaded by all users but only those authorized will have access
+to its full functionality.
 
+#### **Q5: What are the user stories that make up the MVP?**
 
+1.  As a person living in Northern Ontario who has no access to a urologist, I
+    want to remotely send a sample of my voiding information for assessment, so
+    that I can be tested without going to the hospital.
 
-#### Roles & responsibilities
+2.  As a very busy parent who cannot make time during working hours to bring my
+    child to appointments, I want to be able to submit voiding information from
+    my child for assessment during non-business hours, so the doctors can help
+    with my child’s voiding problem.
 
-Describe the different roles on the team and the responsibilities associated with each role. 
- * Roles should reflect the structure of your team and be appropriate for your project. Not necessarily one role to one team member.
+3.  As an elderly man with accessibility issues who cannot commute to a
+    hospital, I want to remotely submit a voiding log, so that a history of my
+    voiding information can be built up in a hospital database.
 
-List each team member and:
- * A description of their role(s) and responsibilities including the components they'll work on and non-software related work
- * 3 technical strengths and weaknesses each (e.g. languages, frameworks, libraries, development methodologies, etc.)
+4.  As a urologist, I want to request a patient’s latest voiding data, so I can
+    monitor their health condition.
 
-#### Team Rules
+5.  As a urology researcher, I want to study the relationship between voiding
+    flow and health condition, so I can make better predictions and arrive at a
+    more accurate diagnosis.
 
-Describe your team's working culture.
+**Process Details**
+-------------------
 
-Communications:
- * What is the expected frequency? What methods/channels are appropriate? 
- * If you have a partner project, what is your process (in detail) for communicating with your partner?
- 
-Meetings:
- * How are people held accountable for attending meetings, completing action items? Is there a moderator or process?
- 
-Conflict Resolution:
- * List at least three team scenarios/conflicts you discussed in lecture and how you decided you will resolve them. Indecisions? Non-responsive team members? Any other scenarios you can think of?
+#### **Roles & responsibilities**
 
+-   Yuzhe Hua
 
-#### Events
+    -   React Native development
 
-Describe meetings (and other events) you are planning to have:
- * When and where? Recurring or ad hoc? In-person or online?
- * What's the purpose of each meeting?
- * Other events could be coding sessions, code reviews, quick weekly sync meeting online, etc.
+    -   Tester
 
-#### Partner Meetings
-You must have at least 2 meetings with your project partner - an initial planning meeting and a document review meeting. Describe the meetings here:
-* When and where?
-* What did you discuss during the meeting (**note you must have meeting minutes**)?
-* What were the outcomes of each meeting?
+    -   Client-end API development
 
+    -   Strength:
 
-#### Artifacts
+        1.  React Native
 
-List/describe the artifacts you will produce in order to organize your team.       
+        2.  Test
 
- * Artifacts can be To-Do lists, Task boards, schedule(s), etc.
- * We want to understand:
-   * How do you keep track of what needs to get done?
-   * How do you prioritize tasks?
-   * How do tasks get assigned to team members?
+        3.  Javascript
 
-----
-### Highlights
-**Note this section is optional**
-YOUR ANSWER GOES HERE ...
+    -   Weakness:
 
-Specify 3 - 5 key decisions and/or insights that came up during your meetings
-and/or collaborative process.
+        1.  API communication
 
- * Short (5 min' read max)
- * Decisions can be related to the product and/or the team process.
-    * Mention which alternatives you were considering.
-    * Present the arguments for each alternative.
-    * Explain why the option you decided on makes the most sense for your team/product/users.
- * Essentially, we want to understand how (and why) you ended up with your current product plan.
+        2.  Documentation
+
+        3.  Database Manipulation
+
+-   Chen Zhong Lu
+
+    -   Communications
+
+    -   React Native development
+
+    -   Back-end integration (if necessary)
+
+    -   Client-end API development
+
+    -   Strength:
+
+        1.  Javascript
+
+        2.  React
+
+        3.  Python
+
+    -   Weakness:
+
+        1.  Testing
+
+        2.  Agile
+
+        3.  UI design
+
+-   Zuoqi Wang
+
+    -   React Native development
+
+    -   Back-end integration (if necessary)
+
+    -   Client-end API development
+
+    -   Strength:
+
+        1.  Documentation
+
+        2.  React
+
+        3.  Javascript
+
+    -   Weakness:
+
+        1.  Web debugging
+
+        2.  UI design
+
+        3.  Optimization
+
+-   Yuanbo Zhang
+
+    -   React Native development
+
+    -   Client-end API development
+
+    -   Strength:
+
+        1.  Documentation
+
+        2.  Java
+
+        3.  Android Development
+    -   Weakness:
+
+        1.  Run time control
+
+        2.  Front-end design
+
+        3.  C
+
+-   Jianlin Huang
+
+    -   React Native development
+
+    -   Documentations
+
+    -   Client-end API development
+
+    -   Back-end integration (if necessary)
+
+    -   Strength:
+
+        1.  Java
+
+        2.  Database Interaction
+
+        3.  Testing
+
+    -   Weakness
+
+        1.  Documentation
+
+        2.  Front-end design
+
+        3.  Code not general enough
+
+-   Ao Li
+
+    -   React Native development
+
+    -   Client-end API development
+
+    -   Back-end integration (if necessary)
+
+    -   Strength:
+
+      1.  Black Box Testing
+
+      2.  API Design
+
+      3.  Database Manipulation
+
+    -   Weakness:
+
+      1.  Large Scale Software Segregation
+
+      2.  Front end interaction
+
+      3.  Documentation
+
+-   Youxuan Ma
+
+    -   React Native development
+
+    -   Client-end API development
+
+    -   Testing (if necessary)
+
+    -   Strength:
+
+        1.  Front-end design (HTML, CSS & AntD), Front-end logic (JS, React & Jquery)
+
+        2.  Testing (debugging)
+
+        3.  Database (SQL & a bit Spring Boot)
+
+  -   Weakness:
+
+      1.  C
+
+      2.  Documentation
+
+      3.  Design patterns (inexperienced with organizing large projects)
+
+#### **Team Rules:**
+
+#### **Communications:**
+
+-   CSC301 project team will meet with Sick Kids on a weekly basis, either in
+    person or online.
+
+-   CSC301 team will aim to have as many of its members in attendance at the
+    meeting as possible.
+
+#### **Meeting:**
+
+-   CSC301 project team will meet internally on a weekly basis.
+
+-   SickKids requirements will be completed using the Agile workflow.
+
+-   Features and sub-features will be assigned to subsets of CSC301 team.
+
+-   For every weekly meeting, progress updates will be given and new
+    responsibilities will be assigned, iterating overall progress.
+
+#### **Conflict resolution:**
+
+-   In the case of indecisions, the team will vote with no abstention, and the
+    majority vote will be passed.
+
+-   In the case of a teammate being unable to make a meeting physically, he must
+    attend the meeting online.
+
+-   In the case of a difference in coding style, the team will follow a style of
+    code structure and documentation that is used by the majority.
+
+-   Resolve conflicts with LOVE and PEACE.
+
+#### **Events**
+
+-   The team will meet in person, in Bahen if possible. If not, another suitable
+    location will be chosen.
+
+-   These meetings will consist of coding sessions, code reviews, connecting
+    functionalities of different components (ex. Connecting Feathers.js and
+    front-end code) and overall status updates.
+
+-   Meetings will happen weekly.
+
+#### **Partner Meetings:**
+
+-   Partner meetings will happen in person, at a Sick Kids approved location,
+    where at least a majority of team members will be present.
+
+-   In the first two meetings we have:
+
+    -   Clarified the app’s functionalities from both a technical and
+        non-technical perspective
+
+    -   Decided the teach stack components (see: Q4 How will you build it?)
+
+    -   Decided on development priorities:
+
+        -   First, complete the functionalities of recording and sending
+            user-recorded audio files to Sick Kids database (complete JS and API
+            functions to support this feature)
+
+        -   Then, complete user authentication processes.
+
+        -   Lastly, complete UI components (refine HTML and CSS layout)
+
+#### **Artifacts**
+
+-   A GitHub repository has been created for the project code files.
+
+-   A google drive is created documenting meetings, emails, and to-do lists.
+
+**Highlights**
+--------------
+
+-   If anything noteworthy comes up, we will make sure to add them here.
