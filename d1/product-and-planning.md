@@ -1,7 +1,7 @@
 # Sick Kids
 > _Note:_ This document is meant to evolve throughout the planning phase of your project.    
  > That is, it makes sense for you commit regularly to this file while working on the project (especially edits/additions/deletions to the _Highlights_ section).
- > Most importantly, it is a reflection of all the planning you work you've done in the first iteration. 
+ > Most importantly, it is a reflection of all the planning you work you've done in the first iteration.
  > **This document will serve as an agreement between your team and your partner.**
 
 ## Product Details
@@ -55,7 +55,9 @@ will be completed by JS, including sending and receiving HTTP requests to and
 from API. Feather.js will be used to build a custom API that responds to such
 requests as well as reading and saving to Sick Kids databases. This app will be
 tested both with Jest and on physical devices including both Android and iOS.
-Expo will enable us to carry out such testings.
+Expo will enable us to carry out such testings.  
+
+![dataflow_chart](./dataflow_diagram.png)
 
 The application will be deployed in the App Store and Google Play Store, where
 they can be downloaded by all users but only those authorized will have access
