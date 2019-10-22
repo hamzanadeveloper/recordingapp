@@ -32,10 +32,10 @@ Helpful Links: <https://www.healthline.com/health/uroflowmetry>
 
 #### **Q2: Who are your target users?**
 
-The user group will consist initially of pediatric patients with voiding
-conditions such as urethral strictures and meatal stenosis. This technology may
-eventually be translated for use in adult patients with urinary voiding
-conditions.
+The user group will consist initially of pediatric patients with voiding conditions such as urethral strictures and meatal stenosis. This technology may eventually be translated for use in adult patients with urinary voiding conditions. 
+
+Doctors who will be needing the user-submitted information are also considered as a part of the target users.
+
 
 #### **Q3: Why would your users choose your product? What are they using today to solve their problem/need?**
 
@@ -84,12 +84,31 @@ to its full functionality.
 5.  As a urology researcher, I want to study the relationship between voiding
     flow and health condition, so I can make better predictions and arrive at a
     more accurate diagnosis.
+   
+**Accepting Criteria**
+1. The user will be able to record voiding audio file, save this file locally on their mobile device, and send the audio file to the hospital for assessment. The user should then be able to be notified once the audio file is successfully sent.
+
+2. The users will be able to record voiding audio file for their child, save this file locally on their mobile device, and send the audio file to the hospital, on behalf of their child, for assessment. The user should then be able to be notified once the audio file is successfully sent.
+
+3. The user will be able to record voiding audio file, save this file locally on their mobile device, and send the audio file to the hospital for assessment. The user should then be able to be notified once the audio file is successfully sent.
+
+4. The app should have the ability to store user-sent audio files into the database provided by Sick Kids. This sent resource should contain identifiers that can uniquely identify the audio file with the patient that this file belongs to.
+
+5. The app should be able to communicate with SickKids’ server and store information in their database in order for the researchers to analyse the relationship between voiding flow and health condition.  
 
 **Process Details**
 -------------------
 
 #### **Roles & responsibilities**
-
+| Memeber        | Strength          | Weakness  |
+| ------------- |:-------------:| -----:|
+| Yuzhe Hua     | |  |
+| Chen Zhong Lu | |  |
+| Zuoqi Wang    |  | |
+|Yuanbo Zhang   | | |
+|Jianlin Huang  | | |
+|Ao Li          | | |
+|Youxuan Ma     | | |
 -   Yuzhe Hua
 
     -   React Native development
