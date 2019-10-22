@@ -108,7 +108,7 @@ to its full functionality.
 |Yuanbo Zhang   | | |
 |Jianlin Huang  | | |
 |Ao Li          | | |
-|Youxuan Ma     | | |
+|Youxuan Ma     | Knowledge front-end design (HTML, CSS & AntD), Front-end logic (JS, React & Jquery), Testing (debugging) and Database (SQL & a bit Spring Boot)| Not really confident doing C, Documentation, Design patterns (inexperienced with organizing large projects)|
 -   Yuzhe Hua
 
     -   React Native development
