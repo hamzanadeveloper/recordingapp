@@ -128,29 +128,8 @@ to its full functionality.
 
 -   Chen Zhong Lu
 
-    -   Communications
+    -  I will be responsible for using React Native to develop front-end functionalities such as recording audio, saving audio record, and sending the audio to our API for processing. I will also take part in developing an API that handles client-end audio files and save them into a local database.
 
-    -   React Native development
-
-    -   Back-end integration (if necessary)
-
-    -   Client-end API development
-
-    -   Strength:
-
-        1.  Javascript
-
-        2.  React
-
-        3.  Python
-
-    -   Weakness:
-
-        1.  Testing
-
-        2.  Agile
-
-        3.  UI design
 
 -   Zuoqi Wang
 
