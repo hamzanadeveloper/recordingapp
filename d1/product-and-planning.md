@@ -118,100 +118,24 @@ to its full functionality.
 
 -   Zuoqi Wang
 
-    -   React Native development
+    -   I will be using React Native to design front-end functionalities of our application for both Android and Apple platform, which as per our clients expectation of this project; implementing required features such as recording/ saving/ send the audio files. I am also responsible for back-end integration towards the end of the project mainly for deployment. I will also be responsible for client-end API development, for example, initiating request to our partner's database.
 
-    -   Back-end integration (if necessary)
-
-    -   Client-end API development
-
-    -   Strength:
-
-        1.  Documentation
-
-        2.  React
-
-        3.  Javascript
-
-    -   Weakness:
-
-        1.  Web debugging
-
-        2.  UI design
-
-        3.  Optimization
 
 -   Yuanbo Zhang
 
-    -   React Native development
-
-    -   Client-end API development
-
-    -   Strength:
-
-        1.  Documentation
-
-        2.  Java
-
-        3.  Android Development
-    -   Weakness:
-
-        1.  Run time control
-
-        2.  Front-end design
-
-        3.  C
-
+    -   I will be taking part in developing front-end functionalities of our program in React Native. I will also be integrating the front-end functionalities with our web API. I will also help with integrating our API with the deployment environment at Sick Kids.
+    
 -   Jianlin Huang
 
     -   I will be using React Native to design front-end features and presentation of our application for both Android and Apple platform, which as per our clients expectation of this project. As needed, I will also be responsible for client-end API development, for instance, sending and storing audio files into our partner's database (with encryption if possible). I will also be doing documentation of our project which including taking meeting minutes; as well as potentially integrating this application into partner's server or database.
 
 -   Ao Li
 
-    -   React Native development
-
-    -   Client-end API development
-
-    -   Back-end integration (if necessary)
-
-    -   Strength:
-
-        1.  Black Box Testing
-
-        2.  API Design
-
-        3.  Database Manipulation
-
-    -   Weakness:
-
-        1.  Large Scale Software Segregation
-
-        2.  Front end interaction
-
-        3.  Documentation
+    -   I will be developing front-end components in React Native. I will also participate in coding the client-end web API. If needed, I will be integrating our program with Sick Kids’ provided database to ensure compatibility.
 
 -   Youxuan Ma
 
-    -   React Native development
-
-    -   Client-end API development
-
-    -   Testing (if necessary)
-
-    -   Strength:
-
-        1.  Front-end design (HTML, CSS & AntD), Front-end logic (JS, React & Jquery)
-
-        2.  Testing (debugging)
-
-        3.  Database (SQL & a bit Spring Boot)
-
-    -   Weakness:
-
-        1.  C
-
-        2.  Documentation
-
-        3.  Design patterns (inexperienced with organizing large projects)
+    -   I will be responsible for front-end development in React Native. I will also be involved in developing the web API that will be used for client-database interaction. Towards project completion, I will be writing and conducting tests.
 
 #### **Team Rules:**
 
