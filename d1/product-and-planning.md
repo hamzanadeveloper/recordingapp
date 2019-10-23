@@ -136,22 +136,22 @@ to its full functionality.
 
 #### **Communications:**
 
--   CSC301 project team will meet with Sick Kids on a weekly basis, either in
-    person or online.
+-   CSC301 project team will meet with Sick Kids on a weekly basis, either in person or online. In these meetings, the team will give an update on our development progress. If there are new features pushed, we will desmonstrate these features to Sick Kids representatives using Expo as a simulator. We will log feedbacks, and adjust the application accordingly. 
 
--   CSC301 team will aim to have as many of its members in attendance at the
-    meeting as possible.
+-   CSC301 team will aim to have as many of its members in attendance at the meeting as possible. Should a member fail to be present at a meeting with Sick Kids, a legitmate reason for absence will be provided.
+    
+-   The team will, to the best of their ability, ensure that all commits to the master branch are clear, so that should a TA or professor wish to review our work, they will be able to do so easily. The team will also aim to notify the TA and professor as soon as possible if any unforeseen incidents occur and require special accomodation.
 
 #### **Meeting:**
 
--   CSC301 project team will meet internally on a weekly basis.
+-   CSC301 project team will meet internally on a weekly basis where Sick Kids requirements will be completed following the Agile workflow. We will iterate through tickets, where each ticket represents a stage in the project's completion. These tickets will be set up according to Sick Kids requirements and Sick Kids representatives will be updated upon ticket completion.
 
--   SickKids requirements will be completed using the Agile workflow.
-
--   Features and sub-features will be assigned to subsets of CSC301 team.
+-   In these meetings, a ticket will be divided into sections by features and sub-features, which will be assigned to subsets of CSC301 team.
 
 -   For every weekly meeting, progress updates will be given and new
     responsibilities will be assigned, iterating overall progress.
+    
+-   All meetings will be logged in our google drive folder.
 
 #### **Conflict resolution:**
 
