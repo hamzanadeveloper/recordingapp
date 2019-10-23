@@ -98,17 +98,10 @@ to its full functionality.
 
 **Process Details**
 -------------------
-
+**Strength and Weakness**
+![strength_weakness](./strength_weakness.jpg)
 #### **Roles & responsibilities**
-| Memeber        | Strength          | Weakness  |
-| ------------- |:-------------:| -----:|
-| Yuzhe Hua     | |  |
-| Chen Zhong Lu | |  |
-| Zuoqi Wang    |  | |
-|Yuanbo Zhang   | | |
-|Jianlin Huang  | | |
-|Ao Li          | | |
-|Youxuan Ma     | Knowledge front-end design (HTML, CSS & AntD), Front-end logic (JS, React & Jquery), Testing (debugging) and Database (SQL & a bit Spring Boot)| Not really confident doing C, Documentation, Design patterns (inexperienced with organizing large projects)|
+|
 -   Yuzhe Hua
 
     -   React Native development
