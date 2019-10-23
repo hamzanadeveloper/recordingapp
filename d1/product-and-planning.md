@@ -158,11 +158,7 @@ to its full functionality.
 -   In the case of indecisions, the team will vote with no abstention, and the
     majority vote will be passed.
 
--   In the case of a teammate being unable to make a meeting physically, he must
-    attend the meeting online.
-
--   In the case of a difference in coding style, the team will follow a style of
-    code structure and documentation that is used by the majority.
+-   In the event of one of team members not completing assigned tasks with sufficient quality or within the deadline with no advanced notice or legitmate excuse, the group will conduct a discussion session with that individual. If no progess is made, this event will be logged and reported to TA during tutorial given unanimous consent from the team.
 
 -   Resolve conflicts with LOVE and PEACE.
 
@@ -202,8 +198,10 @@ to its full functionality.
 #### **Artifacts**
 
 -   A GitHub repository has been created for the project code files.
+    - Link: <https://github.com/csc301-fall-2019/team-project-sickkids-team>
 
 -   A google drive is created documenting meetings, emails, and to-do lists.
+    - Link: <https://drive.google.com/drive/folders/1ka4E3q3dlAuWNzbk3f0TR9FbCGFXt1W5?usp=sharing>
 
 **Highlights**
 --------------
