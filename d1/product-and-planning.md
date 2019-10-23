@@ -101,7 +101,7 @@ to its full functionality.
 **Strength and Weakness**
 ![strength_weakness](./strength_weakness.jpg)
 #### **Roles & responsibilities**
-|
+
 -   Yuzhe Hua
 
     -   I will be using React Native to design front-end functionalities of our application for both Android and Apple platform, which as per our clients expectation of this project; implementing required features such as recording/ saving/ send the audio files. I will also be responsible for client-end API development, for example, sending and storing the target files into our partner's database. I will also be conducting tests as this project moves along in order to deliver a working product for each phase.
