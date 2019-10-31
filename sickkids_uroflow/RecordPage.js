@@ -1,5 +1,26 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, Button, Alert } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+
+const startRecording = () => {
+    return Alert.alert("started")
+}
+
+const getAlert = () => {
+    return Alert.alert(
+        'Record Audio',
+        'Do you wish to start recording?',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'Yes', onPress: () => startRecording()},
+        ],
+        {cancelable: false},
+      );
+}
 
 class RecordPage extends React.Component {
     render() {
@@ -11,7 +32,9 @@ class RecordPage extends React.Component {
                     alignItems: "center"
                 }}
             >
-                <Text>Record Page</Text>
+            <Ionicons name="ios-microphone" size={75}/>
+            <Button title="record" size={55} color='red' onPress={() => getAlert()}></Button>
+              
             </View>
         );
     }
