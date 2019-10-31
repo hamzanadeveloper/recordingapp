@@ -35,16 +35,18 @@ class RecordPage extends React.Component {
             >
             <Ionicons name="ios-microphone" size={75}/>
             <Button title="record" size={55} color='red' onPress={() => getAlert()}></Button>
-//                 <Text>Record Page</Text>
+            </View>
+        );
+    }
+}
+
+export default RecordPage;
+
+{//                <Text>Record Page</Text>
 //                 <Button icon={
 //                     <Icon name="md-checkmark-circle" size={125} color="white"/>
 //                 }
 //   title="Button with icon component"
 //   onPress = {() => {console.log(1)}}
 // />
-          </View>
-        );
-    }
 }
-
-export default RecordPage;
