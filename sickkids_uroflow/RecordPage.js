@@ -4,28 +4,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Ionicons } from "@expo/vector-icons";
 import { Stopwatch, Timer} from 'react-native-stopwatch-timer'
 
-
-// const startRecording = () => {
-//     this.startStopStopWatch
-//     return Alert.alert("started")
-// }
-
-// const getAlert = () => {
-//     return Alert.alert(
-//         'Record Audio',
-//         'Do you wish to start recording?',
-//         [
-//           {
-//             text: 'Cancel',
-//             onPress: () => console.log('Cancel Pressed'),
-//             style: 'cancel',
-//           },
-//           {text: 'Yes', onPress: () => this.startRecording()},
-//         ],
-//         {cancelable: false},
-//       );
-// }
-
 const handleTimerComplete = () => alert("Custom Completion Function");
 
 
@@ -47,7 +25,11 @@ class RecordPage extends React.Component {
             resetStopwatch:false,
         });
         console.log(this.state.isStopwatchStart)
-        return Alert.alert("started")
+        if (this.state.isStopwatchStart){
+            return Alert.alert("Record Start")
+        } else {
+            return Alert.alert("Stopped Recording")
+        }
     }
 
     startRecording = () => {
@@ -56,19 +38,35 @@ class RecordPage extends React.Component {
     }
 
     getAlert = () => {
-        return Alert.alert(
-            'Record Audio',
-            'Do you wish to start recording?',
-            [
-              {
-                text: 'Cancel',
-                onPress: () => console.log('Cancel Pressed'),
-                style: 'cancel',
-              },
-              {text: 'Yes', onPress: () => this.startStopStopWatch()},
-            ],
-            {cancelable: false},
-          );
+        if (!this.state.isStopwatchStart){
+            return Alert.alert(
+                'Record Audio',
+                'Do you wish to start recording?',
+                [
+                  {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                  },
+                  {text: 'Yes', onPress: () => this.startStopStopWatch()},
+                ],
+                {cancelable: false},
+              );
+        } else {
+            return Alert.alert(
+                'Record Audio',
+                'Finished recording?',
+                [
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                {text: 'Yes', onPress: () => this.startStopStopWatch()},
+                ],
+                {cancelable: false},
+            );
+        }
     }
 
     resetStopwatch(){
@@ -89,7 +87,8 @@ class RecordPage extends React.Component {
                 }}
             >
             <Ionicons name="ios-microphone" size={75}/>
-            <Button title="record" size={55} color='red' onPress={() => this.getAlert()}></Button>
+            <Button 
+                title={(this.state.isStopwatchStart==true) ? "Stop" : "Start"} size={55} color='red' onPress={() => this.getAlert()}></Button>
             <Stopwatch 
                 laps
                 secs
@@ -97,11 +96,6 @@ class RecordPage extends React.Component {
                 reset={this.state.resetStopwatch}
                 getTime={this.getFormattedTime}
             />
-            <TouchableHighlight onPress={this.startStopStopWatch}>
-                <Text style={{fontSize: 20}}>
-                    {!this.state.isStopwatchStart? 'START TIMER' : 'STOP TIMER'}
-                </Text>
-            </TouchableHighlight>
             <TouchableHighlight onPress={this.resetStopwatch}>
                 <Text style={{fontSize: 20}}>
                     RESET TIMER
