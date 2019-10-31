@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View, Button, Alert } from "react-native";
+import Icon from 'react-native-vector-icons/Ionicons';
 import { Ionicons } from "@expo/vector-icons";
 
 const startRecording = () => {
@@ -34,8 +35,14 @@ class RecordPage extends React.Component {
             >
             <Ionicons name="ios-microphone" size={75}/>
             <Button title="record" size={55} color='red' onPress={() => getAlert()}></Button>
-              
-            </View>
+//                 <Text>Record Page</Text>
+//                 <Button icon={
+//                     <Icon name="md-checkmark-circle" size={125} color="white"/>
+//                 }
+//   title="Button with icon component"
+//   onPress = {() => {console.log(1)}}
+// />
+          </View>
         );
     }
 }
