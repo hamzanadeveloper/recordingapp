@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Modal, Button, StyleSheet, Alert } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const styles = StyleSheet.create({
     popup: {
@@ -26,10 +27,18 @@ export default function HistoryPopup(prop) {
             [
                 {
                     text: "Cancel",
-                    onPress: () => {console.log("Delete: Cancel Pressed")},
+                    onPress: () => {
+                        console.log("Delete: Cancel Pressed");
+                    },
                     style: "cancel"
                 },
-                { text: "OK", onPress: () => {prop.deleteRecording(prop.id); console.log("Delete: OK Pressed")} }
+                {
+                    text: "OK",
+                    onPress: () => {
+                        prop.deleteRecording(prop.id);
+                        console.log("Delete: OK Pressed");
+                    }
+                }
             ],
             { cancelable: false }
         );
@@ -42,12 +51,16 @@ export default function HistoryPopup(prop) {
             [
                 {
                     text: "Cancel",
-                    onPress: () => {console.log("Send to: Cancel Pressed")},
+                    onPress: () => {
+                        console.log("Send to: Cancel Pressed");
+                    },
                     style: "cancel"
                 },
                 {
                     text: "OK",
-					onPress: () => {console.log("Send to: OK Pressed")}
+                    onPress: () => {
+                        console.log("Send to: OK Pressed");
+                    }
                 }
             ],
             { cancelable: false }
@@ -57,6 +70,7 @@ export default function HistoryPopup(prop) {
     return (
         <Modal visible={prop.visible}>
             <View style={styles.popup}>
+                <Ionicons name="md-play-circle" size={128} color="steelblue" />
                 <Text>id: {prop.id}</Text>
                 <View style={styles.buttons}>
                     <Button color="red" title="Delete" onPress={deleteAlert} />

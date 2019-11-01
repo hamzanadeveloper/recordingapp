@@ -44,7 +44,7 @@ class NoRecording extends React.Component {
         return (
             <View>
                 {this.props.DATA.length === 0 && (
-                    <View style={{position: "absolute", padding: 20 }}>
+                    <View style={{ position: "absolute", padding: 20 }}>
                         <Text style={{ fontSize: 20 }}>
                             It seems like you don't have any recording, start
                             one by clicking "Record" button below!
