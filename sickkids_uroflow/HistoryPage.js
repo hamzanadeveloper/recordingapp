@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 16,
         color: "white"
-    },
+    }
 });
 
 const DATA = [
@@ -76,10 +76,15 @@ function HistoryPage() {
     }, [refreshing]);
 
     // define what action to do when a record is clicked
-    const clickedRecordAction = (recordId) => {
+    const clickedRecordAction = recordId => {
         console.log(`clicked record of id ${recordId}`);
         setViewingRecordId(recordId);
         setIsViewingRecord(true);
+    };
+
+    const backToHomepage = () => {
+        setIsViewingRecord(false);
+        setViewingRecordId("invalid id");
     };
 
     return (
@@ -102,7 +107,7 @@ function HistoryPage() {
                 style={styles.popup}
                 visible={isViewingRecord}
                 id={viewingRecordId}
-                setIsViewingRecord={setIsViewingRecord}
+                backToHomepage={backToHomepage}
             />
         </SafeAreaView>
     );
