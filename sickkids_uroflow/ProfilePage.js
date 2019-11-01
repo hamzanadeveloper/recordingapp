@@ -40,7 +40,7 @@ class ProfilePage extends React.Component {
                 <Button
                       onPress={fake}
                       title="submit"
-                      color="#841584"
+                      color="#green"
                       accessibilityLabel="submit"
                 />
                 <Button
