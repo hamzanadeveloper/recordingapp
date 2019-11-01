@@ -7,7 +7,8 @@ import { Ionicons } from "@expo/vector-icons";
 import LoginPage from "./LoginPage";
 import HistoryPage from "./HistoryPage";
 import RecordPage from "./RecordPage";
-import ProfilePage from "./ProfilePage"
+import ProfilePage from "./ProfilePage";
+import ResultPage from "./ResultPage"
 
 const getTabBarIcon = (navigation, focused, tintColor) => {
     const { routeName } = navigation.state;
@@ -32,7 +33,8 @@ const HistoryStack = createStackNavigator({
 });
 
 const RecordStack = createStackNavigator({
-    Record: RecordPage
+    Record: RecordPage,
+    Result: ResultPage
 });
 
 const ProfileStack = createStackNavigator({
