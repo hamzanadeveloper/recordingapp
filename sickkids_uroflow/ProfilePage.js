@@ -20,7 +20,7 @@ class ProfilePage extends React.Component {
                     textAlign: "left"
                 }}
             >
-                <Text>Profile Page</Text>
+                <Text>user email: demo@sickkids.ca</Text>
                 <Text>gender:</Text>
                 <Picker
                   selectedValue={this.state.gender}
