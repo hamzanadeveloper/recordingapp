@@ -27,21 +27,6 @@ const styles = StyleSheet.create({
     }
 });
 
-const DATA = [
-    {
-        id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-        title: "First Record"
-    },
-    {
-        id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-        title: "Second Record"
-    },
-    {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72",
-        title: "Third Record"
-    }
-];
-
 class Item extends React.Component {
     render() {
         return (
@@ -54,6 +39,23 @@ class Item extends React.Component {
     }
 }
 
+class NoRecording extends React.Component {
+    render() {
+        return (
+            <View>
+                {this.props.DATA.length === 0 && (
+                    <View style={{position: "absolute", padding: 20 }}>
+                        <Text style={{ fontSize: 20 }}>
+                            It seems like you don't have any recording, start
+                            one by clicking "Record" button below!
+                        </Text>
+                    </View>
+                )}
+            </View>
+        );
+    }
+}
+
 function wait(timeout) {
     return new Promise(resolve => {
         setTimeout(resolve, timeout);
@@ -61,6 +63,22 @@ function wait(timeout) {
 }
 
 function HistoryPage() {
+    // Mock data, should be replaced by HTTP calls
+    const [DATA, setDATA] = React.useState([
+        {
+            id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+            title: "First Record"
+        },
+        {
+            id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+            title: "Second Record"
+        },
+        {
+            id: "58694a0f-3da1-471f-bd96-145571e29d72",
+            title: "Third Record"
+        }
+    ]);
+
     const [refreshing, setRefreshing] = React.useState(false);
 
     // boolean value, true iff user clicked a record and the modal pops up
@@ -82,13 +100,24 @@ function HistoryPage() {
         setIsViewingRecord(true);
     };
 
+    // action when user goes back to home page
     const backToHomepage = () => {
         setIsViewingRecord(false);
         setViewingRecordId("invalid id");
     };
 
+    // delete a recording
+    const deleteRecording = recordId => {
+        backToHomepage();
+        setDATA(DATA.filter(obj => obj.id !== recordId));
+        console.log(`delete id of ${recordId}`);
+        console.log(DATA);
+    };
+
     return (
         <SafeAreaView style={styles.container}>
+            <NoRecording DATA={DATA} />
+
             <FlatList
                 data={DATA}
                 renderItem={({ item }) => (
@@ -108,6 +137,7 @@ function HistoryPage() {
                 visible={isViewingRecord}
                 id={viewingRecordId}
                 backToHomepage={backToHomepage}
+                deleteRecording={deleteRecording}
             />
         </SafeAreaView>
     );

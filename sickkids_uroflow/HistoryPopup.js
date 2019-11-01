@@ -26,10 +26,10 @@ export default function HistoryPopup(prop) {
             [
                 {
                     text: "Cancel",
-                    onPress: () => console.log("Delete: Cancel Pressed"),
+                    onPress: () => {console.log("Delete: Cancel Pressed")},
                     style: "cancel"
                 },
-                { text: "OK", onPress: () => console.log("Delete: OK Pressed") }
+                { text: "OK", onPress: () => {prop.deleteRecording(prop.id); console.log("Delete: OK Pressed")} }
             ],
             { cancelable: false }
         );
@@ -42,12 +42,12 @@ export default function HistoryPopup(prop) {
             [
                 {
                     text: "Cancel",
-                    onPress: () => console.log("Send to: Cancel Pressed"),
+                    onPress: () => {console.log("Send to: Cancel Pressed")},
                     style: "cancel"
                 },
                 {
                     text: "OK",
-                    onPress: () => console.log("Send to: OK Pressed")
+					onPress: () => {console.log("Send to: OK Pressed")}
                 }
             ],
             { cancelable: false }
