@@ -91,11 +91,7 @@ class RecordPage extends React.Component {
             resetStopwatch:false,
         });
         console.log(this.state.isStopwatchStart)
-        if (this.state.isStopwatchStart){
-            // this.temp.start();
-            // this.onStartRecord();
-            return Alert.alert("Record Start")
-        } else {
+        if (!this.state.isStopwatchStart){
             // audioFile = await this.temp.stop();
             // console.log(audioFile);
             // this.onStopRecord();
@@ -137,16 +133,18 @@ class RecordPage extends React.Component {
                 {cancelable: false},
               );
         } else {
+            this.startStopStopWatch()
             return Alert.alert(
-                'Record Audio',
-                'Finished recording?',
+                "Stopped Recording",
+                "See Result?",
                 [
+                    {
+                        text: 'Cancel',
+                        onPress: () => console.log('Cancel Pressed'),
+                        style: 'cancel',
+                    },
                 {
-                    text: 'Cancel',
-                    onPress: () => console.log('Cancel Pressed'),
-                    style: 'cancel',
-                },
-                {text: 'Yes', onPress: () => this.startStopStopWatch()},
+                    text: 'Yes', onPress: () => this.props.navigation.navigate("Result")}
                 ],
                 {cancelable: false},
             );
@@ -155,7 +153,7 @@ class RecordPage extends React.Component {
 
     resetStopwatch(){
         this,this.setState({ isStopwatchStart: false, resetStopwatch: true});
-        console.log(this,this.state.resetStopwatch)
+        console.log("Reset Timer")
     }
     getFormattedTime(time) {
         this.currentTime = time;
