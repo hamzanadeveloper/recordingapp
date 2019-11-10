@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import profileImg from "./assets/profile.jpg"
+// import profileImg from "./assets/profile.jpg" this dependency is not pushed zyb
 import { TextInput } from 'react-native';
 import {
     StyleSheet,
