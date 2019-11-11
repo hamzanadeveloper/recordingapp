@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 // import profileImg from "./assets/profile.jpg" this dependency is not pushed zyb
-import { TextInput } from 'react-native';
+import { TextInput, Button, Alert } from 'react-native';
 import {
     StyleSheet,
     Text,
     View,
     Image,
-    TouchableOpacity
+    TouchableOpacity as TouchableHighlight
 } from 'react-native';
 
 function UselessTextInput() {
@@ -25,25 +25,63 @@ function UselessTextInput() {
 }
 
 
+
+
 export default class Profile extends Component {
+    constructor(props) {
+        super(props)
+        this.state = { Name: "Will L.",
+                        showName: false,
+                        Gender: "Male",
+                        Age: 20,
+                        Birthday: "1999/11/14",
+                        showBirthday: false}
+      }
+    
+    logOut = () => {
+        return Alert.alert(
+            'Logging Out',
+            'All unsaved information will be lost',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {text: 'Log Out', onPress: () => this.props.navigation.navigate("History")},
+            ],
+            {cancelable: false},
+          );
+    }
+
     render() {
         return (
             <View>
                 <View style={styles.header}></View>
                 <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }} />
-                <View style={styles.text}>
-                    <Text>User name: XXX</Text>
-                    <Text>Birthday: xx/xx/xxxx</Text>
-                    <Text>Gender: Male</Text>
-                </View>
-                {/* <p>User name: XXX</p> */}
-                    {/* <p>Birthday: xx/xx/xxxx</p> */}
-                    {/* <p>Gender: Male</p> */}
-                
+                <Text style={styles.text}>press and hold field to edit</Text> 
                 <View style={styles.bodyContent}>
-                        <TouchableOpacity style={styles.buttonContainer}>
-                            <Text>Log me out</Text>
-                        </TouchableOpacity>
+                    <TouchableHighlight style={styles.buttonContainer} onLongPress={()=>{this.setState({showName: !this.state.showName})}}>
+                        <Text>Username: {this.state.Name}</Text>
+                    </TouchableHighlight>
+                    {this.state.showName ? <View style={styles.editinfo}><TextInput style={styles.textInput} 
+                                            onChangeText={(text) => this.setState({Name: text})} value={this.state.Name}/>
+                                            <Button title="Done" onPress={()=>{this.setState({showName: !this.state.showName})}}/></View>
+                    : null}
+                    <TouchableHighlight style={styles.buttonContainer} onLongPress={()=>{this.setState({showBirthday: !this.state.showBirthday})}}>
+                        <Text>Birthday: {this.state.Birthday}</Text>
+                    </TouchableHighlight>
+                    {this.state.showBirthday ? <View style={styles.editinfo}><TextInput style={styles.textInput} 
+                                            onChangeText={(text) => this.setState({Birthday: text})} value={this.state.Birthday}/>
+                                            <Button title="Done" onPress={()=>{this.setState({showBirthday: !this.state.showBirthday})}}/></View>
+                    : null}
+                    <TouchableHighlight style={styles.buttonContainer}>
+                        <Text>Gender: {this.state.Gender}</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight style={styles.buttonContainer}>
+                        <Text>Age: {this.state.Age}</Text>
+                    </TouchableHighlight>
+                    <Button title= "Log Out" style={styles.buttonContainer} onPress={this.logOut}/>
                 </View>
             </View>
         );
@@ -52,10 +90,8 @@ export default class Profile extends Component {
 
 const styles = StyleSheet.create({
     header: {
-        // backgroundImage:`url(${profileImg})`,
-        // backgroundColor:"red",
         backgroundColor: "#00BFFF",
-        height: 200,
+        height: 150,
     },
     avatar: {
         width: 130,
@@ -66,15 +102,10 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         alignSelf: 'center',
         position: 'absolute',
-        marginTop: 130
-    },
-    name: {
-        fontSize: 22,
-        color: "#FFFFFF",
-        fontWeight: '600',
+        marginTop: 80
     },
     body: {
-        marginTop: 40,
+        marginTop: 50,
     },
     bodyContent: {
         flex: 3,
@@ -88,11 +119,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
-    name: {
-        fontSize: 28,
-        color: "#696969",
-        fontWeight: "600"
-    },
     info: {
         fontSize: 16,
         color: "#00BFFF",
@@ -105,85 +131,30 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     buttonContainer: {
-        marginTop: 150,
         height: 45,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 20,
         width: 250,
-        borderRadius: 30,
+        borderRadius: 20,
         backgroundColor: "#00BFFF",
     },
     text: {
-        // fontFamily: "CircularStd-Book",
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 100,
-        fontSize: 40,
-        // color: red,
+        marginTop: 70,
+        fontSize: 15,
         textAlign: 'center'
     },
+    textInput: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        textAlign: 'center'
+    },
+    editinfo: {
+        width: 200,
+        height: 75,
+    }
 });
-
-
-
-// import React from "react";
-// import { Text, View, Button, Picker, TextInput } from "react-native";
-
-// function fake() {
-
-// }
-
-// class ProfilePage extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             gender: null,
-//             height: null
-//         }
-//     }
-//     render() {
-//         return (
-//             <View
-//                 style={{
-//                     flex: 1,
-//                     justifyContent: "center",
-//                     textAlign: "left"
-//                 }}
-//             >
-//                 <Text>user email: demo@sickkids.ca</Text>
-//                 <Text>gender:</Text>
-//                 <Picker
-//                     selectedValue={this.state.gender}
-//                     style={{ height: 50, width: 300 }}
-//                     onValueChange={(itemValue, itemIndex) => this.setState({ gender: itemValue })}>
-//                     <Picker.Item label="Male" value="Male" />
-//                     <Picker.Item label="Female" value="Female" />
-//                 </Picker>
-//                 <Text>height (in cm):</Text>
-//                 <TextInput
-//                     style={{ height: 40, width: 300, borderColor: 'gray', borderWidth: 5 }}
-//                     autoCompleteType='cc-number'
-//                     keyboardType='number-pad'
-//                     onChangeText={height => this.setState({ height })}
-//                     value={this.state.height}
-//                 />
-//                 <Button
-//                     onPress={fake}
-//                     title="submit"
-//                     color="#green"
-//                     accessibilityLabel="submit"
-//                 />
-//                 <Button
-//                     onPress={fake}
-//                     title="logoff"
-//                     color="red"
-//                     accessibilityLabel="logoff"
-//                 />
-//             </View>
-//         );
-//     }
-// }
-
-// export default ProfilePage;
