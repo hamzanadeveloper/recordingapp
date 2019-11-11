@@ -31,12 +31,18 @@ export default class Profile extends Component {
             <View>
                 <View style={styles.header}></View>
                 <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }} />
+                <View style={styles.text}>
+                    <Text>User name: XXX</Text>
+                    <Text>Birthday: xx/xx/xxxx</Text>
+                    <Text>Gender: Male</Text>
+                </View>
+                {/* <p>User name: XXX</p> */}
+                    {/* <p>Birthday: xx/xx/xxxx</p> */}
+                    {/* <p>Gender: Male</p> */}
+                
                 <View style={styles.bodyContent}>
                         <TouchableOpacity style={styles.buttonContainer}>
-                            <Text>Opcion 1</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.buttonContainer}>
-                            <Text>Opcion 2</Text>
+                            <Text>Log me out</Text>
                         </TouchableOpacity>
                 </View>
             </View>
@@ -71,7 +77,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
     },
     bodyContent: {
-        flex: 1,
+        flex: 3,
         alignItems: 'center',
         padding: 30,
         flexDirection: "column"
@@ -99,7 +105,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     buttonContainer: {
-        marginTop: 10,
+        marginTop: 150,
         height: 45,
         flexDirection: 'row',
         justifyContent: 'center',
@@ -108,6 +114,15 @@ const styles = StyleSheet.create({
         width: 250,
         borderRadius: 30,
         backgroundColor: "#00BFFF",
+    },
+    text: {
+        // fontFamily: "CircularStd-Book",
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 100,
+        fontSize: 40,
+        // color: red,
+        textAlign: 'center'
     },
 });
 
