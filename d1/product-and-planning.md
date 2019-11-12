@@ -197,11 +197,14 @@ to its full functionality.
 
 #### **Artifacts**
 
--   A GitHub repository has been created for the project code files.
+-   Create a GitHub repository where project source code and project management documents are hosted online. Also team members can create, modify, discuss and track project issues with GitHub issues.
     - Link: <https://github.com/csc301-fall-2019/team-project-sickkids-team>
 
--   A google drive is created documenting meetings, emails, and to-do lists.
+-   Create a google drive folder shared among internal developers for documenting meeting contents, email conversations and to-do lists roughly resembling project roadmap.
     - Link: <https://drive.google.com/drive/folders/1ka4E3q3dlAuWNzbk3f0TR9FbCGFXt1W5?usp=sharing>
+
+-   Create a Slack channel where team members and Sick Kids representatives are invited in to discuss and technical issue or management questions in order to minimize communication delay.
+    - Link: <https://sickkidsuroflow.slack.com>
 
 **Highlights**
 --------------
