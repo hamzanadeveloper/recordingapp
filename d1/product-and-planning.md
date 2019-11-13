@@ -63,38 +63,50 @@ The application will be deployed in the App Store and Google Play Store, where
 they can be downloaded by all users but only those authorized will have access
 to its full functionality.
 
-#### **Q5: What are the user stories that make up the MVP?**
+#### **Q5: What are the user stories that make up the MVP?(Updated for remark version)**
+**Come back tmr to complete!!!**
+1. As a patient using this app, I want to be able to log into this application, so that I can use full functionality of this app.
+(User are all predefined on the Sickkids side)
 
-1.  As a person living in Northern Ontario who has no access to a urologist, I
-    want to remotely send a sample of my voiding information for assessment, so
-    that I can be tested without going to the hospital.
+2. As a patient that has logged in, I want to be able to view my history voiding recordings on the HomePage, so that I can do various action on each recordings.
 
-2.  As a very busy parent who cannot make time during working hours to bring my
-    child to appointments, I want to be able to submit voiding information from
-    my child for assessment during non-business hours, so the doctors can help
-    with my child’s voiding problem.
+3. As a patient, I want to be able to send my recording to my doctor for evaluation, so that I can acquire feedbacks on my health condition from doctor.
 
-3.  As an elderly man with accessibility issues who cannot commute to a
-    hospital, I want to remotely submit a voiding log, so that a history of my
-    voiding information can be built up in a hospital database.
+4. As a patient, I want to be able to delete my history recording on my wish, so that I can either free up space on my cell phone, or delete an unsatisfied recording.
 
-4.  As a urologist, I want to request a patient’s latest voiding data, so I can
-    monitor their health condition.
+5. As a patient, I want to be able to create new recording so that I can save it or preview it. 
 
-5.  As a urology researcher, I want to study the relationship between voiding
-    flow and health condition, so I can make better predictions and arrive at a
-    more accurate diagnosis.
+6. As a patient, I need to be able to view/update my basic information so that my information in the system.
+
    
 **Accepting Criteria**
-1. The user will be able to record voiding audio file, save this file locally on their mobile device, and send the audio file to the hospital for assessment. The user should then be able to be notified once the audio file is successfully sent.
 
-2. The users will be able to record voiding audio file for their child, save this file locally on their mobile device, and send the audio file to the hospital, on behalf of their child, for assessment. The user should then be able to be notified once the audio file is successfully sent.
+1. In order to validate user requesting to log in, an request to connect to the user database, and search for requested user name and send back status. If existed, check the password, if correct, allow user to log into this application, if wrong password was entered, prompt for another try; if user not existed, also prompt accordingly.
 
-3. The user will be able to record voiding audio file, save this file locally on their mobile device, and send the audio file to the hospital for assessment. The user should then be able to be notified once the audio file is successfully sent.
+2. To view a specific user's recording history:
+    - Request send to database for fetching user's data
+    - Get all recordings from a specific user entry
 
-4. The app should have the ability to store user-sent audio files into the database provided by Sick Kids. This sent resource should contain identifiers that can uniquely identify the audio file with the patient that this file belongs to.
+3. In order for a user to send recording to doctor:
+    - A .wa4 type file needs to be stored locally to send 
+    - A connection request must be set up using API calls
+    - The device needs to communicate with a provided server within an resonable time
 
-5. The app should be able to communicate with SickKids’ server and store information in their database in order for the researchers to analyse the relationship between voiding flow and health condition.  
+4. To delete a specific recording from history:
+    - A specific recording must be indicated for deletion
+    - Access to phone storage needs to be granted
+    - Able to remove speficied audio file locally
+
+5. To create a new recording:
+    - Access to phone storage must be granted
+    - Access to phone's microphone needs to be allowed
+    - Need to able to stop the recording process
+    - The generated audio file should be able to be replayed
+
+6. To make changes to profile information:
+    - Able to access user database, to fetch user information from the database
+    - Able to send update request to the database as user make changes to the information
+
 
 **Process Details**
 -------------------
