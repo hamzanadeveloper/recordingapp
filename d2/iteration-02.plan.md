@@ -113,13 +113,14 @@ Conflict Resolution:
     - ..
 #### Artifacts
 
--   A GitHub repository has been created for the project code files.
+-   Create a GitHub repository where project source code and project management documents are hosted online. Also team members can create, modify, discuss and track project issues with GitHub issues.
     - Link: <https://github.com/csc301-fall-2019/team-project-sickkids-team>
 
-- To-do List: https://docs.google.com/document/d/1-1K4m94yylDm5JoZjUssIhGwjYy5o2G-lrJPXjrVZRc/edit?usp=sharing
-
--   A google drive is created documenting meetings, emails, and to-do lists.
+-   Create a google drive folder shared among internal developers for documenting meeting contents, email conversations and to-do lists roughly resembling project roadmap.
     - Link: <https://drive.google.com/drive/folders/1ka4E3q3dlAuWNzbk3f0TR9FbCGFXt1W5?usp=sharing>
+
+-   Create a Slack channel where team members and Sick Kids representatives are invited in to discuss and technical issue or management questions in order to minimize communication delay.
+    - Link: <https://sickkidsuroflow.slack.com>
 
 
 
@@ -147,8 +148,9 @@ Describe your Git / GitHub workflow. Essentially, we want to understand how your
 
 #### Goals and tasks
 
- * Describe your goals for this iteration and the tasks that you will have to complete in order to achieve these goals.
- **First goal(most urgent):**
+ * Describe your goals for this iteration and the tasks that you will have to complete in order to achieve these goals.  
+    
+    **First goal(most urgent):**
      - Have an intuitive workable front-end design that will satisfy user's needs of the entire application for presentation to client for second meeting.
      - In order to confirm entire application user flow with our partner, we need to complete this goal prior to partner meeting.
      - We achieved this goal by dividing our pages into sub-component of this application and each of our team members is assigned one pages to work on.
@@ -158,7 +160,7 @@ Describe your Git / GitHub workflow. Essentially, we want to understand how your
     **Second goal(realtivly urgent):**
     
     - Implement the most prominant feature of this application recording feature.
-    - This freature can be divided into 3 tasks: recording, playback, and saving audio file for sending.
+    - This feature can be divided into 3 tasks: recording, playback, and saving audio file for sending.
     - To record and playback audio, expo-av library will be used.
     - In order to save/send audio file, a construction of database and API to connect to partner side will be needed. Details to be discussed in upcoming Friday meeting(11/15/2019) once has the ability to record sound when testing.
     - User flow of this feature:
@@ -176,6 +178,16 @@ Describe your Git / GitHub workflow. Essentially, we want to understand how your
 #### Artifacts
 
 List/describe the artifacts you will produce in order to present your project idea.
+
+1. Build a initial page where user can log in with pre-defined credentials provided by Sick Kids.
+2. Build a landing page containing three tabs for logged-in user to switch between.
+3. Build a tab page where user can inspect, play-back and delete any existed recording.
+4. Implement the recording history page such that user can scroll down to force refresh.
+5. Build a tab page where user can start and end a recording.
+6. Build a modal page which is prompted after finished a recording for user to playback finished recording, save finished recording, record a new one or discard finished recording then return to landing page.
+7. Build a tab page where user can view and modify his/her information (gender, etc.) or log out.
+8. Create a Slack channel where team members and Sick Kids representatives are invited in to discuss and technical issue or management questions in order to minimize communication delay.
+    - Link: <https://sickkidsuroflow.slack.com>
 
  * Artifacts can be text, code, images, videos, interactive mock-ups and/or any other useful artifact you can think of.
  * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
