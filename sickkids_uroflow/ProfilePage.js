@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import profileImg from "./assets/profile.jpg" this dependency is not pushed zyb
-import { TextInput, Button, Alert } from 'react-native';
+import { TextInput, Button, Alert, ScrollView } from 'react-native';
 import {
     StyleSheet,
     Text,
@@ -8,6 +8,7 @@ import {
     Image,
     TouchableOpacity as TouchableHighlight
 } from 'react-native';
+
 
 function UselessTextInput() {
     const [value, onChangeText] = React.useState('Name');
@@ -34,8 +35,10 @@ export default class Profile extends Component {
                         showName: false,
                         Gender: "Male",
                         Age: 20,
+                        Height: "180",
+                        showHeight: false,
                         Birthday: "1999/11/14",
-                        showBirthday: false}
+                        showBirthday: false }
       }
     
     logOut = () => {
@@ -48,7 +51,7 @@ export default class Profile extends Component {
                 onPress: () => console.log('Cancel Pressed'),
                 style: 'cancel',
               },
-              {text: 'Log Out', onPress: () => this.props.navigation.navigate("History")},
+              {text: 'Log Out', onPress: () => this.props.navigation.navigate("Login")},
             ],
             {cancelable: false},
           );
@@ -57,6 +60,7 @@ export default class Profile extends Component {
     render() {
         return (
             <View>
+            <ScrollView style={styles.scrollView}>
                 <View style={styles.header}></View>
                 <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }} />
                 <Text style={styles.text}>press and hold field to edit</Text> 
@@ -66,14 +70,21 @@ export default class Profile extends Component {
                     </TouchableHighlight>
                     {this.state.showName ? <View style={styles.editinfo}><TextInput style={styles.textInput} 
                                             onChangeText={(text) => this.setState({Name: text})} value={this.state.Name}/>
-                                            <Button title="Done" onPress={()=>{this.setState({showName: !this.state.showName})}}/></View>
+                                            <Button title="Save" onPress={()=>{this.setState({showName: !this.state.showName})}}/></View>
                     : null}
                     <TouchableHighlight style={styles.buttonContainer} onLongPress={()=>{this.setState({showBirthday: !this.state.showBirthday})}}>
                         <Text>Birthday: {this.state.Birthday}</Text>
                     </TouchableHighlight>
                     {this.state.showBirthday ? <View style={styles.editinfo}><TextInput style={styles.textInput} 
                                             onChangeText={(text) => this.setState({Birthday: text})} value={this.state.Birthday}/>
-                                            <Button title="Done" onPress={()=>{this.setState({showBirthday: !this.state.showBirthday})}}/></View>
+                                            <Button title="Save" onPress={()=>{this.setState({showBirthday: !this.state.showBirthday})}}/></View>
+                    : null}
+                    <TouchableHighlight style={styles.buttonContainer} onLongPress={()=>{this.setState({showHeight: !this.state.showHeight})}}>
+                        <Text>Height(cm): {this.state.Height}</Text>
+                    </TouchableHighlight>
+                    {this.state.showHeight ? <View style={styles.editinfo}><TextInput style={styles.textInput} 
+                                            onChangeText={(text) => this.setState({Height: text})} value={this.state.Height}/>
+                                            <Button title="Save" onPress={()=>{this.setState({showHeight: !this.state.showHeight})}}/></View>
                     : null}
                     <TouchableHighlight style={styles.buttonContainer}>
                         <Text>Gender: {this.state.Gender}</Text>
@@ -83,6 +94,7 @@ export default class Profile extends Component {
                     </TouchableHighlight>
                     <Button title= "Log Out" style={styles.buttonContainer} onPress={this.logOut}/>
                 </View>
+            </ScrollView>
             </View>
         );
     }
@@ -91,7 +103,7 @@ export default class Profile extends Component {
 const styles = StyleSheet.create({
     header: {
         backgroundColor: "#00BFFF",
-        height: 150,
+        height: 140,
     },
     avatar: {
         width: 130,
@@ -156,5 +168,8 @@ const styles = StyleSheet.create({
     editinfo: {
         width: 200,
         height: 75,
+    },
+    scrollView: {
+        margin: 5
     }
 });
