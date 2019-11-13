@@ -1,5 +1,13 @@
 import React from "react";
-import { View, Text, Modal, Button, StyleSheet, Alert } from "react-native";
+import {
+    View,
+    Text,
+    Modal,
+    Button,
+    StyleSheet,
+    Alert,
+    TouchableOpacity
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 const styles = StyleSheet.create({
@@ -67,10 +75,23 @@ export default function HistoryPopup(prop) {
         );
     };
 
+    const [isPlaying, setIsPlaying] = React.useState(false);
+
+    const pressedPlay = () => {
+        // TODO add audio file replay here
+        setIsPlaying(!isPlaying);
+    };
+
     return (
         <Modal visible={prop.visible}>
             <View style={styles.popup}>
-                <Ionicons name="md-play-circle" size={128} color="steelblue" />
+                <TouchableOpacity onPress={pressedPlay}>
+                    <Ionicons
+                        name={isPlaying ? "md-square" : "md-play-circle"}
+                        size={128}
+                        color="steelblue"
+                    />
+                </TouchableOpacity>
                 <Text>id: {prop.id}</Text>
                 <View style={styles.buttons}>
                     <Button color="red" title="Delete" onPress={deleteAlert} />
