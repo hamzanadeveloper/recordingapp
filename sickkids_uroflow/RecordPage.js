@@ -43,7 +43,7 @@ const LIVE_COLOR = '#FF0000';
 const DISABLED_OPACITY = 0.5;
 const RATE_SCALE = 3.0;
 
-export default class App extends React.Component {
+export default class RecordPage extends React.Component {
   constructor(props) {
     super(props);
     this.recording = null;
@@ -470,6 +470,9 @@ export default class App extends React.Component {
     );
   }
 }
+RecordPage.navigationOptions = {
+  title: "Record"
+};
 
 const styles = StyleSheet.create({
   emptyContainer: {

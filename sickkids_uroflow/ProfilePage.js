@@ -66,31 +66,31 @@ export default class Profile extends Component {
                 <Text style={styles.text}>press and hold field to edit</Text> 
                 <View style={styles.bodyContent}>
                     <TouchableHighlight style={styles.buttonContainer} onLongPress={()=>{this.setState({showName: !this.state.showName})}}>
-                        <Text>Username: {this.state.Name}</Text>
+                        <Text style={{color: "white"}}>Username: {this.state.Name}</Text>
                     </TouchableHighlight>
                     {this.state.showName ? <View style={styles.editinfo}><TextInput style={styles.textInput} 
                                             onChangeText={(text) => this.setState({Name: text})} value={this.state.Name}/>
                                             <Button title="Save" onPress={()=>{this.setState({showName: !this.state.showName})}}/></View>
                     : null}
                     <TouchableHighlight style={styles.buttonContainer} onLongPress={()=>{this.setState({showBirthday: !this.state.showBirthday})}}>
-                        <Text>Birthday: {this.state.Birthday}</Text>
+                        <Text style={{color: "white"}}>Birthday: {this.state.Birthday}</Text>
                     </TouchableHighlight>
                     {this.state.showBirthday ? <View style={styles.editinfo}><TextInput style={styles.textInput} 
                                             onChangeText={(text) => this.setState({Birthday: text})} value={this.state.Birthday}/>
                                             <Button title="Save" onPress={()=>{this.setState({showBirthday: !this.state.showBirthday})}}/></View>
                     : null}
                     <TouchableHighlight style={styles.buttonContainer} onLongPress={()=>{this.setState({showHeight: !this.state.showHeight})}}>
-                        <Text>Height(cm): {this.state.Height}</Text>
+                        <Text style={{color: "white"}}>Height(cm): {this.state.Height}</Text>
                     </TouchableHighlight>
                     {this.state.showHeight ? <View style={styles.editinfo}><TextInput style={styles.textInput} 
                                             onChangeText={(text) => this.setState({Height: text})} value={this.state.Height}/>
                                             <Button title="Save" onPress={()=>{this.setState({showHeight: !this.state.showHeight})}}/></View>
                     : null}
                     <TouchableHighlight style={styles.buttonContainer}>
-                        <Text>Gender: {this.state.Gender}</Text>
+                        <Text style={{color: "white"}}>Gender: {this.state.Gender}</Text>
                     </TouchableHighlight>
                     <TouchableHighlight style={styles.buttonContainer}>
-                        <Text>Age: {this.state.Age}</Text>
+                        <Text style={{color: "white"}}>Age: {this.state.Age}</Text>
                     </TouchableHighlight>
                     <Button title= "Log Out" style={styles.buttonContainer} onPress={this.logOut}/>
                 </View>
@@ -99,10 +99,13 @@ export default class Profile extends Component {
         );
     }
 }
+Profile.navigationOptions = {
+    title: "Profile"
+};
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: "#00BFFF",
+        backgroundColor: "steelblue",
         height: 140,
     },
     avatar: {
@@ -133,7 +136,7 @@ const styles = StyleSheet.create({
     },
     info: {
         fontSize: 16,
-        color: "#00BFFF",
+        color: "steelblue",
         marginTop: 10
     },
     description: {
@@ -150,13 +153,13 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         width: 250,
         borderRadius: 20,
-        backgroundColor: "#00BFFF",
+        backgroundColor: "steelblue",
     },
     text: {
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 70,
-        fontSize: 15,
+        fontSize: 17,
         textAlign: 'center'
     },
     textInput: {
