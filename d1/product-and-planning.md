@@ -64,7 +64,6 @@ they can be downloaded by all users but only those authorized will have access
 to its full functionality.
 
 #### **Q5: What are the user stories that make up the MVP?(Updated for remark version)**
-**Come back tmr to complete!!!**
 1. As a patient using this app, I want to be able to log into this application, so that I can use full functionality of this app.
 (User are all predefined on the Sickkids side)
 
