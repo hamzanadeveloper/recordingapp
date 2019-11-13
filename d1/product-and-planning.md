@@ -76,7 +76,7 @@ to its full functionality.
 
 5. As a patient, I want to be able to create new recording so that I can save it or preview it. 
 
-6. As a patient, I need to be able to view/update my basic information so that my information in the system.
+6. As a patient, I need to be able to view/update my basic information so that my information is up to date.
 
    
 **Accepting Criteria**
