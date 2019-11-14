@@ -140,6 +140,7 @@ Describe your Git / GitHub workflow. Essentially, we want to understand how your
 
  * Be concise, yet precise. For example, "we use pull-requests" is not a precise statement since it leaves too many open questions - Pull-requests from where to where? Who reviews the pull-requests? Who is responsible for merging them? etc.
  > We strictly followed the software development method taught in class as we opened up a branch called develop branch to aviod pushing half-done code to master or chaotic traffic on the master branch. From the develop branch, different pages of the application each has a seperate branch for development. 
+ > To further assign coding and documentation responsibilities, Github Issuses is used (starting 11/11/2019). The opening and closing of these issues will reflect the iteration of product lifecycle.
  > As we divided our tasks well , our branches so far do not interfere with one another; so that each branch will have 2-3 team members to work independently depends on the workload of that specific pages. 
  > Once each branch is ready for merge so that we can present product to our client, Yuzhe Huang, who is responsible for reviewing and merging branches will then complete merging onto the develop branch for presentation. 
  * If applicable, specify any naming conventions or standards you decide to adopt.
@@ -196,8 +197,8 @@ List/describe the artifacts you will produce in order to present your project id
 5. Build a tab page where user can start and end a recording.
 6. Build a modal page which is prompted after finished a recording for user to playback finished recording, save finished recording, record a new one or discard finished recording then return to landing page.
 7. Build a tab page where user can view and modify his/her information (gender, etc.) or log out.
-8. Create a Slack channel where team members and Sick Kids representatives are invited in to discuss and technical issue or management questions in order to minimize communication delay.
-    - Link: <https://sickkidsuroflow.slack.com>
+**All of the above listings are combined and made into a screen recording demo that can be found at this link:**
+    - https://www.youtube.com/watchv=YduiqpCM1Y0&feature=youtu.be
     
  ![Database Schema](database_schema.png "Database Schema")
 
