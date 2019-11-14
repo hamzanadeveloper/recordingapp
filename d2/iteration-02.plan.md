@@ -197,9 +197,11 @@ List/describe the artifacts you will produce in order to present your project id
 5. Build a tab page where user can start and end a recording.
 6. Build a modal page which is prompted after finished a recording for user to playback finished recording, save finished recording, record a new one or discard finished recording then return to landing page.
 7. Build a tab page where user can view and modify his/her information (gender, etc.) or log out.
-**All of the above listings are combined and made into a screen recording demo that can be found at this link:**
+
+- **All of the above listings are combined and made into a screen recording demo that can be found at this link:**
     - https://www.youtube.com/watchv=YduiqpCM1Y0&feature=youtu.be
-    
+
+-Our database schema diagram:
  ![Database Schema](database_schema.png "Database Schema")
 
  * Artifacts can be text, code, images, videos, interactive mock-ups and/or any other useful artifact you can think of.
