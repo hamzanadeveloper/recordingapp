@@ -13,6 +13,7 @@ import { Audio } from 'expo-av';
 import * as FileSystem from 'expo-file-system';
 import * as Font from 'expo-font';
 import * as Permissions from 'expo-permissions';
+import { Ionicons } from '@expo/vector-icons';
 
 class Icon {
   constructor(module, width, height) {
@@ -42,6 +43,18 @@ const BACKGROUND_COLOR = '#FFF8ED';
 const LIVE_COLOR = '#FF0000';
 const DISABLED_OPACITY = 0.5;
 const RATE_SCALE = 3.0;
+
+class CustomComponent extends React.Component {
+  render() {
+    return (
+      <Ionicons name='ios-microphone' size={80} />
+    )
+  }
+
+  setNativeProps(nativeProps) {
+    this.refs.container.setNativeProps(nativeProps);
+  }
+}
 
 export default class RecordPage extends React.Component {
   constructor(props) {
@@ -207,6 +220,7 @@ export default class RecordPage extends React.Component {
     } else {
       this._stopPlaybackAndBeginRecording();
     }
+    console.log("presssssssed")
   };
 
   _onPlayPausePressed = () => {
@@ -357,7 +371,7 @@ export default class RecordPage extends React.Component {
               style={styles.wrapper}
               onPress={this._onRecordPressed}
               disabled={this.state.isLoading}>
-              <Image style={styles.image} source={ICON_RECORD_BUTTON.module} />
+              <CustomComponent />
             </TouchableHighlight>
             <View style={styles.recordingDataContainer}>
               <View />
