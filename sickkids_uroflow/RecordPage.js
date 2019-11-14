@@ -7,6 +7,7 @@ import {
   Text,
   TouchableHighlight,
   View,
+  ScrollView,
 } from 'react-native';
 import { Asset } from 'expo-asset';
 import { Audio } from 'expo-av';
@@ -44,17 +45,20 @@ const LIVE_COLOR = '#FF0000';
 const DISABLED_OPACITY = 0.5;
 const RATE_SCALE = 3.0;
 
-class CustomComponent extends React.Component {
-  render() {
-    return (
-      <Ionicons name='ios-microphone' size={80} />
-    )
-  }
+// class CustomComponent extends React.Component {
+//   render() {
+//     console.log("line52")
+//     console.log(this)
+//     return (
+//       <Ionicons name="ios-microphone" size={80} />
+      
+//     )
+//   }
 
-  setNativeProps(nativeProps) {
-    this.refs.container.setNativeProps(nativeProps);
-  }
-}
+//   setNativeProps(nativeProps) {
+//     this.refs.container.setNativeProps(nativeProps);
+//   }
+// }
 
 export default class RecordPage extends React.Component {
   constructor(props) {
@@ -371,7 +375,7 @@ export default class RecordPage extends React.Component {
               style={styles.wrapper}
               onPress={this._onRecordPressed}
               disabled={this.state.isLoading}>
-              <CustomComponent />
+              <Ionicons name="ios-microphone" size={80} />
             </TouchableHighlight>
             <View style={styles.recordingDataContainer}>
               <View />
@@ -405,8 +409,9 @@ export default class RecordPage extends React.Component {
           <View style={styles.playbackContainer}>
             <Slider
               style={styles.playbackSlider}
-              trackImage={ICON_TRACK_1.module}
-              thumbImage={ICON_THUMB_1.module}
+              thumbTintColor='steelblue'
+              minimumTrackTintColor='steelblue'
+              maximumTrackTintColor='#000000'
               value={this._getSeekSliderPosition()}
               onValueChange={this._onSeekSliderValueChange}
               onSlidingComplete={this._onSeekSliderSlidingComplete}
@@ -420,18 +425,16 @@ export default class RecordPage extends React.Component {
             <View style={styles.volumeContainer}>
               <TouchableHighlight
                 underlayColor={BACKGROUND_COLOR}
-                style={styles.wrapper}
+                style={{marginLeft: 15}}
                 onPress={this._onMutePressed}
                 disabled={!this.state.isPlaybackAllowed || this.state.isLoading}>
-                <Image
-                  style={styles.image}
-                  source={this.state.muted ? ICON_MUTED_BUTTON.module : ICON_UNMUTED_BUTTON.module}
-                />
+                {this.state.muted ? <Ionicons name="md-volume-off" size={50} /> : <Ionicons name="md-volume-high" size={50} />}
               </TouchableHighlight>
               <Slider
                 style={styles.volumeSlider}
-                trackImage={ICON_TRACK_1.module}
-                thumbImage={ICON_THUMB_2.module}
+                thumbTintColor='steelblue'
+                minimumTrackTintColor='steelblue'
+                maximumTrackTintColor='#000000'
                 value={1}
                 onValueChange={this._onVolumeSliderValueChange}
                 disabled={!this.state.isPlaybackAllowed || this.state.isLoading}
@@ -443,40 +446,24 @@ export default class RecordPage extends React.Component {
                 style={styles.wrapper}
                 onPress={this._onPlayPausePressed}
                 disabled={!this.state.isPlaybackAllowed || this.state.isLoading}>
-                <Image
-                  style={styles.image}
-                  source={this.state.isPlaying ? ICON_PAUSE_BUTTON.module : ICON_PLAY_BUTTON.module}
-                />
+                {this.state.isPlaying ? <Ionicons name="md-pause" size={50} /> : <Ionicons name="md-play" size={50} />}
               </TouchableHighlight>
               <TouchableHighlight
                 underlayColor={BACKGROUND_COLOR}
                 style={styles.wrapper}
                 onPress={this._onStopPressed}
                 disabled={!this.state.isPlaybackAllowed || this.state.isLoading}>
-                <Image style={styles.image} source={ICON_STOP_BUTTON.module} />
+                <Ionicons name="md-square" size={48} />
               </TouchableHighlight>
             </View>
             <View />
           </View>
           <View style={[styles.buttonsContainerBase, styles.buttonsContainerBottomRow]}>
-            <Text style={[styles.timestamp, { fontFamily: 'cutive-mono-regular' }]}>Rate:</Text>
-            <Slider
-              style={styles.rateSlider}
-              trackImage={ICON_TRACK_1.module}
-              thumbImage={ICON_THUMB_1.module}
-              value={this.state.rate / RATE_SCALE}
-              onSlidingComplete={this._onRateSliderSlidingComplete}
-              disabled={!this.state.isPlaybackAllowed || this.state.isLoading}
-            />
-            <TouchableHighlight
-              underlayColor={BACKGROUND_COLOR}
-              style={styles.wrapper}
-              onPress={this._onPitchCorrectionPressed}
-              disabled={!this.state.isPlaybackAllowed || this.state.isLoading}>
-              <Text style={[{ fontFamily: 'cutive-mono-regular' }]}>
-                PC: {this.state.shouldCorrectPitch ? 'yes' : 'no'}
-              </Text>
-            </TouchableHighlight>
+            <Text style={[styles.timestamp, { fontFamily: 'cutive-mono-regular' }]}>{" "}</Text>
+            <Text
+              style={styles.rateSlider}>{" "}</Text>
+            <Text>doesnt align ahhh
+            </Text>
           </View>
           <View />
         </View>
