@@ -82,17 +82,14 @@ Conflict Resolution:
 
 -   
 
-#### Events /TODO
+#### Events
 
--   The team will meet in person, in Bahen if possible. If not, another suitable
-    location will be chosen.
+-   The team will meet in person, in Bahen if possible. If not, another suitable location will be chosen.
 
 -   These meetings will consist of coding sessions, code reviews, connecting functionalities of different components (ex. Connecting Feathers.js and
     front-end code) and overall status updates.
 
--   Meetings will happen weekly.
-
--   A To-do list has been created to document project requirements. See artifacts for link.
+-   Since we meet with Sick Kids partners every Friday, team memebrs will have an internal code review session every Thursday. This will usually place in Bahen after 6pm.
 
 #### Partner Meetings
 -   Partner meetings will happen in person, at a Sick Kids approved location,
@@ -100,10 +97,9 @@ Conflict Resolution:
 
 -   In the first two meetings we have:
 
-    -   Clarified the app’s functionalities from both a technical and
-        non-technical perspective
+    -   Clarified the app’s functionalities from both a technical and non-technical perspective
 
-    -   Decided the teach stack components (see: Q4 How will you build it?)
+    -   Decided that the tech stack components will consiste of React Native (to develope the mobile app), Feather JS (for hosting API), and Expo (a third-party app that allows us to test and run our app).
 
     -   Decided on development priorities:
 
@@ -116,7 +112,15 @@ Conflict Resolution:
         -   Lastly, complete UI components (refine HTML and CSS layout)
 
 - In the meeting that followed (11/01/2019):
-    - ..
+    - CSC301 team gave a 10-minute demo of the project with its completed front-end layouts.
+    - User flow successfully met Sick Kids expectations.
+    - The issue of user authentication was raised and a template along with API starter code was provided by Sick Kids as a reference for implementing user authentication.
+        - All users will be pre-defined in the database.
+    - A database will need to be set up to store all user information and recordings.
+    - Audio file is decided to be saved to .wa4 format.
+    - Suggested changes:
+        - simplify the steps immediately before and after recording audio (less popups and alerts).
+        - Delete "Sick Kids" brand wherever shown to avoid copyright/liability issues.
 #### Artifacts
 
 -   Create a GitHub repository where project source code and project management documents are hosted online. Also team members can create, modify, discuss and track project issues with GitHub issues.
@@ -194,10 +198,10 @@ List/describe the artifacts you will produce in order to present your project id
 7. Build a tab page where user can view and modify his/her information (gender, etc.) or log out.
 8. Create a Slack channel where team members and Sick Kids representatives are invited in to discuss and technical issue or management questions in order to minimize communication delay.
     - Link: <https://sickkidsuroflow.slack.com>
+    
+ ![Database Schema](database_schema.png "Database Schema")
 
  * Artifacts can be text, code, images, videos, interactive mock-ups and/or any other useful artifact you can think of.
  * Make sure to explain the purpose of each artifact (i.e. Why is it on your to-do list? Why is it useful for your team?)
  * Be concise, yet precise.         
    For example: "Build the website" is not precise at all, but "Build a static home page and upload it somewhere, so that it is publicly accessible" is much clearer.
-
-   ![Database Schema](database_schema.png "Database Schema")
