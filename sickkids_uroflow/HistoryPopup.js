@@ -50,6 +50,9 @@ export default function HistoryPopup(prop) {
             ],
             { cancelable: false }
         );
+
+        // Stop play if is playing
+        setIsPlaying(false);
     };
 
     const sendToAlert = () => {
@@ -73,6 +76,9 @@ export default function HistoryPopup(prop) {
             ],
             { cancelable: false }
         );
+
+        // Stop play if is playing
+        setIsPlaying(false);
     };
 
     const [isPlaying, setIsPlaying] = React.useState(false);
@@ -104,7 +110,11 @@ export default function HistoryPopup(prop) {
                 <View style={styles.backButton}>
                     <Button
                         title="Back to Homepage"
-                        onPress={prop.backToHomepage}
+                        onPress={() => {
+                            // Stop play if is playing
+                            setIsPlaying(false);
+                            prop.backToHomepage();
+                        }}
                     />
                 </View>
             </View>
