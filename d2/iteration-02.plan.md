@@ -14,36 +14,42 @@ This product is a mobile application that allows patients to remotely send audio
 
 In this iteration, the team completed the front-end portion of the product with its recording functionality implemented.
 
-#### Roles & responsibilities /TODO
-
+#### Roles & responsibilities
 -   Yuzhe Hua
-
-    -   I will be using React Native to design front-end functionalities of our application for both Android and Apple platform, which as per our clients expectation of this project; implementing required features such as recording/ saving/ send the audio files. I will also be responsible for client-end API development, for example, sending and storing the target files into our partner's database. I will also be conducting tests as this project moves along in order to deliver a working product for each phase.
+   
+    -   In Deliverable 2, I designed and implemented the front-end history recording page and each recording's popup modal. I used React Native for development, and Expo as the developement testing tool. The user is able to view, send, and delete an audio file he/she recorded. I will also design the database schema and work on data-sending APIs by the end of Deliverable 2. We will be using Postgre SQL for the database, and feather.js for the API construction. 
 
 -   Chen Zhong Lu
 
-    -  I will be responsible for using React Native to develop front-end functionalities such as recording audio, saving audio record, and sending the audio to our API for processing. I will also take part in developing an API that handles client-end audio files and save them into a local database.
+    -  In deliverable 2, I am responsible for front-end styling and implementing the recording/playback features of Record Page. Using React Native and expo-av, Record Page can now listen for user actions to start recording, stop recording, and playback the recorded file. I am now working towards a feature that allow the user to save the recorded file locally. This feature will be complete by Deliverable 2.
+    -  Additionally, I am reposible for implementing Profile Page's edit/save features which can now allow the user to edit and save information such as phone number and name, similar to a generic "settings" page.
 
 
 -   Zuoqi Wang
 
-    -   I will be using React Native to design front-end functionalities of our application for both Android and Apple platform, which as per our clients expectation of this project; implementing required features such as recording/ saving/ send the audio files. I am also responsible for back-end integration towards the end of the project mainly for deployment. I will also be responsible for client-end API development, for example, initiating request to our partner's database.
+    -   In Deliverable 2, I set up overall app navigation structure using react-navigation to extract page modules for readibility and implementation speed. Since the page navigation information is stored in tree-like structure, further page transition is simplified greatly.
+    -   Also I am responsible for the entry login modal page and history tab in app landing page. Login modal is currently implemented as stub to simulate login process for interaction flow testing and history tab where user can inspect, delete or playback any existing recording.
+    -   Moreover, I will contribute to database schema design and backend API development as well as docker deployment.
 
 
 -   Yuanbo Zhang
 
-    -   I will be taking part in developing front-end functionalities of our program in React Native. I will also be integrating the front-end functionalities with our web API. I will also help with integrating our API with the deployment environment at Sick Kids.
-    
--   Jianlin Huang
+    -   In deliverable 2, I designed and created the second version of profile page using react-native libraries. Adding some profile page image and profile button
+    -   Along with Chen Zhong Lu, we finished Profile Page's edit/save features which can now allow the user to edit and save information such as phone number and name, similar to a generic "settings" page. I mainly focus on the front end part of the profile page.
 
-    -   I will be using React Native to design front-end features and presentation of our application for both Android and Apple platform, which as per our clients expectation of this project. As needed, I will also be responsible for client-end API development, for instance, sending and storing audio files into our partner's database (with encryption if possible). I will also be doing documentation of our project which including taking meeting minutes; as well as potentially integrating this application into partner's server or database.
+
+
+-   Jianlin Huang
+    -   In deliverable 2, I designed and created the initial RecordPage layout for user flow demonstration purpose using react-native libraries. Added prompt according to the appropriate user flow. 
+    -   Along with Chen Zhong Lü, we finished the basic recording functionality by importing "react-native-audio" library and using its method and instance. Towards the end of this iteration, I will be responsible for intergrating this recording feature into our application user flow with fitted design and user flow rather than a stand alone recorder.
 
 -   Ao Li
 
-    -   I will be developing front-end components in React Native. I will also participate in coding the client-end web API. If needed, I will be integrating our program with Sick Kids’ provided database to ensure compatibility.
+    -   In Deliverable 2, I developed the front-end components in React Native. I also participated in coding the client-end web API. I integrated our program with Sick Kids’ provided database to ensure compatibility.
+    -  Along with Yuanbo Zhang and Jianlin Huang, we produce the record page together. We use "react-native-audio" library and used its method and instance. I personaly will be responsible for the front end of the recording feature.
 
 -   Youxuan Ma
-
+    -   In Deliverable 2, I designed, implemented and tested the front-end for project page. I used React Native for development, and Expo as the developement testing tool. The user is able to put in basic information like age, height, gender etc, and the page also has basic functions like logout and submit.
     -   I will be responsible for front-end development in React Native. I will also be involved in developing the web API that will be used for client-database interaction. Towards project completion, I will be writing and conducting tests.
 
 #### Strengths and Weaknesses
