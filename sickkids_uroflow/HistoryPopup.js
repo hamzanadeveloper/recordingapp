@@ -58,7 +58,7 @@ export default function HistoryPopup(prop) {
     const sendToAlert = () => {
         Alert.alert(
             "Send Recording",
-            "Send the recording to SickKids now? ",
+            "Send the recording to your doctor now? ",
             [
                 {
                     text: "Cancel",
@@ -103,7 +103,7 @@ export default function HistoryPopup(prop) {
                     <Button color="red" title="Delete" onPress={deleteAlert} />
                     <Button
                         color="green"
-                        title="Send to SickKids"
+                        title="Send to Doctor"
                         onPress={sendToAlert}
                     />
                 </View>
