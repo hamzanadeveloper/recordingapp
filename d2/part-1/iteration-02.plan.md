@@ -199,7 +199,7 @@ List/describe the artifacts you will produce in order to present your project id
 7. Build a tab page where user can view and modify his/her information (gender, etc.) or log out.
 
 - **All of the above listings are combined and made into a screen recording demo that can be found at this link:**
-    - https://www.youtube.com/watchv=YduiqpCM1Y0&feature=youtu.be
+    - https://youtu.be/YduiqpCM1Y0
 
 -Our database schema diagram:
  ![Database Schema](database_schema.png "Database Schema")
