@@ -1,9 +1,10 @@
 {
   "expo": {
     "name": "uroflow",
-    "slug": "sickkids_uroflow",
+    "slug": "uroflow",
     "privacy": "public",
     "sdkVersion": "35.0.0",
+    "description": "An app developed for patients who has voiding problems.",
     "platforms": [
       "ios",
       "android",
