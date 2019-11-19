@@ -80,7 +80,11 @@ Conflict Resolution:
 
 -   In the event of one of team members not completing assigned tasks with sufficient quality or within the deadline with no advanced notice or legitmate excuse, the group will conduct a discussion session with that individual. If no progess is made, this event will be logged and reported to TA during tutorial given unanimous consent from the team.
 
--   
+-   If one of the team member does not show up at a meeting due to some unforeseen circumstances, the group will assign tasks and message all the meeting information to the missing member. If the missing member is unsatisfied with the team decision, we will hold an additional meeting (either online or face to face) to resolve the conflict. 
+
+-   If a git conflict has emerged, the person A who receives the conflict should reach out immediately to communicate with the person B who A has conflict with. A optimal solution should be resolved by the agreement of both members. 
+
+-   If someone in the team is facing technical difficulties, he may ask questions or reach for further help in the team's group chat. Other team members should reach out to help if he is available. If no clear solution can be obtained, the team should reach out to TAs/instructors for extra help.
 
 #### Events
 
