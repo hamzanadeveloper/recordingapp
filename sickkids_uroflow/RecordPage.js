@@ -7,6 +7,7 @@ import {
   Text,
   TouchableHighlight,
   View,
+  ScrollView,
 } from 'react-native';
 import { Asset } from 'expo-asset';
 import { Audio } from 'expo-av';
@@ -43,7 +44,6 @@ const BACKGROUND_COLOR = '#FFF8ED';
 const LIVE_COLOR = '#FF0000';
 const DISABLED_OPACITY = 0.5;
 const RATE_SCALE = 3.0;
-
 
 
 export default class RecordPage extends React.Component {
