@@ -6,6 +6,8 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
+  Navigator,
+  Button,
   View,
 } from 'react-native';
 import { Asset } from 'expo-asset';
@@ -52,6 +54,7 @@ export default class RecordPage extends React.Component {
     this.sound = null;
     this.isSeeking = false;
     this.shouldPlayAtEndOfSeek = false;
+    this.uri = null
     this.state = {
       haveRecordingPermissions: false,
       isLoading: false,
@@ -176,6 +179,7 @@ export default class RecordPage extends React.Component {
       // Do nothing -- we are already unloaded.
     }
     const info = await FileSystem.getInfoAsync(this.recording.getURI());
+    this.props.uri_info = info
     console.log(`FILE INFO: ${JSON.stringify(info)}`);
     await Audio.setAudioModeAsync({
       allowsRecordingIOS: false,
@@ -361,6 +365,12 @@ export default class RecordPage extends React.Component {
               disabled={this.state.isLoading}>
               <Ionicons name="ios-microphone" size={80} />
             </TouchableHighlight>
+            <Button
+              title="GO TO RESULT!"
+              onPress={() => this.props.navigation.navigate('Result', {
+                uri_info: this.props.uri_info
+              })}/>
+            
             <View style={styles.recordingDataContainer}>
               <View />
               <Text style={[styles.liveText, { fontFamily: 'cutive-mono-regular' }]}>
