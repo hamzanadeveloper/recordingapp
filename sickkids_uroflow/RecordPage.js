@@ -189,7 +189,7 @@ export default class RecordPage extends React.Component {
     });
     const { sound, status } = await this.recording.createNewLoadedSoundAsync(
       {
-        isLooping: true,
+        isLooping: false,
         isMuted: this.state.muted,
         volume: this.state.volume,
         rate: this.state.rate,
