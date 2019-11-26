@@ -54,8 +54,8 @@ export default class RecordPage extends React.Component {
     this.sound = null;
     this.isSeeking = false;
     this.shouldPlayAtEndOfSeek = false;
-    this.uri = null
     this.state = {
+      uri: null,
       haveRecordingPermissions: false,
       isLoading: false,
       isPlaybackAllowed: false,
@@ -179,7 +179,7 @@ export default class RecordPage extends React.Component {
       // Do nothing -- we are already unloaded.
     }
     const info = await FileSystem.getInfoAsync(this.recording.getURI());
-    this.props.uri_info = info
+    this.setState({uri: info})
     console.log(`FILE INFO: ${JSON.stringify(info)}`);
     await Audio.setAudioModeAsync({
       allowsRecordingIOS: false,
@@ -368,7 +368,7 @@ export default class RecordPage extends React.Component {
             <Button
               title="GO TO RESULT!"
               onPress={() => this.props.navigation.navigate('Result', {
-                uri_info: this.props.uri_info
+                uri_info: this.state.uri
               })}/>
             
             <View style={styles.recordingDataContainer}>
