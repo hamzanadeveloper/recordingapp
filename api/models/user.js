@@ -2,8 +2,18 @@ const Sequelize = require("sequelize");
 const { sequelize } = require("../db/sequelize");
 
 const User = sequelize.define("user", {
-    email: Sequelize.STRING,
-    password: Sequelize.STRING
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    // gender: {
+    //     type: Sequelize.ENUM,
+    //     values: ["male", "female"]
+    // }
 });
 
 sequelize

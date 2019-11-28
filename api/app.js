@@ -12,7 +12,7 @@ const app = express();
 const { sequelize } = require("./db/sequelize");
 
 // add schemas
-const { User } = require("./models/user")
+const { User, Recording } = require("./models");
 
 app.use(logger("dev"));
 app.use(express.json());

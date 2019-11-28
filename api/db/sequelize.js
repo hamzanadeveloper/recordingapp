@@ -5,8 +5,9 @@ const sequelize = new Sequelize(
     "postgres", // username
     "0192837465", // password
     {
+        host: 'localhost',
         dialect: "postgres", // or 'sqlite', 'postgres', 'mariadb'
-        port: 5432 // or 5432 (for postgres)
+        // port: 5432 // or 5432 (for postgres)
     }
 );
 
