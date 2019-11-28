@@ -3,9 +3,11 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
+// bring in the routers
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const signupRouter = require("./routes/signup");
+const uploadRouter = require("./routes/upload");
 
 const app = express();
 
@@ -36,8 +38,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// invoke the routers
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/signup", signupRouter);
+app.use("/upload", uploadRouter);
 
 module.exports = app;
