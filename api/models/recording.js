@@ -1,20 +1,7 @@
 const Sequelize = require("sequelize");
 const { sequelize } = require("../db/sequelize");
 
-const User = sequelize.define("user", {
-    email: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    password: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    gender: {
-        type: Sequelize.ENUM,
-        values: ["male", "female"]
-    }
-});
+const { User } = require("./user");
 
 const Recording = sequelize.define("recording", {
 	url: {
@@ -40,17 +27,4 @@ const Recording = sequelize.define("recording", {
 	}
 });
 
-sequelize
-	.sync(
-		{ force: true } // This command will drop the table and re-create it.
-	)
-	.then(
-		function(err) {
-			console.log("***** Tables are created *****");
-		},
-		function(err) {
-			console.log("An error occurred while creating the table:", err);
-		}
-	);
-
-module.exports = { User, Recording };
+module.exports = { Recording };
