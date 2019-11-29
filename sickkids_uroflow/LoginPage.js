@@ -1,6 +1,8 @@
 import React from "react";
 import { Text, View, Button, StyleSheet, TextInput} from "react-native";
 
+import config from './config.json'
+
 class LoginPage extends React.Component {
     constructor(props) {
         super(props)
@@ -31,7 +33,8 @@ class LoginPage extends React.Component {
      }
 
      login_pressed = () => {
-        ip_address = '100.64.166.191';
+        // ip_address = '100.64.166.191';
+        ip_address = config.ip_address;
         const data_base_url = 'http://' + ip_address + ':3001/login';
          fetch(data_base_url, {
              method: "POST",

@@ -6,6 +6,8 @@ import * as Permissions from 'expo-permissions';
 import { Ionicons } from '@expo/vector-icons';
 import { Text, View, Button, Navigator } from "react-native";
 
+import config from './config.json'
+
 class ResultPage extends React.Component {
     constructor(props) {
         super(props);
@@ -49,7 +51,8 @@ class ResultPage extends React.Component {
         formData.append("INPUT-FIELD-NAME-HERE", {uri: this.state.getted_uri, name: 'test1.caf', type: 'audio/caf'})
         
         // CHANGE LOCAL IP ADDRESS BEFORE RUN THE CODE HERE FOR NOW!
-        ip_address = '100.64.166.191';
+        // ip_address = '100.64.222.66';
+        ip_address = config.ip_address;
         const data_base_url = 'http://' + ip_address + ':3001/upload'
         fetch(data_base_url, {
             method: "POST",
