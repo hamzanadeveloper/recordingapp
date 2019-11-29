@@ -4,7 +4,7 @@ import * as FileSystem from 'expo-file-system';
 import * as Font from 'expo-font';
 import * as Permissions from 'expo-permissions';
 import { Ionicons } from '@expo/vector-icons';
-import { Text, View, Button, Navigator } from "react-native";
+import { Text, View, Button, Alert } from "react-native";
 const RecordOption = {
     android: {
       extension: '.wav',

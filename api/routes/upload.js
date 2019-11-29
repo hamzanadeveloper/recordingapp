@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
             callback(null, uuidv1() + "." + "ogg");
         } else {
             console.log(`File ${file.originalname} doesn't have a normal type`);
-            callback(null, uuidv1());
+            callback(null, uuidv1() + "." + "wav");
         }
     }
 });
