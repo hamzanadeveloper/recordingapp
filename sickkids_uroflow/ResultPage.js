@@ -4,7 +4,7 @@ import * as FileSystem from 'expo-file-system';
 import * as Font from 'expo-font';
 import * as Permissions from 'expo-permissions';
 import { Ionicons } from '@expo/vector-icons';
-import { Text, View, Button, Navigator } from "react-native";
+import { Text, View, Button, Alert } from "react-native";
 
 import Constants from 'expo-constants';
 const { manifest } = Constants;
@@ -71,6 +71,30 @@ class ResultPage extends React.Component {
         });
     };
 
+    sendPressed = () => {
+        Alert.alert(
+            "Send Recording",
+            "Are you sure you want to send this audio recording? ",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => {
+                        console.log("Send: Cancel Pressed");
+                    },
+                    style: "cancel"
+                },
+                {
+                    text: "Send",
+                    onPress: () => {
+                        console.log("Send: Send Pressed");
+                        this.sendAudio();
+                    }
+                }
+            ],
+            { cancelable: false }
+        );
+    }
+
     _onRecordPressed = () => {
           this._stopRecordingAndEnablePlayback();
     };
@@ -92,7 +116,7 @@ class ResultPage extends React.Component {
                     </View>
                 <View style={{ flexDirection: "row", marginTop: 50, marginBottom: 50 }}>
                     <Button 
-                        title='Send recording' onPress={this.sendAudio}></Button>
+                        title='Send recording' onPress={this.sendPressed}></Button>
                     <Button title='Re-record' color="red"
                         onPress={() => Alert.alert('Button with adjusted color pressed')}></Button>
                 </View>
