@@ -49,6 +49,7 @@ class ResultPage extends React.Component {
                 "nothing sent"
             ),
 
+            description: "",
             firstChecked: false,
             secondChecked: false,
             thirdChecked: false,
@@ -128,11 +129,8 @@ class ResultPage extends React.Component {
         this._stopRecordingAndEnablePlayback();
     };
 
-    handleEmail = text => {
-        this.setState({ email: text });
-    };
-    handlePassword = text => {
-        this.setState({ password: text });
+    handleDescription = text => {
+        this.setState({ description: text });
     };
 
     render() {
@@ -177,27 +175,6 @@ class ResultPage extends React.Component {
                                     title="Play Now"
                                     color="blue"
                                     onPress={this._onRecordPressed}
-                                ></Button>
-                            </View>
-                            <View
-                                style={{
-                                    flexDirection: "row",
-                                    marginTop: 50,
-                                    marginBottom: 50
-                                }}
-                            >
-                                <Button
-                                    title="Send recording"
-                                    onPress={this.sendPressed}
-                                ></Button>
-                                <Button
-                                    title="Re-record"
-                                    color="red"
-                                    onPress={() =>
-                                        Alert.alert(
-                                            "Button with adjusted color pressed"
-                                        )
-                                    }
                                 ></Button>
                             </View>
                         </View>
@@ -263,8 +240,36 @@ class ResultPage extends React.Component {
                                 placeholderTextColor="#9a73ef"
                                 autoCapitalize="none"
                                 textAlign="left"
-                                onChangeText={this.handleEmail}
+                                multiline
+                                numberOfLines={3}
+                                onChangeText={this.handleDescription}
+                                value={this.state.description}
                             />
+                        </View>
+                        <View
+                            style={{
+                                flexDirection: "row",
+                                marginTop: 50,
+                                marginBottom: 50,
+                                flex: 1,
+                                flexDirection: "row",
+                                justifyContent: "center",
+                                alignItems: "center"
+                            }}
+                        >
+                            <Button
+                                title="Send recording"
+                                onPress={this.sendPressed}
+                            ></Button>
+                            <Button
+                                title="Re-record"
+                                color="red"
+                                onPress={() =>
+                                    Alert.alert(
+                                        "Button with adjusted color pressed"
+                                    )
+                                }
+                            ></Button>
                         </View>
                     </View>
                 </ScrollView>
@@ -286,12 +291,18 @@ const styles = StyleSheet.create({
     },
 
     input: {
+        // margin: 15,
+        // marginLeft: 5,
+        // textAlign: "center",
+        // height: 150,
+        // borderColor: "black",
+        // borderWidth: 1
         margin: 15,
-        marginLeft: 5,
-        textAlign: "center",
-        height: 150,
-        borderColor: "blue",
-        borderWidth: 1
+        height: 40,
+        // width: 230,
+        borderColor: "black",
+        borderBottomWidth: 1
+        // padding: 30
     }
 });
 
