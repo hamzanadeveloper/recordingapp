@@ -8,6 +8,7 @@ const indexRouter = require("./routes/index");
 const signupRouter = require("./routes/signup");
 const loginRouter = require("./routes/login");
 const uploadRouter = require("./routes/upload");
+const updateProfileRouter = require("./routes/updateProfile");
 
 const app = express();
 
@@ -43,5 +44,6 @@ app.use("/", indexRouter);
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/upload", uploadRouter);
+app.use("/updateprofile", updateProfileRouter);
 
 module.exports = app;
