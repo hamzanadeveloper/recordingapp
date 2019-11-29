@@ -55,14 +55,14 @@ class LoginPage extends React.Component {
                     justifyContent: "center"
                 }}
             >
-                <Text style={{ fontSize: 30 }}>Welcome to Uroflow</Text>
+                <Text style={{ fontSize: 30, marginBottom: 30}}>Welcome to Uroflow</Text>
                 <TextInput style={styles.input}
                     placeholder = "Email"
                     autoCapitalize = "none"
                     onChangeText = {this.handleEmail}
                 />
                 <TextInput style={styles.input}
-                    
+                    secureTextEntry={true}
                     placeholder = "Password"
                     autoCapitalize = "none"
                     onChangeText = {this.handlePassword}
