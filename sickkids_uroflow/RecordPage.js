@@ -180,23 +180,10 @@ export default class RecordPage extends React.Component {
     }
     const info = await FileSystem.getInfoAsync(this.recording.getURI());
     this.setState({uri: info.uri})
-    console.log(`FILE INFO: ${JSON.stringify(info)}`);
-    const formData = new FormData();
-    formData.append("userId", "1");
-    formData.append("INPUT-FIELD-NAME-HERE", {uri: this.state.uri, name: 'test1.caf', type: 'audio/caf'})
-    
-    // CHANGE LOCAL IP ADDRESS BEFORE RUN THE CODE HERE FOR NOW!
-    ip_address = '100.64.166.191';
-    const data_base_url = 'http://' + ip_address + ':3001/upload'
-    fetch(data_base_url, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      body: formData
-    }).then(response => {
-      console.log("audio uploaded")
-    });
+    // console.log(`FILE INFO: ${JSON.stringify(info)}`);
+    this.props.navigation.navigate('Result', {
+      uri_info: info.uri
+    })
 
     await Audio.setAudioModeAsync({
       allowsRecordingIOS: false,
@@ -382,11 +369,11 @@ export default class RecordPage extends React.Component {
               disabled={this.state.isLoading}>
               <Ionicons name="ios-microphone" size={80} />
             </TouchableHighlight>
-            <Button
+            {/* <Button
               title="GO TO RESULT!"
               onPress={() => this.props.navigation.navigate('Result', {
                 uri_info: this.state.uri
-              })}/>
+              })}/> */}
             
             <View style={styles.recordingDataContainer}>
               <View />
