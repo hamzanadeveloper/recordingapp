@@ -15,9 +15,14 @@ const storage = multer.diskStorage({
     },
     filename: function(req, file, callback) {
         // TODO: ADD MORE FILE TYPE HERE !!!!!
-        if (file.mimetype === "audio/wave") {
+        if (file.mimetype === "audio/wave" || file.mimetype === "audio/wav") {
             callback(null, uuidv1() + "." + "wav");
+        } else if (file.mimetype === "audio/caf") {
+            callback(null, uuidv1() + "." + "caf");
+        } else if (file.mimetype === "audio/ogg") {
+            callback(null, uuidv1() + "." + "ogg");
         } else {
+            console.log(`File ${file.originalname} doesn't have a normal type`);
             callback(null, uuidv1());
         }
     }
@@ -27,6 +32,9 @@ var upload = multer({ storage: storage }).single("INPUT-FIELD-NAME-HERE");
 /* POST to upload audio. */
 router.post("/", function(req, res, next) {
     upload(req, res, function(err) {
+
+        // !!!!! **********TODO*********** !!!!!: CHECK WHETHER USERID EXISTS OR NOT
+
         console.log("File info: ");
         console.log(req.file);
         if (err instanceof multer.MulterError) {
