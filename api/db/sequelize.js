@@ -1,14 +1,11 @@
+const config = require("../config.json");
 // add database connection
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(
-    "SickKids", // database
-    "postgres", // username
-    "0192837465", // password
-    {
-        host: 'localhost',
-        dialect: "postgres", // or 'sqlite', 'postgres', 'mariadb'
-        // port: 5432 // or 5432 (for postgres)
-    }
+    config.db.database, // database
+    config.db.username, // username
+    config.db.password, // password
+    config.db.options
 );
 
 sequelize.authenticate().then(
@@ -20,4 +17,4 @@ sequelize.authenticate().then(
     }
 );
 
-module.exports = { sequelize }  // Export the active connection.
+module.exports = { sequelize }; // Export the active connection.
