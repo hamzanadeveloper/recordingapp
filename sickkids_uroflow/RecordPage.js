@@ -6,6 +6,8 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
+  Navigator,
+  Button,
   View,
 } from 'react-native';
 import { Asset } from 'expo-asset';
@@ -44,20 +46,6 @@ const LIVE_COLOR = '#FF0000';
 const DISABLED_OPACITY = 0.5;
 const RATE_SCALE = 3.0;
 
-// class CustomComponent extends React.Component {
-//   render() {
-//     console.log("line52")
-//     console.log(this)
-//     return (
-//       <Ionicons name="ios-microphone" size={80} />
-      
-//     )
-//   }
-
-//   setNativeProps(nativeProps) {
-//     this.refs.container.setNativeProps(nativeProps);
-//   }
-// }
 
 export default class RecordPage extends React.Component {
   constructor(props) {
@@ -67,6 +55,7 @@ export default class RecordPage extends React.Component {
     this.isSeeking = false;
     this.shouldPlayAtEndOfSeek = false;
     this.state = {
+      uri: null,
       haveRecordingPermissions: false,
       isLoading: false,
       isPlaybackAllowed: false,
@@ -190,7 +179,25 @@ export default class RecordPage extends React.Component {
       // Do nothing -- we are already unloaded.
     }
     const info = await FileSystem.getInfoAsync(this.recording.getURI());
+    this.setState({uri: info.uri})
     console.log(`FILE INFO: ${JSON.stringify(info)}`);
+    const formData = new FormData();
+    formData.append("userId", "1");
+    formData.append("INPUT-FIELD-NAME-HERE", {uri: this.state.uri, name: 'test1.caf', type: 'audio/caf'})
+    
+    // CHANGE LOCAL IP ADDRESS BEFORE RUN THE CODE HERE FOR NOW!
+    ip_address = '100.64.166.191';
+    const data_base_url = 'http://' + ip_address + ':3001/upload'
+    fetch(data_base_url, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      body: formData
+    }).then(response => {
+      console.log("audio uploaded")
+    });
+
     await Audio.setAudioModeAsync({
       allowsRecordingIOS: false,
       interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
@@ -203,7 +210,7 @@ export default class RecordPage extends React.Component {
     });
     const { sound, status } = await this.recording.createNewLoadedSoundAsync(
       {
-        isLooping: true,
+        isLooping: false,
         isMuted: this.state.muted,
         volume: this.state.volume,
         rate: this.state.rate,
@@ -375,6 +382,12 @@ export default class RecordPage extends React.Component {
               disabled={this.state.isLoading}>
               <Ionicons name="ios-microphone" size={80} />
             </TouchableHighlight>
+            <Button
+              title="GO TO RESULT!"
+              onPress={() => this.props.navigation.navigate('Result', {
+                uri_info: this.state.uri
+              })}/>
+            
             <View style={styles.recordingDataContainer}>
               <View />
               <Text style={[styles.liveText, { fontFamily: 'cutive-mono-regular' }]}>
