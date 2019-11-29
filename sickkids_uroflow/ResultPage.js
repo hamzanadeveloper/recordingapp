@@ -43,34 +43,17 @@ class ResultPage extends React.Component {
             )
         );
         this.sound = null;
-        this.isSeeking = false;
-        this.shouldPlayAtEndOfSeek = false;
         this.state = {
-            uri: null,
             getted_uri: this.props.navigation.getParam(
                 "uri_info",
                 "nothing sent"
             ),
-            haveRecordingPermissions: false,
-            isLoading: false,
-            isPlaybackAllowed: false,
-            muted: false,
-            soundPosition: null,
-            soundDuration: null,
-            recordingDuration: null,
-            shouldPlay: false,
-            isPlaying: false,
-            isRecording: false,
-            fontLoaded: false,
-            shouldCorrectPitch: true,
-            volume: 1.0,
-            rate: 1.0,
 
             firstChecked: false,
             secondChecked: false,
             thirdChecked: false,
             forthChecked: false,
-            fifthChecked: false,
+            fifthChecked: false
         };
         // this.recordingSettings = JSON.parse(JSON.stringify(Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY));
         this.recordingSettings = JSON.parse(JSON.stringify(RecordOption));
