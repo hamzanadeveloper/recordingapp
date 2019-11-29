@@ -1,7 +1,8 @@
 import React from "react";
 import { Text, View, Button, StyleSheet, TextInput} from "react-native";
 
-import config from './config.json'
+import Constants from 'expo-constants';
+const { manifest } = Constants;
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -33,9 +34,13 @@ class LoginPage extends React.Component {
      }
 
      login_pressed = () => {
-        // ip_address = '100.64.166.191';
-        ip_address = config.ip_address;
-        const data_base_url = 'http://' + ip_address + ':3001/login';
+        // const data_base_url = 'http://' + ip_address + ':3001/login';
+
+        const data_base_url = `http://${manifest.debuggerHost
+            .split(`:`)
+            .shift()
+            .concat(`:3001/login`)}`; // Switch to the route you want to use
+
          fetch(data_base_url, {
              method: "POST",
              headers: {

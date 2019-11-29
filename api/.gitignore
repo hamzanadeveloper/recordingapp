@@ -65,3 +65,6 @@ uploads/
 
 # vscode config
 .vscode/
+
+# password config file
+config.json
