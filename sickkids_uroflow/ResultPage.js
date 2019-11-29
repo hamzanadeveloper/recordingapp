@@ -5,10 +5,29 @@ import * as Font from 'expo-font';
 import * as Permissions from 'expo-permissions';
 import { Ionicons } from '@expo/vector-icons';
 import { Text, View, Button, Navigator } from "react-native";
-
+const RecordOption = {
+    android: {
+      extension: '.m4a',
+      outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
+      audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
+      sampleRate: 44100,
+      numberOfChannels: 2,
+      bitRate: 128000,
+    },
+    ios: {
+      extension: '.wav',
+      outputFormat:Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_LINEARPCM,
+      audioQuality: Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_MAX,
+      sampleRate: 44100,
+      numberOfChannels: 2,
+      bitRate: 128000,
+      linearPCMBitDepth: 16,
+      linearPCMIsBigEndian: false,
+      linearPCMIsFloat: false,
+    },
+  };
 import Constants from 'expo-constants';
 const { manifest } = Constants;
-
 class ResultPage extends React.Component {
     constructor(props) {
         super(props);
@@ -34,7 +53,8 @@ class ResultPage extends React.Component {
           volume: 1.0,
           rate: 1.0,
         };
-        this.recordingSettings = JSON.parse(JSON.stringify(Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY));
+        // this.recordingSettings = JSON.parse(JSON.stringify(Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY));
+        this.recordingSettings = JSON.parse(JSON.stringify(RecordOption));
     }
 
     async _stopRecordingAndEnablePlayback() {
@@ -49,7 +69,12 @@ class ResultPage extends React.Component {
     sendAudio = () => {
         const formData = new FormData();
         formData.append("userId", "1");
-        formData.append("INPUT-FIELD-NAME-HERE", {uri: this.state.getted_uri, name: 'test1.caf', type: 'audio/caf'})
+        const fileUri = this.state.getted_uri;
+        console.log(fileUri);
+        const fileInfoList = fileUri.split(".");
+        const fileExtension = fileInfoList[fileInfoList.length - 1];
+        console.log(fileExtension);
+        formData.append("INPUT-FIELD-NAME-HERE", {uri: this.state.getted_uri, name: 'test1.' + fileExtension})
         
         // CHANGE LOCAL IP ADDRESS BEFORE RUN THE CODE HERE FOR NOW!
 

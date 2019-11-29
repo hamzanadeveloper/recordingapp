@@ -46,7 +46,27 @@ const LIVE_COLOR = '#FF0000';
 const DISABLED_OPACITY = 0.5;
 const RATE_SCALE = 3.0;
 
-
+const RecordOption = {
+  android: {
+    extension: '.wav',
+    outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
+    audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
+    sampleRate: 44100,
+    numberOfChannels: 2,
+    bitRate: 128000,
+  },
+  ios: {
+    extension: '.wav',
+    outputFormat:Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_LINEARPCM,
+    audioQuality: Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_MAX,
+    sampleRate: 44100,
+    numberOfChannels: 2,
+    bitRate: 128000,
+    linearPCMBitDepth: 16,
+    linearPCMIsBigEndian: false,
+    linearPCMIsFloat: false,
+  },
+};
 export default class RecordPage extends React.Component {
   constructor(props) {
     super(props);
@@ -71,9 +91,10 @@ export default class RecordPage extends React.Component {
       volume: 1.0,
       rate: 1.0,
     };
-    this.recordingSettings = JSON.parse(JSON.stringify(Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY));
+    //this.recordingSettings = JSON.parse(JSON.stringify(Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY));
     // // UNCOMMENT THIS TO TEST maxFileSize:
     // this.recordingSettings.android['maxFileSize'] = 12000;
+    this.recordingSettings = JSON.parse(JSON.stringify(RecordOption));
   }
 
   componentDidMount() {
