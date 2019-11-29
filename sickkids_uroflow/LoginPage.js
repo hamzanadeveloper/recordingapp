@@ -4,11 +4,11 @@ import {
     View,
     Button,
     StyleSheet,
-    TextInput,
-    AsyncStorage
+    TextInput
 } from "react-native";
 
 import config from "./config.json";
+import { checkJWT, setJWT } from "./utils/auth";
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -17,32 +17,8 @@ class LoginPage extends React.Component {
             email: "default_e",
             password: "default_p"
         };
-        // this.checkJWT();
+        // checkJWT(); // checks JWT before 
     }
-
-    getJWT = async () => {
-        try {
-            const result = await AsyncStorage.getItem("jwt");
-            return result;
-        } catch (error) {
-            return null;
-        }
-    };
-
-    setJWT = async token => {
-        try {
-            await AsyncStorage.setItem("jwt", token);
-            return true;
-        } catch (error) {
-            return false;
-        }
-    };
-
-    checkJWT = () => {
-        if (this.getJWT() !== null) {
-            this.props.navigation.navigate("History");
-        }
-    };
 
     handleEmail = text => {
         this.setState({ email: text });
@@ -55,6 +31,7 @@ class LoginPage extends React.Component {
     handleFeedback(statusCode) {
         if (statusCode == 200) {
             this.props.navigation.navigate("History");
+            // setJWT(token) // TODO: add param
         } else if (statusCode == 404) {
             alert("404: User not found");
             console.log("404: User not found");
