@@ -23,22 +23,23 @@ class LoginPage extends React.Component {
         this.setState({ password: text });
     };
 
-    handleFeedback(statusCode) {
-        if (statusCode == 200) {
+    handleFeedback(status, body) {
+        const token = body.token;
+        console.log(body);
+        if (status == 200) {
             this.props.navigation.navigate("History");
             // setJWT(token) // TODO: add param
-        } else if (statusCode == 404) {
+        } else if (status == 404) {
             alert("404: User not found");
             console.log("404: User not found");
-        } else if (statusCode == 400) {
+        } else if (status == 400) {
             alert("400: Password entered not correct");
             console.log("400: Password entered not correct");
         }
     }
 
-    login_pressed = () => {
-        // const data_base_url = 'http://' + ip_address + ':3001/login';
-
+    loginPressed = () => {
+        let status = null;
         const data_base_url = `http://${manifest.debuggerHost
             .split(`:`)
             .shift()
@@ -54,7 +55,15 @@ class LoginPage extends React.Component {
                 email: this.state.email,
                 password: this.state.password
             })
-        }).then(response => this.handleFeedback(response.status));
+        })
+        .then(result => {
+            status = result.status;
+            return result.json();
+        })
+        .then(body => this.handleFeedback(status, body))
+        .catch(error => {
+            console.log(error);
+        });
     };
 
     render() {
@@ -82,7 +91,7 @@ class LoginPage extends React.Component {
                     autoCapitalize="none"
                     onChangeText={this.handlePassword}
                 />
-                <Button onPress={this.login_pressed} title="Login" />
+                <Button onPress={this.loginPressed} title="Login" />
             </View>
         );
     }
