@@ -1,13 +1,7 @@
 import React from "react";
-import {
-    Text,
-    View,
-    Button,
-    StyleSheet,
-    TextInput
-} from "react-native";
+import { Text, View, Button, StyleSheet, TextInput } from "react-native";
 
-import Constants from 'expo-constants';
+import Constants from "expo-constants";
 const { manifest } = Constants;
 import { checkJWT, setJWT } from "./utils/auth";
 
@@ -18,7 +12,7 @@ class LoginPage extends React.Component {
             email: "default_e",
             password: "default_p"
         };
-        // checkJWT(); // checks JWT before 
+        // checkJWT(); // checks JWT before
     }
 
     handleEmail = text => {
@@ -42,7 +36,7 @@ class LoginPage extends React.Component {
         }
     }
 
-     login_pressed = () => {
+    login_pressed = () => {
         // const data_base_url = 'http://' + ip_address + ':3001/login';
 
         const data_base_url = `http://${manifest.debuggerHost
@@ -50,11 +44,11 @@ class LoginPage extends React.Component {
             .shift()
             .concat(`:3001/login`)}`; // Switch to the route you want to use
 
-         fetch(data_base_url, {
-             method: "POST",
-             headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
+        fetch(data_base_url, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 email: this.state.email,
