@@ -15,11 +15,11 @@ const storage = multer.diskStorage({
     },
     filename: function(req, file, callback) {
         // TODO: ADD MORE FILE TYPE HERE !!!!!
-        if (file.mimetype === "audio/wave" || file.mimetype === "audio/wav") {
+        if (file.mimetype.includes("wave") || file.mimetype.includes("wav")) {
             callback(null, uuidv1() + "." + "wav");
-        } else if (file.mimetype === "audio/caf") {
+        } else if (file.mimetype.includes("caf")) {
             callback(null, uuidv1() + "." + "caf");
-        } else if (file.mimetype === "audio/ogg") {
+        } else if (file.mimetype.includes("ogg")) {
             callback(null, uuidv1() + "." + "ogg");
         } else {
             console.log(`File ${file.originalname} doesn't have a normal type`);
