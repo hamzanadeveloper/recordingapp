@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Text, View, Button, Navigator } from "react-native";
 const RecordOption = {
     android: {
-      extension: '.m4a',
+      extension: '.wav',
       outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
       audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
       sampleRate: 44100,
