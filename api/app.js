@@ -44,6 +44,6 @@ app.use("/", indexRouter);
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/upload", uploadRouter);
-app.use("/updateprofile", updateProfileRouter);
+app.use("/update", updateProfileRouter);
 
 module.exports = app;
