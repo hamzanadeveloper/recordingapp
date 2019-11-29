@@ -1,31 +1,23 @@
 import { AsyncStorage } from "react-native";
 
-getJWT = async () => {
-    try {
-        const result = await AsyncStorage.getItem("jwt");
+const jwtKey = "jwt";
+
+export const getJWT = () => {
+    return AsyncStorage.getItem(jwtKey)
+    .then(result => {
         return result;
-    } catch (error) {
+    })
+    .catch(error => {
         return null;
-    }
+    })
 };
 
-setJWT = async token => {
-    try {
-        await AsyncStorage.setItem("jwt", token);
+export const setJWT = (token) => {
+    return AsyncStorage.setItem(jwtKey, token)
+    .then(result => {
         return true;
-    } catch (error) {
+    })
+    .catch(error => {
         return false;
-    }
-};
-
-checkJWT = () => {
-    if (this.getJWT() !== null) {
-        this.props.navigation.navigate("History");
-    }
-};
-
-export default {
-    getJWT,
-    setJWT,
-    checkJWT
+    })
 };

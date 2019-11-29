@@ -3,7 +3,7 @@ import { Text, View, Button, StyleSheet, TextInput } from "react-native";
 
 import Constants from "expo-constants";
 const { manifest } = Constants;
-import { checkJWT, setJWT } from "./utils/auth";
+import { setJWT, getJWT } from "./utils/auth";
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -12,7 +12,11 @@ class LoginPage extends React.Component {
             email: "default_e",
             password: "default_p"
         };
-        // checkJWT(); // checks JWT before
+        console.log(getJWT());
+        // checks JWT before
+        if (getJWT() !== null) {
+            this.props.navigation.navigate("History");
+        }
     }
 
     handleEmail = text => {
