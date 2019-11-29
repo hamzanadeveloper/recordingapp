@@ -10,7 +10,7 @@ const Recording = sequelize.define("recording", {
 	},
 	comment: {
 		type: Sequelize.STRING,
-		allowNull: false
+		allowNull: true
 	},
 	userId: {
 	    type: Sequelize.INTEGER,

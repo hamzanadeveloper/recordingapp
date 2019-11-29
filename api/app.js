@@ -25,7 +25,7 @@ sequelize
     )
     .then(
         function(err) {
-            console.log("***** Tables are created *****");
+            console.log("\n***** TABLES ARE CREATED *****\n");
         },
         function(err) {
             console.log("An error occurred while creating the table:", err);

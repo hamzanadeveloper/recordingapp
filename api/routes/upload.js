@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
+const { Recording } = require("../models/recording");
 const uuidv1 = require("uuid/v1");
 
 var multer = require("multer");
@@ -38,7 +39,19 @@ router.post("/", function(req, res, next) {
             return;
         }
         // Everything went fine.
-        res.send({ flag: true });
+
+        // update recording table
+        const userId = req.body.userId;
+        console.log(`User is: ${userId}`);
+        Recording.create({
+            url: req.file.destination + "/" + req.file.filename,
+            comment: req.body.comment,
+            userId: userId
+        }).then((result) => {
+            res.send({ flag: true, recording: result });
+        }).catch((err) => {
+            res.send({ flag: false, error: err });
+        });
     });
 });
 
