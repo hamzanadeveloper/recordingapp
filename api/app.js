@@ -27,6 +27,14 @@ sequelize
     .then(
         function(err) {
             console.log("\n***** TABLES ARE CREATED *****\n");
+
+            // This is for development purpose
+            User.create({
+                email: "frank@gmail.com",
+                password: "123456"
+            }).then(result => {
+                console.log(`Created user ${result.email}`);
+            });
         },
         function(err) {
             console.log("An error occurred while creating the table:", err);
