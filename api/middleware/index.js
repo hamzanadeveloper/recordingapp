@@ -1,7 +1,7 @@
 const { verifyJWT } = require("../libs/auth");
 
 // JWT verification middleware
-const handleVerifyJWT = (req, res, next) => {
+const handleJWTVerification = (req, res, next) => {
     const token = req.get("authToken");
     verifyJWT(token)
     .then(content => {
@@ -14,5 +14,5 @@ const handleVerifyJWT = (req, res, next) => {
 }
 
 module.exports = {
-    handleVerifyJWT
+    handleJWTVerification
 }

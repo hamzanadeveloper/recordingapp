@@ -4,6 +4,7 @@ var router = express.Router();
 const bcrypt = require("bcryptjs");
 
 const { User } = require("../models/user");
+const { createJWT } = require("../libs/auth");
 
 /* POST login. */
 router.post("/", function(req, res, next) {
