@@ -14,9 +14,9 @@ class LoginPage extends React.Component {
         };
         console.log(getJWT());
         // checks JWT before
-        if (getJWT() !== null) {
-            this.props.navigation.navigate("History");
-        }
+        // if (getJWT() !== null) {
+        //     this.props.navigation.navigate("History");
+        // }
     }
 
     handleEmail = text => {
