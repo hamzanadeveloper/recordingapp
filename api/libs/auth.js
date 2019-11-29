@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken")
 
 const secret = process.env.JWT_SECRET || "donttellothers";
+const defaultTTL = "2s"
 
 const verifyJWT = (token) => {
     return new Promise((resolve, reject) => {
@@ -16,7 +17,9 @@ const verifyJWT = (token) => {
 
 const createJWT = (payload) => {
     return new Promise((resolve, reject) => {
-        jwt.sign(payload, secret, (error, token) => {
+        jwt.sign(payload, secret, {
+            expiresIn: defaultTTL
+        }, (error, token) => {
             if (error || !token) {
                 reject(error);
             } else {
@@ -26,10 +29,13 @@ const createJWT = (payload) => {
     });
 }
 
-// const content = "stuff";
+// snippet testing expiration
+// const content = { data: "stuff" };
+// let gen = null;
 // createJWT(content)
 // .then(token => {
 //     console.log(token);
+//     gen = token;
 //     return verifyJWT(token);
 // })
 // .then(result => {
@@ -39,6 +45,18 @@ const createJWT = (payload) => {
 //     console.log(error);
 // })
 
+// setTimeout(() => {
+//     console.log("3s later");
+//     verifyJWT(gen)
+//     .then(result => {
+//         console.log(result);
+//     })
+//     .catch(error => {
+//         console.log(error);
+//     })
+// }, 3000);
+
 module.exports = {
-    verifyJWTToken
+    verifyJWT,
+    createJWT
 }
