@@ -96,6 +96,30 @@ class ResultPage extends React.Component {
         });
     };
 
+    sendPressed = () => {
+        Alert.alert(
+            "Send Recording",
+            "Are you sure you want to send this audio recording? ",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => {
+                        console.log("Send: Cancel Pressed");
+                    },
+                    style: "cancel"
+                },
+                {
+                    text: "Send",
+                    onPress: () => {
+                        console.log("Send: Send Pressed");
+                        this.sendAudio();
+                    }
+                }
+            ],
+            { cancelable: false }
+        );
+    }
+
     _onRecordPressed = () => {
           this._stopRecordingAndEnablePlayback();
     };
@@ -117,7 +141,7 @@ class ResultPage extends React.Component {
                     </View>
                 <View style={{ flexDirection: "row", marginTop: 50, marginBottom: 50 }}>
                     <Button 
-                        title='Send recording' onPress={this.sendAudio}></Button>
+                        title='Send recording' onPress={this.sendPressed}></Button>
                     <Button title='Re-record' color="red"
                         onPress={() => Alert.alert('Button with adjusted color pressed')}></Button>
                 </View>
