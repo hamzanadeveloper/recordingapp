@@ -19,7 +19,7 @@ router.get("/", handleJWTVerification, function(req, res) {
         .then(user => {
             res.send({
                 flag: true,
-                user: { gender: user.gender, birthday: user.birthday }
+                user: { email: email, gender: user.gender, birthday: user.birthday }
             });
         })
         .catch(err => {
