@@ -3,7 +3,7 @@ import { Text, View, Button, StyleSheet, TextInput } from "react-native";
 
 import Constants from "expo-constants";
 const { manifest } = Constants;
-import { setJWT, getJWT } from "./utils/auth";
+import { setJWT, getJWT, removeJWT } from "./utils/auth";
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -12,11 +12,14 @@ class LoginPage extends React.Component {
             email: "default_e",
             password: "default_p"
         };
-        console.log(getJWT());
+        // removeJWT(); // clear jwt field for debugging purpose
         // checks JWT before
-        // if (getJWT() !== null) {
-        //     this.props.navigation.navigate("History");
-        // }
+        getJWT().then(res => {
+            console.log(`Current JWT: ${res}`);
+            if (res !== null) {
+                this.props.navigation.navigate("History");
+            }
+        });
     }
 
     handleEmail = text => {
@@ -29,10 +32,16 @@ class LoginPage extends React.Component {
 
     handleFeedback(status, body) {
         const token = body.token;
-        console.log(body);
         if (status == 200) {
-            this.props.navigation.navigate("History");
-            // setJWT(token) // TODO: add param
+            setJWT(token).then(res => {
+                if (res) {
+                    console.log(`JWT storation success: ${res}`);
+                    this.props.navigation.navigate("History");
+                } else {
+                    alert("JWT token storation failed");
+                    console.log("JWT token storation failed");
+                }
+            });
         } else if (status == 404) {
             alert("404: User not found");
             console.log("404: User not found");
