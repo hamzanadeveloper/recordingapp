@@ -3,7 +3,7 @@ import { Text, View, Button, StyleSheet, TextInput } from "react-native";
 
 import Constants from "expo-constants";
 const { manifest } = Constants;
-import { setJWT, getJWT, removeJWT } from "./utils/auth";
+import { setJWT } from "./utils/auth";
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -12,14 +12,6 @@ class LoginPage extends React.Component {
             email: "default_e",
             password: "default_p"
         };
-        // removeJWT(); // clear jwt field for debugging purpose
-        // checks JWT before
-        getJWT().then(res => {
-            console.log(`Current JWT: ${res}`);
-            if (res !== null) {
-                this.props.navigation.navigate("History");
-            }
-        });
     }
 
     handleEmail = text => {

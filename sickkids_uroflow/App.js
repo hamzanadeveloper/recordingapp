@@ -4,6 +4,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
+import LoadingPage from "./LoadingPage";
 import LoginPage from "./LoginPage";
 import HistoryPage from "./HistoryPage";
 import RecordPage from "./RecordPage";
@@ -61,6 +62,9 @@ const MainStack = createBottomTabNavigator(
 
 const RootStack = createStackNavigator(
     {
+        Load: {
+            screen: LoadingPage
+        },
         Login: {
             screen: LoginPage
         },
@@ -69,7 +73,7 @@ const RootStack = createStackNavigator(
         }
     },
     {
-        mode: "modal",
+        // mode: "modal",
         headerMode: "none"
     }
 );
