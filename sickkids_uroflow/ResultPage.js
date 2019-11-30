@@ -71,7 +71,7 @@ class ResultPage extends React.Component {
 
     sendAudio = () => {
         const formData = new FormData();
-        formData.append("userId", "1");
+        // Get dat file in
         const fileUri = this.state.getted_uri;
         console.log(fileUri);
         const fileInfoList = fileUri.split(".");
@@ -79,9 +79,12 @@ class ResultPage extends React.Component {
         console.log(fileExtension);
         formData.append("INPUT-FIELD-NAME-HERE", {
             uri: this.state.getted_uri,
-            name: "test1." + fileExtension
+            name: "test1." + fileExtension,
         });
-
+        
+        // Get other info
+        formData.append("userId", "1");
+        formData.append("comment", this.state.description);
         // CHANGE LOCAL IP ADDRESS BEFORE RUN THE CODE HERE FOR NOW!
 
         const data_base_url = `http://${manifest.debuggerHost
@@ -96,8 +99,14 @@ class ResultPage extends React.Component {
             },
             body: formData
         }).then(response => {
-            console.log("audio uploaded");
+            if (response.status === 200) {
+                alert(`Audio uploaded`)
+            } else if (response.status === 400) {
+                alert(`Bad request, file upload failed`)
+            }
             this.props.navigation.goBack();
+        }).catch(err => {
+            console.error(err);
         });
     };
 
