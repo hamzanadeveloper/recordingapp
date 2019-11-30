@@ -81,9 +81,9 @@ class ResultPage extends React.Component {
         console.log(fileExtension);
         formData.append("INPUT-FIELD-NAME-HERE", {
             uri: this.state.getted_uri,
-            name: "test1." + fileExtension,
+            name: "test1." + fileExtension
         });
-        
+
         // Get other info
         formData.append("userId", "1");
         formData.append("comment", this.state.description);
@@ -94,26 +94,30 @@ class ResultPage extends React.Component {
             .shift()
             .concat(`:3001/upload`)}`; // Switch to the route you want to use
 
-        getJWT().then(token => {
-            return fetch(data_base_url, {
-                method: "POST",
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                    "Content-Type": "multipart/form-data"
-                },
-                body: formData
+        getJWT()
+            .then(token => {
+                return fetch(data_base_url, {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "multipart/form-data"
+                    },
+                    body: formData
+                });
             })
-        })
-        .then(response => {
-            if (response.status === 200) {
-                Alert.alert('Success', 'Audio uploaded')
-            } else if (response.status === 400) {
-                alert(`Bad request, file upload failed`)
-            }
-            this.props.navigation.goBack();
-        }).catch(err => {
-            console.error(err);
-        });
+            .then(response => {
+                if (response.status === 200) {
+                    Alert.alert("Success", "Audio uploaded");
+                    console.log("ResultPage: upload succeed");
+                } else if (response.status === 400) {
+                    alert(`Bad request, file upload failed`);
+                    console.log("ResultPage: bad request");
+                }
+                this.props.navigation.goBack();
+            })
+            .catch(err => {
+                console.error(err);
+            });
     };
 
     sendPressed = () => {
@@ -292,9 +296,7 @@ class ResultPage extends React.Component {
                         <Button
                             title="Re-record"
                             color="red"
-                            onPress={() =>
-                                this.props.navigation.goBack()
-                            }
+                            onPress={() => this.props.navigation.goBack()}
                         ></Button>
                     </View>
                 </View>
@@ -302,6 +304,5 @@ class ResultPage extends React.Component {
         );
     }
 }
-
 
 export default ResultPage;

@@ -26,20 +26,21 @@ class LoginPage extends React.Component {
         const token = body.token;
         if (status == 200) {
             setJWT(token).then(res => {
+                console.log("LoginPage: API call succeed");
                 if (res) {
-                    console.log(`JWT storation success: ${res}`);
+                    console.log("LoginPage: JWT stored, redirect to history page");
                     this.props.navigation.navigate("History");
                 } else {
                     alert("JWT token storation failed");
-                    console.log("JWT token storation failed");
+                    console.log("LoginPage: JWT storation failed");
                 }
             });
         } else if (status == 404) {
-            alert("404: User not found");
-            console.log("404: User not found");
+            alert("User not found");
+            console.log("LoginPage: 404: User not found");
         } else if (status == 400) {
-            alert("400: Password entered not correct");
-            console.log("400: Password entered not correct");
+            alert("Incorrect password");
+            console.log("LoginPage: 400: Password entered not correct");
         }
     }
 

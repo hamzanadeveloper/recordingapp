@@ -11,17 +11,23 @@ class LoadingPage extends React.Component {
         // removeJWT(); // clear jwt field for debugging purpose
         // checks JWT before
         getJWT()
-        .then(token => {
-            return this.checkJWT(token);
-        })
-        .then(res => {
-            console.log(`Current JWT: ${res}`);
-            if (res.status === 200) {
-                this.props.navigation.navigate("History");
-            } else {
-                this.props.navigation.navigate("Login");
-            }
-        });
+            .then(token => {
+                console.log("LoadingPage: checking JWT");
+                return this.checkJWT(token);
+            })
+            .then(res => {
+                if (res.status === 200) {
+                    console.log(
+                        "LoadingPage: valid JWT, redirect to history page"
+                    );
+                    this.props.navigation.navigate("History");
+                } else {
+                    console.log(
+                        "LoadingPage: invalid JWT, redirect to login page"
+                    );
+                    this.props.navigation.navigate("Login");
+                }
+            });
     }
 
     checkJWT(token) {
@@ -32,10 +38,10 @@ class LoadingPage extends React.Component {
         return fetch(data_base_url, {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${token}`,
+                Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
-            },
-        })
+            }
+        });
     }
 
     render() {
