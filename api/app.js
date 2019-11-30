@@ -5,6 +5,7 @@ const logger = require("morgan");
 
 // bring in the routers
 const indexRouter = require("./routes/index");
+const verifyRouter = require("./routes/verify");
 const signupRouter = require("./routes/signup");
 const loginRouter = require("./routes/login");
 const uploadRouter = require("./routes/upload");
@@ -55,6 +56,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // invoke the routers
 app.use("/", indexRouter);
+app.use("/verify", verifyRouter);
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/upload", uploadRouter);
