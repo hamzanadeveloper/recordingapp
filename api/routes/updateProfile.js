@@ -10,9 +10,7 @@ const { handleJWTVerification } = require("../middleware");
 router.patch("/password", handleJWTVerification, function(req, res, next) {
     const newPassword = req.body.password;
     const userId = req.user.id;
-    console.log(`userId: ${userId}`);
-    console.log(`newpassword: ${newPassword}`);
-
+    
     if (!newPassword || !userId) {
         res.status(400).send({ flag: false });
         return;

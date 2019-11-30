@@ -20,8 +20,8 @@ export default class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Gender: "Male",
-            Birthday: "1999/11/14",
+            Gender: "male",
+            Birthday: "1999-11-14",
             showBirthday: false,
             Password: "Test password",
             showPassword: false,
@@ -56,8 +56,7 @@ export default class Profile extends Component {
         );
     };
 
-    postPassword = () => {
-        let status = null;
+    patchPassword = () => {
         const data_base_url = `http://${manifest.debuggerHost
             .split(`:`)
             .shift()
@@ -72,6 +71,70 @@ export default class Profile extends Component {
                 },
                 body: JSON.stringify({
                     password: this.state.Password
+                })
+            })
+                .then(result => result.json())
+                .then(json => {
+                    if (json.flag) {
+                        alert("update success");
+                    } else {
+                        alert("update failed: bad request");
+                    }
+                })
+                .catch(error => {
+                    alert("update failed due to network issues");
+                    console.log(error);
+                });
+        });
+    };
+
+    patchBirthday = () => {
+        const data_base_url = `http://${manifest.debuggerHost
+            .split(`:`)
+            .shift()
+            .concat(`:3001/update/birthday`)}`; // Switch to the route you want to use
+
+        getJWT().then(token => {
+            return fetch(data_base_url, {
+                method: "PATCH",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    birthday: this.state.Birthday
+                })
+            })
+                .then(result => result.json())
+                .then(json => {
+                    if (json.flag) {
+                        alert("update success");
+                    } else {
+                        alert("update failed: bad request");
+                    }
+                })
+                .catch(error => {
+                    alert("update failed due to network issues");
+                    console.log(error);
+                });
+        });
+    };
+
+    patchGender = () => {
+        const data_base_url = `http://${manifest.debuggerHost
+            .split(`:`)
+            .shift()
+            .concat(`:3001/update/gender`)}`; // Switch to the route you want to use
+
+        getJWT().then(token => {
+            return fetch(data_base_url, {
+                method: "PATCH",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    gender: this.state.Gender
                 })
             })
                 .then(result => result.json())
@@ -159,7 +222,7 @@ export default class Profile extends Component {
                                                                 .state
                                                                 .showPassword
                                                         });
-                                                        this.postPassword();
+                                                        this.patchPassword();
                                                     }
                                                 }
                                             ],
@@ -189,6 +252,7 @@ export default class Profile extends Component {
                                         this.setState({ inputBirthday: text })
                                     }
                                     value={this.state.inputBirthday}
+                                    placeholder="year-month-day"
                                 />
                                 <Button
                                     title="Save"
@@ -226,6 +290,7 @@ export default class Profile extends Component {
                                                                 .state
                                                                 .showBirthday
                                                         });
+                                                        this.patchBirthday();
                                                     }
                                                 }
                                             ],
@@ -255,6 +320,7 @@ export default class Profile extends Component {
                                         this.setState({ inputGender: text })
                                     }
                                     value={this.state.inputGender}
+                                    placeholder="male/female/unknown"
                                 />
                                 <Button
                                     title="Save"
@@ -296,7 +362,7 @@ export default class Profile extends Component {
                                                             this.setState({
                                                                 Gender: this
                                                                     .state
-                                                                    .inputGender
+                                                                    .inputGender.toLowerCase()
                                                             });
                                                         } else {
                                                             Alert.alert(
@@ -309,6 +375,7 @@ export default class Profile extends Component {
                                                                 .state
                                                                 .showGender
                                                         });
+                                                        this.patchGender();
                                                     }
                                                 }
                                             ],
