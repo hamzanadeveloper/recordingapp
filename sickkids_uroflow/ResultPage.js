@@ -11,6 +11,8 @@ import {
     KeyboardAvoidingView
 } from "react-native";
 
+import { getJWT } from "./utils/auth";
+
 const RecordOption = {
     android: {
         extension: ".wav",
@@ -92,13 +94,17 @@ class ResultPage extends React.Component {
             .shift()
             .concat(`:3001/upload`)}`; // Switch to the route you want to use
 
-        fetch(data_base_url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "multipart/form-data"
-            },
-            body: formData
-        }).then(response => {
+        getJWT().then(token => {
+            return fetch(data_base_url, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "multipart/form-data"
+                },
+                body: formData
+            })
+        })
+        .then(response => {
             if (response.status === 200) {
                 alert(`Audio uploaded`)
             } else if (response.status === 400) {

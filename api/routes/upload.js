@@ -9,6 +9,8 @@ var multer = require("multer");
 //     "INPUT-FIELD-NAME-HERE"
 // );
 
+const { handleJWTVerification } = require("../middleware");
+
 const storage = multer.diskStorage({
     destination: function(req, file, callback) {
         callback(null, "uploads/recordings");
@@ -30,11 +32,12 @@ const storage = multer.diskStorage({
 var upload = multer({ storage: storage }).single("INPUT-FIELD-NAME-HERE");
 
 /* POST to upload audio. */
-router.post("/", function(req, res, next) {
+router.post("/", handleJWTVerification, function(req, res, next) {
     upload(req, res, function(err) {
+        console.log(`Before saving file, identify user: ${req.user.id} - ${req.user.email}`);
 
         // !!!!! **********TODO*********** !!!!!: CHECK WHETHER USERID EXISTS OR NOT
-
+        
         console.log("File info: ");
         console.log(req.file);
         if (err instanceof multer.MulterError) {
