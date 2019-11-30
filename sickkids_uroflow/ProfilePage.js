@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import profileImg from "./assets/profile.jpg" this dependency is not pushed zyb
-import { TextInput, Button, Alert, ScrollView } from 'react-native';
+import { TextInput, Button, Alert, ScrollView} from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {
     StyleSheet,
     Text,
@@ -8,7 +9,7 @@ import {
     Image,
     TouchableOpacity as TouchableHighlight
 } from 'react-native';
-
+import PasswordInputText from 'react-native-hide-show-password-input';
 
 function UselessTextInput() {
     const [value, onChangeText] = React.useState('Name');
@@ -38,7 +39,15 @@ export default class Profile extends Component {
                         Height: "180",
                         showHeight: false,
                         Birthday: "1999/11/14",
-                        showBirthday: false }
+                        showBirthday: false,
+                        Email:"Test Email",
+                        showEmail:false,
+                        Password:"Test password",
+                        showPassword:false,
+                        showGender:false,
+                        inputPassword:"",
+                        inputBirthday:"",
+                        inputGender:"" }
       }
     
     logOut = () => {
@@ -59,43 +68,122 @@ export default class Profile extends Component {
 
     render() {
         return (
-            <View>
+            <KeyboardAwareScrollView>
             <ScrollView style={styles.scrollView}>
                 <View style={styles.header}></View>
                 <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }} />
                 <Text style={styles.text}>press and hold field to edit</Text> 
                 <View style={styles.bodyContent}>
-                    <TouchableHighlight style={styles.buttonContainer} onLongPress={()=>{this.setState({showName: !this.state.showName})}}>
-                        <Text style={{color: "white"}}>Username: {this.state.Name}</Text>
+                    <TouchableHighlight  style={styles.buttonContainer} onLongPress={()=>{this.setState({showPassword: !this.state.showPassword})}}>
+                        <Text style={{color: "white"}}>password</Text>
                     </TouchableHighlight>
-                    {this.state.showName ? <View style={styles.editinfo}><TextInput style={styles.textInput} 
-                                            onChangeText={(text) => this.setState({Name: text})} value={this.state.Name}/>
-                                            <Button title="Save" onPress={()=>{this.setState({showName: !this.state.showName})}}/></View>
+                    {this.state.showPassword ? <View>
+                        <PasswordInputText  style = {styles.changepassword} getRef={input => this.input = input} value={this.state.Password}
+                        onChangeText={(text) => this.setState({inputPassword: text})} value={this.state.inputPassword}/>
+                        <Button title = "Save" onPress = {() => {
+                            Alert.alert(
+                                "Confirm Change",
+                                "Press Yes to finish changing password or No to withdraw  ",
+                                [
+                                    {
+                                        text: "Cancel",
+                                        onPress: () => {
+                                            console.log("Send: Cancel change password");
+                                            this.setState({showPassword: !this.state.showPassword})
+                                        },
+                                        style: "cancel"
+                                    },
+                                    {
+                                        text: "Yes",
+                                        onPress: () => {
+                                            console.log("Changed Password");
+                                            this.setState({Password:this.state.inputPassword})
+                                            this.setState({showPassword: !this.state.showPassword})
+                                        }
+                                    }
+                                ],
+                                { cancelable: false }
+                                );}}/>
+                </View>
                     : null}
                     <TouchableHighlight style={styles.buttonContainer} onLongPress={()=>{this.setState({showBirthday: !this.state.showBirthday})}}>
                         <Text style={{color: "white"}}>Birthday: {this.state.Birthday}</Text>
                     </TouchableHighlight>
                     {this.state.showBirthday ? <View style={styles.editinfo}><TextInput style={styles.textInput} 
-                                            onChangeText={(text) => this.setState({Birthday: text})} value={this.state.Birthday}/>
-                                            <Button title="Save" onPress={()=>{this.setState({showBirthday: !this.state.showBirthday})}}/></View>
+                                            onChangeText={(text) => this.setState({inputBirthday: text})} value={this.state.inputBirthday}/>
+                                            <Button title="Save" onPress={() => {
+                            Alert.alert(
+                                "Confirm Change",
+                                "Press Yes to finish changing Birthday or No to withdraw  ",
+                                [
+                                    {
+                                        text: "Cancel",
+                                        onPress: () => {
+                                            console.log("Send: Cancel change birthday");
+                                            this.setState({showBirthday: !this.state.showBirthday})
+                                        },
+                                        style: "cancel"
+                                    },
+                                    {
+                                        text: "Yes",
+                                        onPress: () => {
+                                            console.log("Changed birthday");
+                                            this.setState({Birthday: this.state.inputBirthday})
+                                            this.setState({showBirthday: !this.state.showBirthday})
+                                        }
+                                    }
+                                ],
+                                { cancelable: false }
+                                );}}/></View>
                     : null}
-                    <TouchableHighlight style={styles.buttonContainer} onLongPress={()=>{this.setState({showHeight: !this.state.showHeight})}}>
-                        <Text style={{color: "white"}}>Height(cm): {this.state.Height}</Text>
-                    </TouchableHighlight>
-                    {this.state.showHeight ? <View style={styles.editinfo}><TextInput style={styles.textInput} 
-                                            onChangeText={(text) => this.setState({Height: text})} value={this.state.Height}/>
-                                            <Button title="Save" onPress={()=>{this.setState({showHeight: !this.state.showHeight})}}/></View>
-                    : null}
-                    <TouchableHighlight style={styles.buttonContainer}>
+                    <TouchableHighlight style={styles.buttonContainer} onLongPress={() => {this.setState({showGender: !this.state.showGender})}}>
                         <Text style={{color: "white"}}>Gender: {this.state.Gender}</Text>
                     </TouchableHighlight>
-                    <TouchableHighlight style={styles.buttonContainer}>
-                        <Text style={{color: "white"}}>Age: {this.state.Age}</Text>
-                    </TouchableHighlight>
+                    {
+                        this.state.showGender? <View style={styles.editinfo}>
+                            <TextInput style={styles.textInput}
+                                onChangeText={(text) => this.setState({inputGender: text})} 
+                                value = {this.state.inputGender}
+                            />
+                            <Button title = "Save" onPress = {() => {
+                            Alert.alert(
+                                "Confirm Change",
+                                "Press Yes to finish changing Gender or No to withdraw  ",
+                                [
+                                    {
+                                        text: "Cancel",
+                                        onPress: () => {
+                                            console.log("Send: Cancel change gender");
+                                            this.setState({showGender: !this.state.showGender})
+                                        },
+                                        style: "cancel"
+                                    },
+                                    {
+                                        text: "Yes",
+                                        onPress: () => {
+                                            console.log("Changed Gender");
+                                            const validGenders = ["MALE", "FEMALE", "UNKNOWN"]
+                                            if(validGenders.includes(this.state.inputGender.toUpperCase())){
+                                                this.setState({Gender: this.state.inputGender})
+                                            }
+                                            else{
+                                                Alert.alert(
+                                                    "Unexpected Gender",
+                                                    "Gender can only be in Male, Female or Unknown"
+                                                )
+                                            }
+                                            this.setState({showGender: !this.state.showGender})
+                                        }
+                                    }
+                                ],
+                                { cancelable: false }
+                                );}}/> 
+                        </View>
+                    : null}
                     <Button title= "Log Out" style={styles.buttonContainer} onPress={this.logOut}/>
                 </View>
             </ScrollView>
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 }
@@ -174,5 +262,10 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         margin: 5
+    },
+    changepassword:{
+        width: 200,
+        height: 45,
+        marginBottom: 20
     }
 });
