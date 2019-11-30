@@ -6,16 +6,36 @@ const bcrypt = require("bcryptjs");
 const { User } = require("../models/user");
 const { handleJWTVerification } = require("../middleware");
 
+/* GET profile info */
+router.get("/", handleJWTVerification, function(req, res) {
+    const userId = req.user.id;
+
+    if (!userId) {
+        res.status(403).send({ flag: false });
+        return;
+    }
+
+    User.findByPk(userId)
+        .then(user => {
+            res.send({
+                flag: true,
+                user: { gender: user.gender, birthday: user.birthday }
+            });
+        })
+        .catch(err => {
+            res.status(404).send({ flag: false, error: err });
+        });
+});
+
 /* PATCH update profile */
 router.patch("/password", handleJWTVerification, function(req, res, next) {
     const newPassword = req.body.password;
     const userId = req.user.id;
-    
+
     if (!newPassword || !userId) {
         res.status(400).send({ flag: false });
         return;
     }
-
 
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newPassword, salt, (err, hash) => {
