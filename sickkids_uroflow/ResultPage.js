@@ -135,175 +135,160 @@ class ResultPage extends React.Component {
 
     render() {
         return (
-            <KeyboardAvoidingView behavior="padding">
-                <ScrollView>
+            <ScrollView>
+                <View
+                    style={{
+                        flexDirection: "column",
+                        position: "relative",
+                        marginTop: 3,
+                        marginBottom: 1,
+                        flex: 1
+                    }}
+                >
                     <View
                         style={{
-                            flexDirection: "column",
-                            position: "relative",
-                            marginTop: 3,
+                            marginTop: 2,
                             marginBottom: 1,
-                            flex: 1
+                            top: 10,
+                            flex: 1,
+                            flexDirection: "column",
+                            // justifyContent: "center",
+                            alignItems: "center"
                         }}
                     >
-                        <View
-                            style={{
-                                marginTop: 2,
-                                marginBottom: 1,
-                                top: 10,
-                                flex: 1,
-                                flexDirection: "column",
-                                // justifyContent: "center",
-                                alignItems: "center"
-                            }}
-                        >
-                            <Text> result will be displayed here.</Text>
-                            <View
-                                style={{
-                                    flexDirection: "row",
-                                    marginTop: 20,
-                                    marginBottom: 10,
-                                    alignItems: "center"
-                                }}
-                            >
-                                <Ionicons
-                                    name="md-play-circle"
-                                    size={50}
-                                    color="red"
-                                />
-                                <Button
-                                    title="Play Now"
-                                    color="blue"
-                                    onPress={this._onRecordPressed}
-                                ></Button>
-                            </View>
-                        </View>
-
-                        <View style={styles.container}>
-                            <CheckBox
-                                style={{ flex: 1, marginRight: "5%" }}
-                                onClick={() => {
-                                    this.setState({
-                                        firstChecked: !this.state.firstChecked
-                                    });
-                                }}
-                                isChecked={this.state.firstChecked}
-                                leftText={"Pee Red"}
-                            />
-                            <CheckBox
-                                style={{ flex: 1, marginRight: "5%" }}
-                                onClick={() => {
-                                    this.setState({
-                                        secondChecked: !this.state.secondChecked
-                                    });
-                                }}
-                                isChecked={this.state.secondChecked}
-                                leftText={"Pee Blue"}
-                            />
-                            <CheckBox
-                                style={{ flex: 1, marginRight: "5%" }}
-                                onClick={() => {
-                                    this.setState({
-                                        thirdChecked: !this.state.thirdChecked
-                                    });
-                                }}
-                                isChecked={this.state.thirdChecked}
-                                leftText={"Pee orange"}
-                            />
-                            <CheckBox
-                                style={{ flex: 1, marginRight: "5%" }}
-                                onClick={() => {
-                                    this.setState({
-                                        forthChecked: !this.state.forthChecked
-                                    });
-                                }}
-                                isChecked={this.state.forthChecked}
-                                leftText={"Pee purple"}
-                            />
-                            <CheckBox
-                                style={{ flex: 1, marginRight: "5%" }}
-                                onClick={() => {
-                                    this.setState({
-                                        fifthChecked: !this.state.fifthChecked
-                                    });
-                                }}
-                                isChecked={this.state.fifthChecked}
-                                leftText={"Pee Black"}
-                            />
-                        </View>
-
-                        <View style={styles.container}>
-                            <TextInput
-                                style={styles.input}
-                                underlineColorAndroid="transparent"
-                                placeholder="Description:"
-                                placeholderTextColor="#9a73ef"
-                                autoCapitalize="none"
-                                textAlign="left"
-                                multiline
-                                numberOfLines={3}
-                                onChangeText={this.handleDescription}
-                                value={this.state.description}
-                            />
-                        </View>
+                        <Text> result will be displayed here.</Text>
                         <View
                             style={{
                                 flexDirection: "row",
-                                marginTop: 50,
-                                marginBottom: 50,
-                                flex: 1,
-                                flexDirection: "row",
-                                justifyContent: "center",
+                                marginTop: 20,
+                                marginBottom: 10,
                                 alignItems: "center"
                             }}
                         >
-                            <Button
-                                title="Send recording"
-                                onPress={this.sendPressed}
-                            ></Button>
-                            <Button
-                                title="Re-record"
+                            <Ionicons
+                                name="md-play-circle"
+                                size={50}
                                 color="red"
-                                onPress={() =>
-                                    Alert.alert(
-                                        "Button with adjusted color pressed"
-                                    )
-                                }
+                            />
+                            <Button
+                                title="Play Now"
+                                color="blue"
+                                onPress={this._onRecordPressed}
                             ></Button>
                         </View>
                     </View>
-                </ScrollView>
-            </KeyboardAvoidingView>
+
+                    <View>
+                        <TextInput
+                            style={{
+                                // width: 230,
+                                margin: "10%",
+                                height: 40,
+                                borderColor: "black",
+                                borderBottomWidth: 1,
+                                borderTopWidth: 1,
+                                justifyContent: "flex-end"
+                            }}
+                            underlineColorAndroid="transparent"
+                            placeholder="Description:"
+                            placeholderTextColor="#9a73ef"
+                            autoCapitalize="none"
+                            textAlign="left"
+                            multiline
+                            numberOfLines={5}
+                            onChangeText={this.handleDescription}
+                            value={this.state.description}
+                        />
+                    </View>
+
+                    <View>
+                        <CheckBox
+                            style={{ flex: 1, paddingRight: "20%" }}
+                            onClick={() => {
+                                this.setState({
+                                    firstChecked: !this.state.firstChecked
+                                });
+                            }}
+                            isChecked={this.state.firstChecked}
+                            leftText={"symptom 1"}
+                            leftTextStyle={{ paddingLeft: "20%" }}
+                        />
+                        <CheckBox
+                            style={{ flex: 1, paddingRight: "20%" }}
+                            onClick={() => {
+                                this.setState({
+                                    secondChecked: !this.state.secondChecked
+                                });
+                            }}
+                            isChecked={this.state.secondChecked}
+                            leftText={"symptom 2"}
+                            leftTextStyle={{ paddingLeft: "20%" }}
+                        />
+                        <CheckBox
+                            style={{ flex: 1, paddingRight: "20%" }}
+                            onClick={() => {
+                                this.setState({
+                                    thirdChecked: !this.state.thirdChecked
+                                });
+                            }}
+                            isChecked={this.state.thirdChecked}
+                            leftText={"symptom 3"}
+                            leftTextStyle={{ paddingLeft: "20%" }}
+                        />
+                        <CheckBox
+                            style={{ flex: 1, paddingRight: "20%" }}
+                            onClick={() => {
+                                this.setState({
+                                    forthChecked: !this.state.forthChecked
+                                });
+                            }}
+                            isChecked={this.state.forthChecked}
+                            leftText={"symptom 4"}
+                            leftTextStyle={{ paddingLeft: "20%" }}
+                        />
+                        <CheckBox
+                            style={{ flex: 1, paddingRight: "20%" }}
+                            onClick={() => {
+                                this.setState({
+                                    fifthChecked: !this.state.fifthChecked
+                                });
+                            }}
+                            isChecked={this.state.fifthChecked}
+                            leftText={"symptom 5"}
+                            leftTextStyle={{ paddingLeft: "20%" }}
+                        />
+                    </View>
+
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            marginTop: 15,
+                            marginBottom: 40,
+                            flex: 1,
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems: "center"
+                        }}
+                    >
+                        <Button
+                            title="Send recording"
+                            onPress={this.sendPressed}
+                        ></Button>
+                        <Button
+                            title="Re-record"
+                            color="red"
+                            onPress={() =>
+                                Alert.alert(
+                                    "Button with adjusted color pressed"
+                                )
+                            }
+                        ></Button>
+                    </View>
+                </View>
+            </ScrollView>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        left: 10,
-        flexDirection: "column",
-        marginTop: 10,
-        //   justifyContent: 'space-around',
-        //   justifyContent: 'center',
-        //   alignItems: 'center',
-        backgroundColor: "#F5FCFF"
-    },
-
-    input: {
-        // margin: 15,
-        // marginLeft: 5,
-        // textAlign: "center",
-        // height: 150,
-        // borderColor: "black",
-        // borderWidth: 1
-        margin: 15,
-        height: 40,
-        // width: 230,
-        borderColor: "black",
-        borderBottomWidth: 1
-        // padding: 30
-    }
-});
 
 export default ResultPage;
