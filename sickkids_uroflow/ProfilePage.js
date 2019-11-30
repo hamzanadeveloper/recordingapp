@@ -31,6 +31,39 @@ export default class Profile extends Component {
             inputGender: ""
         };
     }
+    componentDidMount = () => {
+        console.log("Enrer Did Mount");
+        this.setState({isLoading: true});
+        const data_base_url = `http://${manifest.debuggerHost
+            .split(`:`)
+            .shift()
+            .concat(`:3001/update`)}`;
+            getJWT().then(token => {
+                return fetch(data_base_url, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                })
+                    .then(result => result.json())
+                    .then(json => {
+                        console.log(json);
+                        if (json.flag) {
+                            const user = json.user;
+                            this.setState({Birthday:user.birthday});
+                            this.setState({Gender: user.gender});
+                        } else {
+                            alert("Cannot get data");
+                        }
+                    })
+                    .catch(error => {
+                        alert("update failed due to network issues");
+                        console.log(error);
+                    });
+            })
+    };
+
 
     logOut = () => {
         return Alert.alert(
