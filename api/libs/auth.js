@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const secret = process.env.JWT_SECRET || "donttellothers";
-const defaultTTL = "10s";
+const defaultTTL = "7 days";
 
 const verifyJWT = token => {
     return new Promise((resolve, reject) => {
