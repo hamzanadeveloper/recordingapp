@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import profileImg from "./assets/profile.jpg" this dependency is not pushed zyb
 import { TextInput, Button, Alert, ScrollView} from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -12,10 +12,10 @@ import {
 import PasswordInputText from 'react-native-hide-show-password-input';
 
 function UselessTextInput() {
-    const [value, onChangeText] = React.useState('Name');
+    const [value, onChangeText] = React.useState("Name");
     return (
         <TextInput
-            style={{ height: 40, borderColor: 'black' }}
+            style={{ height: 40, borderColor: "black" }}
             onChangeText={text => onChangeText(text)}
             value={value}
             autoFocus={true}
@@ -25,9 +25,6 @@ function UselessTextInput() {
         />
     );
 }
-
-
-
 
 export default class Profile extends Component {
     constructor(props) {
@@ -52,19 +49,25 @@ export default class Profile extends Component {
     
     logOut = () => {
         return Alert.alert(
-            'Logging Out',
-            'All unsaved information will be lost',
+            "Logging Out",
+            "All unsaved information will be lost",
             [
-              {
-                text: 'Cancel',
-                onPress: () => console.log('Cancel Pressed'),
-                style: 'cancel',
-              },
-              {text: 'Log Out', onPress: () => this.props.navigation.navigate("Login")},
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                {
+                    text: "Log Out",
+                    onPress: () => {
+                        removeJWT().then(res => console.log(`JWT removed: ${res}`));
+                        this.props.navigation.navigate("Login");
+                    }
+                }
             ],
-            {cancelable: false},
-          );
-    }
+            { cancelable: false }
+        );
+    };
 
     render() {
         return (
@@ -194,7 +197,7 @@ Profile.navigationOptions = {
 const styles = StyleSheet.create({
     header: {
         backgroundColor: "steelblue",
-        height: 140,
+        height: 140
     },
     avatar: {
         width: 130,
@@ -203,24 +206,23 @@ const styles = StyleSheet.create({
         borderWidth: 4,
         borderColor: "white",
         marginBottom: 10,
-        alignSelf: 'center',
-        position: 'absolute',
+        alignSelf: "center",
+        position: "absolute",
         marginTop: 80
     },
     body: {
-        marginTop: 50,
+        marginTop: 50
     },
     bodyContent: {
         flex: 3,
-        alignItems: 'center',
+        alignItems: "center",
         padding: 30,
         flexDirection: "column"
-        
     },
     inputContent: {
         flex: 2,
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center"
     },
     info: {
         fontSize: 16,
@@ -231,34 +233,34 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: "#696969",
         marginTop: 10,
-        textAlign: 'center'
+        textAlign: "center"
     },
     buttonContainer: {
         height: 45,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
         marginBottom: 20,
         width: 250,
         borderRadius: 20,
-        backgroundColor: "steelblue",
+        backgroundColor: "steelblue"
     },
     text: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
         marginTop: 70,
         fontSize: 17,
-        textAlign: 'center'
+        textAlign: "center"
     },
     textInput: {
         height: 40,
-        borderColor: 'gray',
+        borderColor: "gray",
         borderWidth: 1,
-        textAlign: 'center'
+        textAlign: "center"
     },
     editinfo: {
         width: 200,
-        height: 75,
+        height: 75
     },
     scrollView: {
         margin: 5
