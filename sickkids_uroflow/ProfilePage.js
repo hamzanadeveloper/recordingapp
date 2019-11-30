@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import PasswordInputText from 'react-native-hide-show-password-input';
 
+import { removeJWT } from "./utils/auth";
+
 function UselessTextInput() {
     const [value, onChangeText] = React.useState("Name");
     return (

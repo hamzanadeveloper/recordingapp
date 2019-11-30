@@ -1,5 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
+import Constants from "expo-constants";
+const { manifest } = Constants;
 
 import { getJWT, removeJWT } from "./utils/auth";
 
@@ -8,14 +10,32 @@ class LoadingPage extends React.Component {
         super(props);
         // removeJWT(); // clear jwt field for debugging purpose
         // checks JWT before
-        getJWT().then(res => {
+        getJWT()
+        .then(token => {
+            return this.checkJWT(token);
+        })
+        .then(res => {
             console.log(`Current JWT: ${res}`);
-            if (res !== null) {
+            if (res.status === 200) {
                 this.props.navigation.navigate("History");
             } else {
                 this.props.navigation.navigate("Login");
             }
         });
+    }
+
+    checkJWT(token) {
+        const data_base_url = `http://${manifest.debuggerHost
+            .split(`:`)
+            .shift()
+            .concat(`:3001/verify`)}`; // Switch to the route you want to use
+        return fetch(data_base_url, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+        })
     }
 
     render() {
