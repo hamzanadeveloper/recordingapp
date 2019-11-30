@@ -8,6 +8,8 @@ const { handleJWTVerification } = require("../middleware");
 
 /* GET profile info */
 router.get("/", handleJWTVerification, function(req, res) {
+    console.log(req.user);
+    console.log(req.user.id);
     const userId = req.user.id;
 
     if (!userId) {
@@ -19,7 +21,7 @@ router.get("/", handleJWTVerification, function(req, res) {
         .then(user => {
             res.send({
                 flag: true,
-                user: { email: email, gender: user.gender, birthday: user.birthday }
+                user: { email: user.email, gender: user.gender, birthday: user.birthday }
             });
         })
         .catch(err => {
