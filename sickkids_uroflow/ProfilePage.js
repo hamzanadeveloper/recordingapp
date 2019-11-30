@@ -24,6 +24,7 @@ export default class Profile extends Component {
             Birthday: "1999-11-14",
             showBirthday: false,
             Password: "Test password",
+            Email:"",
             showPassword: false,
             showGender: false,
             inputPassword: "",
@@ -32,7 +33,7 @@ export default class Profile extends Component {
         };
     }
     componentDidMount = () => {
-        console.log("Enrer Did Mount");
+        console.log("Enter Did Mount");
         this.setState({isLoading: true});
         const data_base_url = `http://${manifest.debuggerHost
             .split(`:`)
@@ -51,6 +52,7 @@ export default class Profile extends Component {
                         console.log(json);
                         if (json.flag) {
                             const user = json.user;
+                            this.setState({Email:user.email});
                             this.setState({Birthday:user.birthday});
                             this.setState({Gender: user.gender});
                         } else {
@@ -66,6 +68,7 @@ export default class Profile extends Component {
 
 
     logOut = () => {
+        this.setState({isLoading:false});
         return Alert.alert(
             "Logging Out",
             "All unsaved information will be lost",
@@ -198,7 +201,7 @@ export default class Profile extends Component {
                         }}
                     />
                     <Text style={styles.text}>
-                        press and hold field to edit
+                        {this.state.Email}
                     </Text>
                     <View style={styles.bodyContent}>
                         <TouchableHighlight
