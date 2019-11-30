@@ -12,6 +12,8 @@ class LoadingPage extends React.Component {
             console.log(`Current JWT: ${res}`);
             if (res !== null) {
                 this.props.navigation.navigate("History");
+            } else {
+                this.props.navigation.navigate("Login");
             }
         });
     }
