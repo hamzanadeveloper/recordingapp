@@ -100,7 +100,7 @@ class ResultPage extends React.Component {
             body: formData
         }).then(response => {
             if (response.status === 200) {
-                alert(`Audio uploaded`)
+                Alert.alert('Success', 'Audio uploaded')
             } else if (response.status === 400) {
                 alert(`Bad request, file upload failed`)
             }
@@ -287,9 +287,7 @@ class ResultPage extends React.Component {
                             title="Re-record"
                             color="red"
                             onPress={() =>
-                                Alert.alert(
-                                    "Button with adjusted color pressed"
-                                )
+                                this.props.navigation.goBack()
                             }
                         ></Button>
                     </View>
