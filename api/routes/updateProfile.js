@@ -4,16 +4,20 @@ var router = express.Router();
 const bcrypt = require("bcryptjs");
 
 const { User } = require("../models/user");
+const { handleJWTVerification } = require("../middleware");
 
 /* PATCH update profile */
-router.patch("/password", function(req, res, next) {
+router.patch("/password", handleJWTVerification, function(req, res, next) {
     const newPassword = req.body.password;
-    const userId = req.body.userId; // !!!!!!!!TODO!!!!!!!!! CHANGE THIS TO JWT MIDDLEWARE INSTEAD OF BODY
+    const userId = req.user.id;
+    console.log(`userId: ${userId}`);
+    console.log(`newpassword: ${newPassword}`);
 
     if (!newPassword || !userId) {
         res.status(400).send({ flag: false });
         return;
     }
+
 
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newPassword, salt, (err, hash) => {
@@ -28,9 +32,9 @@ router.patch("/password", function(req, res, next) {
     });
 });
 
-router.patch("/birthday", function(req, res, next) {
+router.patch("/birthday", handleJWTVerification, function(req, res, next) {
     const newBirthday = req.body.birthday;
-    const userId = req.body.userId; // !!!!!!!!TODO!!!!!!!!! CHANGE THIS TO JWT MIDDLEWARE INSTEAD OF BODY
+    const userId = req.user.id;
 
     if (!newBirthday || !userId) {
         res.status(400).send({ flag: false });
@@ -46,9 +50,9 @@ router.patch("/birthday", function(req, res, next) {
         });
 });
 
-router.patch("/gender", function(req, res, next) {
+router.patch("/gender", handleJWTVerification, function(req, res, next) {
     const newGender = req.body.gender;
-    const userId = req.body.userId; // !!!!!!!!TODO!!!!!!!!! CHANGE THIS TO JWT MIDDLEWARE INSTEAD OF BODY
+    const userId = req.user.id;
 
     if (!newGender || !userId) {
         res.status(400).send({ flag: false });
