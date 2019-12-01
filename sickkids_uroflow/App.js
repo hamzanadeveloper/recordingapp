@@ -1,5 +1,5 @@
 import React from "react";
-import { createAppContainer } from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons } from "@expo/vector-icons";
@@ -60,20 +60,17 @@ const MainStack = createBottomTabNavigator(
     }
 );
 
-const RootStack = createStackNavigator(
+const AuthStack = createStackNavigator({
+    Login: LoginPage
+})
+
+const RootStack = createSwitchNavigator(
     {
-        Load: {
-            screen: LoadingPage
-        },
-        Login: {
-            screen: LoginPage
-        },
-        Main: {
-            screen: MainStack
-        }
+        Load: LoadingPage,
+        Login: AuthStack,
+        Main: MainStack
     },
     {
-        // mode: "modal",
         headerMode: "none"
     }
 );

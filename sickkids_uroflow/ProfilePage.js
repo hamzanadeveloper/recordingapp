@@ -31,8 +31,14 @@ export default class Profile extends Component {
             inputBirthday: "",
             inputGender: ""
         };
+        // set up information refreshing mechanism
+        this.props.navigation.addListener("willFocus", payload => {
+            console.log("Profile will focus, update information");
+            this.updateInfo();
+        })
     }
-    componentDidMount = () => {
+
+    updateInfo = () => {
         console.log("Enter Did Mount");
         this.setState({isLoading: true});
         const data_base_url = `http://${manifest.debuggerHost
