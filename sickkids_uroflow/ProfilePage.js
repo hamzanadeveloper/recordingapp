@@ -59,8 +59,11 @@ export default class Profile extends Component {
                         if (json.flag) {
                             const user = json.user;
                             this.setState({Email:user.email});
-                            this.setState({Birthday:user.birthday});
                             this.setState({Gender: user.gender});
+                            if(user.birthday){
+                                const birthdayInfo = user.birthday.split("T");
+                                this.setState({Birthday:birthdayInfo[0]})
+                            }
                         } else {
                             alert("Cannot get data");
                         }
