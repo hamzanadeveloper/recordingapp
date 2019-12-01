@@ -64,6 +64,9 @@ export default class Profile extends Component {
                                 const birthdayInfo = user.birthday.split("T");
                                 this.setState({Birthday:birthdayInfo[0]})
                             }
+                            else{
+                                this.setState({Birthday:user.birthday})
+                            }
                         } else {
                             alert("Cannot get data");
                         }
