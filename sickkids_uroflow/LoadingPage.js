@@ -20,7 +20,7 @@ class LoadingPage extends React.Component {
                     console.log(
                         "LoadingPage: valid JWT, redirect to history page"
                     );
-                    this.props.navigation.navigate("History");
+                    this.props.navigation.navigate("Record");
                 } else {
                     console.log(
                         "LoadingPage: invalid JWT, redirect to login page"

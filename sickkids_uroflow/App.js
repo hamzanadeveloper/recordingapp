@@ -29,14 +29,15 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
     return <Ionicons name={iconName} size={25} color={tintColor} />;
 };
 
-const HistoryStack = createStackNavigator({
-    History: HistoryPage
-});
-
 const RecordStack = createStackNavigator({
     Record: RecordPage,
     Result: ResultPage
 });
+
+const HistoryStack = createStackNavigator({
+    History: HistoryPage
+});
+
 
 const ProfileStack = createStackNavigator({
     Profile: ProfilePage
@@ -49,6 +50,7 @@ const MainStack = createBottomTabNavigator(
         Profile: ProfileStack
     },
     {
+        initialRouteName: "Record",
         defaultNavigationOptions: ({ navigation }) => ({
             tabBarIcon: ({ focused, tintColor }) =>
                 getTabBarIcon(navigation, focused, tintColor)
