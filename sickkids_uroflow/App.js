@@ -1,9 +1,10 @@
 import React from "react";
-import { createAppContainer } from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
+import LoadingPage from "./LoadingPage";
 import LoginPage from "./LoginPage";
 import HistoryPage from "./HistoryPage";
 import RecordPage from "./RecordPage";
@@ -28,14 +29,15 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
     return <Ionicons name={iconName} size={25} color={tintColor} />;
 };
 
-const HistoryStack = createStackNavigator({
-    History: HistoryPage
-});
-
 const RecordStack = createStackNavigator({
     Record: RecordPage,
     Result: ResultPage
 });
+
+const HistoryStack = createStackNavigator({
+    History: HistoryPage
+});
+
 
 const ProfileStack = createStackNavigator({
     Profile: ProfilePage
@@ -48,6 +50,7 @@ const MainStack = createBottomTabNavigator(
         Profile: ProfileStack
     },
     {
+        initialRouteName: "Record",
         defaultNavigationOptions: ({ navigation }) => ({
             tabBarIcon: ({ focused, tintColor }) =>
                 getTabBarIcon(navigation, focused, tintColor)
@@ -59,17 +62,17 @@ const MainStack = createBottomTabNavigator(
     }
 );
 
-const RootStack = createStackNavigator(
+const AuthStack = createStackNavigator({
+    Login: LoginPage
+})
+
+const RootStack = createSwitchNavigator(
     {
-        Login: {
-            screen: LoginPage
-        },
-        Main: {
-            screen: MainStack
-        }
+        Load: LoadingPage,
+        Login: AuthStack,
+        Main: MainStack
     },
     {
-        mode: "modal",
         headerMode: "none"
     }
 );
