@@ -91,14 +91,9 @@ export default function HistoryPopup(prop) {
     return (
         <Modal visible={prop.visible}>
             <View style={styles.popup}>
-                <TouchableOpacity onPress={pressedPlay}>
-                    <Ionicons
-                        name={isPlaying ? "md-square" : "md-play-circle"}
-                        size={128}
-                        color="steelblue"
-                    />
-                </TouchableOpacity>
-                <Text>id: {prop.id}</Text>
+                <Text>Created At: {prop.id}</Text>
+                <Text>Record ID: {prop.createTime}</Text>
+                <Text>Comment provided: {prop.comment}</Text>
                 <View style={styles.buttons}>
                     <Button color="red" title="Delete" onPress={deleteAlert} />
                     <Button
