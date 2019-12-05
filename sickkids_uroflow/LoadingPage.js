@@ -2,6 +2,8 @@ import React from "react";
 import { View, Text } from "react-native";
 import Constants from "expo-constants";
 const { manifest } = Constants;
+import config from "./config.json";
+const url = config.url;
 
 import { getJWT, removeJWT } from "./utils/auth";
 
