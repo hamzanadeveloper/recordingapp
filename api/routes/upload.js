@@ -52,7 +52,8 @@ router.post("/", handleJWTVerification, function(req, res, next) {
         // Everything went fine.
 
         // update recording table
-        const userId = req.body.userId;
+        // const userId = req.body.userId;
+        const userId = req.user.id;
         console.log(`User is: ${userId}`);
         Recording.create({
             url: req.file.destination + "/" + req.file.filename,
