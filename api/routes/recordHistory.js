@@ -24,6 +24,12 @@ router.get("/", handleJWTVerification, function(req, res) {
             recordingList = [];
             recordings.map( record => {recordingList.push({id: record.id, comment: record.comment, time: record.createdAt})})
             console.log(recordingList)
+            if (recordingList.length === 0) {
+                res.send({
+                    flag: false,
+                    recordings: recordingList
+                });
+            }
             res.send({
                 flag: true,
                 recordings: recordingList
