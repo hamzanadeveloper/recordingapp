@@ -13,7 +13,9 @@ const { handleJWTVerification } = require("../middleware");
 
 const storage = multer.diskStorage({
     destination: function(req, file, callback) {
-        callback(null, "uploads/recordings");
+        const path = __dirname.replace("routes", "") + "uploads/recordings";
+        console.log("Setting up destination: " + path);
+        callback(null, path);
     },
     filename: function(req, file, callback) {
         // TODO: ADD MORE FILE TYPE HERE !!!!!

@@ -42,11 +42,6 @@ const { manifest } = Constants;
 class ResultPage extends React.Component {
     constructor(props) {
         super(props);
-        console.log(
-            JSON.stringify(
-                this.props.navigation.getParam("uri_info", "nothing sent")
-            )
-        );
         this.sound = null;
         this.state = {
             getted_uri: this.props.navigation.getParam(
@@ -78,10 +73,8 @@ class ResultPage extends React.Component {
         const formData = new FormData();
         // Get dat file in
         const fileUri = this.state.getted_uri;
-        console.log(fileUri);
         const fileInfoList = fileUri.split(".");
         const fileExtension = fileInfoList[fileInfoList.length - 1];
-        console.log(fileExtension);
         formData.append("INPUT-FIELD-NAME-HERE", {
             uri: this.state.getted_uri,
             name: "test1." + fileExtension
@@ -117,6 +110,7 @@ class ResultPage extends React.Component {
                 } else if (response.status === 400) {
                     alert(`Bad request, file upload failed`);
                     console.log("ResultPage: bad request");
+                    response.json().then(body => console.log(body));
                 }
                 this.props.navigation.goBack();
             })
