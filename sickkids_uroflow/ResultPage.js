@@ -11,6 +11,9 @@ import {
     KeyboardAvoidingView
 } from "react-native";
 
+import config from "./config.json";
+const url = config.url;
+
 import { getJWT } from "./utils/auth";
 
 const RecordOption = {
@@ -89,10 +92,12 @@ class ResultPage extends React.Component {
         formData.append("comment", this.state.description);
         // CHANGE LOCAL IP ADDRESS BEFORE RUN THE CODE HERE FOR NOW!
 
-        const data_base_url = `http://${manifest.debuggerHost
-            .split(`:`)
-            .shift()
-            .concat(`:3001/upload`)}`; // Switch to the route you want to use
+        const data_base_url = url
+            ? `${url}/upload`
+            : `http://${manifest.debuggerHost
+                  .split(`:`)
+                  .shift()
+                  .concat(`:3001/upload`)}`; // Switch to the route you want to use
 
         getJWT()
             .then(token => {
