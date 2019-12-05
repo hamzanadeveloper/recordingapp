@@ -29,7 +29,7 @@ class LoginPage extends React.Component {
                 console.log("LoginPage: API call succeed");
                 if (res) {
                     console.log("LoginPage: JWT stored, redirect to history page");
-                    this.props.navigation.navigate("History");
+                    this.props.navigation.navigate("Record");
                 } else {
                     alert("JWT token storation failed");
                     console.log("LoginPage: JWT storation failed");
