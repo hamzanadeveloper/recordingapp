@@ -129,11 +129,9 @@ function HistoryPage(props) {
                 if (json.flag) {
 
                     console.log("Found recordings: " + json.recordings)
-                    // setHasRecording(true)
                     setDATA(json.recordings)
                     console.log("Time" + json.recordings[0].time)
                 } else {
-                    // setHasRecording(false)
                     Alert.alert("You have no recordings");
                 }
             })
@@ -168,9 +166,6 @@ function HistoryPage(props) {
 
     // define what action to do when a record is clicked
     const clickedRecordAction = (time, commentP, recordId) => {
-        console.log(`clicked record of id ${recordId}`);
-        console.log(`Record Time Passed In: ${time}`)
-        console.log(`Comment Passed In: ${commentP}`)
         setRecordTime(time)
         setComment(commentP)
         setViewingRecordId(recordId);
@@ -184,14 +179,6 @@ function HistoryPage(props) {
         setIsViewingRecord(false);
         setViewingRecordId("invalid id");
     };
-
-    // delete a recording, disused functionality
-    // const deleteRecording = recordId => {
-    //     backToHomepage();
-    //     setDATA(DATA.filter(obj => obj.id !== recordId));
-    //     console.log(`delete id of ${recordId}`);
-    //     console.log(DATA);
-    // };
 
     return (
         <SafeAreaView style={styles.container}>
