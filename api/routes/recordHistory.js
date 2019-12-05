@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const bcrypt = require("bcryptjs");
+const datetime = require("date-and-time");
 
 const { User } = require("../models/user");
 const { Recording } = require("../models/recording");
@@ -20,20 +20,31 @@ router.get("/", handleJWTVerification, function(req, res) {
 
     Recording.findAll({
         where: { userId: userId }
-    }).then(recordings => {
-            recordingList = [];
-            recordings.map( record => {recordingList.push({id: record.id, comment: record.comment, time: record.createdAt})})
-            console.log(recordingList)
-            if (recordingList.length === 0) {
+    })
+        .then(recordings => {
+            const result = [];
+            recordings.map(x => {
+                result.push({
+                    id: x.id,
+                    comment: x.comment,
+                    createdAt: datetime.format(
+                        x.createdAt,
+                        "YYYY/MM/DD HH:mm:ss"
+                    )
+                });
+            });
+
+            if (result.length === 0) {
                 res.send({
                     flag: false,
-                    recordings: recordingList
+                    recordings: result
+                });
+            } else {
+                res.send({
+                    flag: true,
+                    recordings: result
                 });
             }
-            res.send({
-                flag: true,
-                recordings: recordingList
-            });
         })
         .catch(err => {
             res.status(404).send({ flag: false, error: err });
