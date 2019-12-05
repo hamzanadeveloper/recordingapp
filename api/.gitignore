@@ -61,7 +61,7 @@ typings/
 .next
 
 # file upload storages
-uploads/
+# uploads/
 
 # vscode config
 .vscode/

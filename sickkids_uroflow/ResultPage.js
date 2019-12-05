@@ -117,6 +117,7 @@ class ResultPage extends React.Component {
                 } else if (response.status === 400) {
                     alert(`Bad request, file upload failed`);
                     console.log("ResultPage: bad request");
+                    response.json().then(body => console.log(body));
                 }
                 this.props.navigation.goBack();
             })
