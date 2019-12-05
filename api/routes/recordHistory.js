@@ -27,7 +27,7 @@ router.get("/", handleJWTVerification, function(req, res) {
                 result.push({
                     id: x.id,
                     comment: x.comment,
-                    createdAt: datetime.format(
+                    time: datetime.format(
                         x.createdAt,
                         "YYYY/MM/DD HH:mm:ss"
                     )
@@ -40,6 +40,7 @@ router.get("/", handleJWTVerification, function(req, res) {
                     recordings: result
                 });
             } else {
+                console.log("Get result: " + result.toString());
                 res.send({
                     flag: true,
                     recordings: result
