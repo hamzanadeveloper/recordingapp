@@ -111,7 +111,6 @@ function HistoryPage() {
         backToHomepage();
         setDATA(DATA.filter(obj => obj.id !== recordId));
         console.log(`delete id of ${recordId}`);
-        console.log(DATA);
     };
 
     return (

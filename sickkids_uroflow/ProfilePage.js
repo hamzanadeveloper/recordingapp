@@ -59,7 +59,6 @@ export default class Profile extends Component {
             })
                 .then(result => result.json())
                 .then(json => {
-                    console.log(json);
                     if (json.flag) {
                         const user = json.user;
                         this.setState({ Email: user.email });
@@ -76,7 +75,7 @@ export default class Profile extends Component {
                 })
                 .catch(error => {
                     alert("update failed due to network issues");
-                    console.log(error);
+                    console.log("error:"+error);
                 });
         });
     };
@@ -135,7 +134,7 @@ export default class Profile extends Component {
                 })
                 .catch(error => {
                     alert("update failed due to network issues");
-                    console.log(error);
+                    console.log("error:"+error);
                 });
         });
     };
@@ -169,7 +168,7 @@ export default class Profile extends Component {
                 })
                 .catch(error => {
                     alert("update failed due to network issues");
-                    console.log(error);
+                    console.log("error:"+error);
                 });
         });
     };
@@ -203,7 +202,7 @@ export default class Profile extends Component {
                 })
                 .catch(error => {
                     alert("update failed due to network issues");
-                    console.log(error);
+                    console.log("error:"+error);
                 });
         });
     };
