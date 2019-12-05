@@ -34,7 +34,7 @@ router.get("/", handleJWTVerification, function(req, res) {
                 });
             });
 
-            if (recordingList.length === 0) {
+            if (result.length === 0) {
                 res.send({
                     flag: false,
                     recordings: result
