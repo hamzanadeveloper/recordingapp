@@ -38,8 +38,8 @@
       
 
   - **Recording History(Tab) with functionality adjustment due to time limit**:
-      - This page is now mainly for display purpose only. Functionality to be added and implemented in the future.
-      - This page now displaies the recordings made by this account and able to view details of selected recording.
+      - This page is now mainly for display any recordings made by current logged in user for now.
+      - This page now displays the recordings made by this account and able to view details (Date Uploaded) of selected recording.
  
 
   - **Profile features(Tab)** 
@@ -86,8 +86,10 @@
       
 
   - **Recording History(Tab) with functionality adjustment due to time limit**:
-      - This page is now mainly for display purpose only. Functionality to be added and implemented in the future.
-      - This page now displaies the recordings made by this account and able to view details of selected recording.
+      - This page now displays the recordings made by this account and able to view details of selected recording.
+      - Click a single recording tab will popup a new page to display information of this recording.
+      - User will be able to view information like the uploaded date time of the recording on selected.
+      - Other buttons such as 'Send to my docotr' will be an placeholder for future development
  
 
   - **Profile features(Tab)** 
@@ -98,6 +100,8 @@
 
  * If you cannot deploy your application for technical reasons, please let your TA know at the beginning of the iteration. You will need to demo the application to your partner either way.
      > The actual deployment of this application is not a must-have at this stage, as it is only developed to test the applicability of such device and to be used with internal perpective users as oppsed to public access. And we have reached an agreement on this very issue with our partner also. We will also mention this concern in the iteration document.
+     > 
+     > But we deployed the server onto heroku and database onto heroku postgres, for demonstration purpose. 
  
  ## Development requirements
 
