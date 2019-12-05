@@ -88,7 +88,7 @@ class ResultPage extends React.Component {
         });
 
         // Get other info
-        formData.append("userId", "1");
+        // formData.append("userId", "1");
         formData.append("comment", this.state.description);
         // CHANGE LOCAL IP ADDRESS BEFORE RUN THE CODE HERE FOR NOW!
 
