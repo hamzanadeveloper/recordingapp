@@ -20,20 +20,31 @@ router.get("/", handleJWTVerification, function(req, res) {
 
     Recording.findAll({
         where: { userId: userId }
-    }).then(recordings => {
-            const result = []
+    })
+        .then(recordings => {
+            const result = [];
             recordings.map(x => {
                 result.push({
                     id: x.id,
                     comment: x.comment,
-                    createdAt: datetime.format(x.createdAt, "YYYY/MM/DD HH:mm:ss")
+                    createdAt: datetime.format(
+                        x.createdAt,
+                        "YYYY/MM/DD HH:mm:ss"
+                    )
                 });
-            })
-            console.log(result[0].createdAt)
-            res.send({
-                flag: true,
-                recordings: result
             });
+
+            if (recordingList.length === 0) {
+                res.send({
+                    flag: false,
+                    recordings: result
+                });
+            } else {
+                res.send({
+                    flag: true,
+                    recordings: result
+                });
+            }
         })
         .catch(err => {
             res.status(404).send({ flag: false, error: err });

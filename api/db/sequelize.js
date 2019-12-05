@@ -1,4 +1,3 @@
-const config = require("../config.json");
 // add database connection
 const Sequelize = require("sequelize");
 
@@ -14,6 +13,7 @@ if (process.env.DATABASE_URL) {
         port: port
     })
 } else {
+    const config = require("../config.json");
     sequelize = new Sequelize(
         config.db.database, // database
         config.db.username, // username
