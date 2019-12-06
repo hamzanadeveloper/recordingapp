@@ -105,7 +105,7 @@
  * If you cannot deploy your application for technical reasons, please let your TA know at the beginning of the iteration. You will need to demo the application to your partner either way.
      > The actual deployment of this mobile application is not a must-have at this stage, as it is only developed to test the applicability of such device and to be used with internal perspective users as oppsed to public access. And we have reached an agreement on this very issue with our partner also. We will also mention this concern in the iteration document.
 
-     > We have deployed our server/database alpha version onto heroku and heroku postgres for demo purpose. But for development purpose, we recommend you run this app using localhost server. 
+     > We have deployed our server/database alpha version onto heroku and heroku postgres for demo purpose. But for development purpose, we recommend you run this app using localhost server, since heroku server can be unstable when accepting requests. 
  
  ## Development requirements
 
@@ -152,6 +152,9 @@
          npm start
      ```
     to start running this application.
+
+    
+    - **Important note: The temporary server url is in ./sickkids_uroflow/config.json. If you wish to run on localhost server, pleast delete the url field in config.json.**
 
     > A predefined user has already been created for log in credential:
          > Email: frank@gmail.com
