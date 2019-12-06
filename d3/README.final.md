@@ -38,8 +38,9 @@
       
 
   - **Recording History(Tab) with functionality adjustment due to time limit**:
-      - This page is now mainly for display purpose only. Functionality to be added and implemented in the future.
-      - This page now displaies the recordings made by this account and able to view details of selected recording.
+      - This page shows all recordings that this user has uploaded. 
+      - If no recording is sent to the database, this page will tell you that. Else: 
+      - Time and description will be displayed when clicked on any of the recording histories. 
  
 
   - **Profile features(Tab)** 
@@ -86,8 +87,9 @@
       
 
   - **Recording History(Tab) with functionality adjustment due to time limit**:
-      - This page is now mainly for display purpose only. Functionality to be added and implemented in the future.
-      - This page now displaies the recordings made by this account and able to view details of selected recording.
+      - If the user has no recording, a "no recording message" will be displayed. 
+      - Make a recording and your history will be displayed here. 
+      - Click on any of the recording to view comments. 
  
 
   - **Profile features(Tab)** 
@@ -97,7 +99,9 @@
     - At the bottom of this page, there is a **Log out**(button): which will take you back to the first log in page and revoke the Json Web Token even the expiration period isn't reached. 
 
  * If you cannot deploy your application for technical reasons, please let your TA know at the beginning of the iteration. You will need to demo the application to your partner either way.
-     > The actual deployment of this application is not a must-have at this stage, as it is only developed to test the applicability of such device and to be used with internal perpective users as oppsed to public access. And we have reached an agreement on this very issue with our partner also. We will also mention this concern in the iteration document.
+     > The actual deployment of this mobile application is not a must-have at this stage, as it is only developed to test the applicability of such device and to be used with internal perspective users as oppsed to public access. And we have reached an agreement on this very issue with our partner also. We will also mention this concern in the iteration document.
+
+     > We have deployed our server/database alpha version onto heroku and heroku postgres for demo purpose. 
  
  ## Development requirements
 
