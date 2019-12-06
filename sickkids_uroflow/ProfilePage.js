@@ -15,6 +15,8 @@ import { getJWT, removeJWT } from "./utils/auth";
 
 import Constants from "expo-constants";
 const { manifest } = Constants;
+import config from "./config.json";
+const url = config.url;
 
 export default class Profile extends Component {
     constructor(props) {
@@ -24,7 +26,7 @@ export default class Profile extends Component {
             Birthday: "1999-11-14",
             showBirthday: false,
             Password: "Test password",
-            Email:"",
+            Email: "",
             showPassword: false,
             showGender: false,
             inputPassword: "",
@@ -35,52 +37,51 @@ export default class Profile extends Component {
         this.props.navigation.addListener("willFocus", payload => {
             console.log("Profile will focus, update information");
             this.updateInfo();
-        })
+        });
     }
 
     updateInfo = () => {
         console.log("Enter Did Mount");
-        this.setState({isLoading: true});
-        const data_base_url = `http://${manifest.debuggerHost
-            .split(`:`)
-            .shift()
-            .concat(`:3001/update`)}`;
-            getJWT().then(token => {
-                return fetch(data_base_url, {
-                    method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        "Content-Type": "application/json"
+        this.setState({ isLoading: true });
+        const data_base_url = url
+            ? `${url}/update`
+            : `http://${manifest.debuggerHost
+                  .split(`:`)
+                  .shift()
+                  .concat(`:3001/update`)}`;
+        getJWT().then(token => {
+            return fetch(data_base_url, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(result => result.json())
+                .then(json => {
+                    if (json.flag) {
+                        const user = json.user;
+                        this.setState({ Email: user.email });
+                        this.setState({ Gender: user.gender });
+                        if (user.birthday) {
+                            const birthdayInfo = user.birthday.split("T");
+                            this.setState({ Birthday: birthdayInfo[0] });
+                        } else {
+                            this.setState({ Birthday: user.birthday });
+                        }
+                    } else {
+                        alert("Cannot get data");
                     }
                 })
-                    .then(result => result.json())
-                    .then(json => {
-                        console.log(json);
-                        if (json.flag) {
-                            const user = json.user;
-                            this.setState({Email:user.email});
-                            this.setState({Gender: user.gender});
-                            if(user.birthday){
-                                const birthdayInfo = user.birthday.split("T");
-                                this.setState({Birthday:birthdayInfo[0]})
-                            }
-                            else{
-                                this.setState({Birthday:user.birthday})
-                            }
-                        } else {
-                            alert("Cannot get data");
-                        }
-                    })
-                    .catch(error => {
-                        alert("update failed due to network issues");
-                        console.log(error);
-                    });
-            })
+                .catch(error => {
+                    alert("update failed due to network issues");
+                    console.log("error:"+error);
+                });
+        });
     };
 
-
     logOut = () => {
-        this.setState({isLoading:false});
+        this.setState({ isLoading: false });
         return Alert.alert(
             "Logging Out",
             "All unsaved information will be lost",
@@ -105,10 +106,12 @@ export default class Profile extends Component {
     };
 
     patchPassword = () => {
-        const data_base_url = `http://${manifest.debuggerHost
-            .split(`:`)
-            .shift()
-            .concat(`:3001/update/password`)}`; // Switch to the route you want to use
+        const data_base_url = url
+            ? `${url}/update/password`
+            : `http://${manifest.debuggerHost
+                  .split(`:`)
+                  .shift()
+                  .concat(`:3001/update/password`)}`; // Switch to the route you want to use
 
         getJWT().then(token => {
             return fetch(data_base_url, {
@@ -131,16 +134,18 @@ export default class Profile extends Component {
                 })
                 .catch(error => {
                     alert("update failed due to network issues");
-                    console.log(error);
+                    console.log("error:"+error);
                 });
         });
     };
 
     patchBirthday = () => {
-        const data_base_url = `http://${manifest.debuggerHost
-            .split(`:`)
-            .shift()
-            .concat(`:3001/update/birthday`)}`; // Switch to the route you want to use
+        const data_base_url = url
+            ? `${url}/update/birthday`
+            : `http://${manifest.debuggerHost
+                  .split(`:`)
+                  .shift()
+                  .concat(`:3001/update/birthday`)}`; // Switch to the route you want to use
 
         getJWT().then(token => {
             return fetch(data_base_url, {
@@ -163,16 +168,18 @@ export default class Profile extends Component {
                 })
                 .catch(error => {
                     alert("update failed due to network issues");
-                    console.log(error);
+                    console.log("error:"+error);
                 });
         });
     };
 
     patchGender = () => {
-        const data_base_url = `http://${manifest.debuggerHost
-            .split(`:`)
-            .shift()
-            .concat(`:3001/update/gender`)}`; // Switch to the route you want to use
+        const data_base_url = url
+            ? `${url}/update/gender`
+            : `http://${manifest.debuggerHost
+                  .split(`:`)
+                  .shift()
+                  .concat(`:3001/update/gender`)}`; // Switch to the route you want to use
 
         getJWT().then(token => {
             return fetch(data_base_url, {
@@ -195,7 +202,7 @@ export default class Profile extends Component {
                 })
                 .catch(error => {
                     alert("update failed due to network issues");
-                    console.log(error);
+                    console.log("error:"+error);
                 });
         });
     };
@@ -212,9 +219,7 @@ export default class Profile extends Component {
                                 "https://bootdey.com/img/Content/avatar/avatar6.png"
                         }}
                     />
-                    <Text style={styles.text}>
-                        {this.state.Email}
-                    </Text>
+                    <Text style={styles.text}>{this.state.Email}</Text>
                     <View style={styles.bodyContent}>
                         <TouchableHighlight
                             style={styles.buttonContainer}
@@ -408,9 +413,7 @@ export default class Profile extends Component {
                                                             )
                                                         ) {
                                                             this.setState({
-                                                                Gender: this
-                                                                    .state
-                                                                    .inputGender.toLowerCase()
+                                                                Gender: this.state.inputGender.toLowerCase()
                                                             });
                                                         } else {
                                                             Alert.alert(

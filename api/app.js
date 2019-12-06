@@ -10,6 +10,8 @@ const signupRouter = require("./routes/signup");
 const loginRouter = require("./routes/login");
 const uploadRouter = require("./routes/upload");
 const updateProfileRouter = require("./routes/updateProfile");
+const recordHistoryRouter = require("./routes/recordHistory");
+
 
 const app = express();
 
@@ -61,5 +63,7 @@ app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/upload", uploadRouter);
 app.use("/update", updateProfileRouter);
+app.use("/recordHistory", recordHistoryRouter);
+
 
 module.exports = app;

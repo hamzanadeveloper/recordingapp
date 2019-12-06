@@ -3,6 +3,9 @@ import { Text, View, Button, StyleSheet, TextInput } from "react-native";
 
 import Constants from "expo-constants";
 const { manifest } = Constants;
+import config from "./config.json";
+const url = config.url;
+
 import { setJWT } from "./utils/auth";
 
 class LoginPage extends React.Component {
@@ -28,7 +31,9 @@ class LoginPage extends React.Component {
             setJWT(token).then(res => {
                 console.log("LoginPage: API call succeed");
                 if (res) {
-                    console.log("LoginPage: JWT stored, redirect to history page");
+                    console.log(
+                        "LoginPage: JWT stored, redirect to history page"
+                    );
                     this.props.navigation.navigate("Record");
                 } else {
                     alert("JWT token storation failed");
@@ -46,10 +51,12 @@ class LoginPage extends React.Component {
 
     loginPressed = () => {
         let status = null;
-        const data_base_url = `http://${manifest.debuggerHost
-            .split(`:`)
-            .shift()
-            .concat(`:3001/login`)}`; // Switch to the route you want to use
+        const data_base_url = url
+            ? `${url}/login`
+            : `http://${manifest.debuggerHost
+                  .split(`:`)
+                  .shift()
+                  .concat(`:3001/login`)}`; // Switch to the route you want to use
 
         fetch(data_base_url, {
             method: "POST",
@@ -62,14 +69,14 @@ class LoginPage extends React.Component {
                 password: this.state.password
             })
         })
-        .then(result => {
-            status = result.status;
-            return result.json();
-        })
-        .then(body => this.handleFeedback(status, body))
-        .catch(error => {
-            console.log(error);
-        });
+            .then(result => {
+                status = result.status;
+                return result.json();
+            })
+            .then(body => this.handleFeedback(status, body))
+            .catch(error => {
+                console.log(error);
+            });
     };
 
     render() {

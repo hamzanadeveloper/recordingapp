@@ -5,8 +5,15 @@ import {
     FlatList,
     Text,
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from "react-native";
+import { getJWT, removeJWT } from "./utils/auth";
+import Constants from "expo-constants";
+const { manifest } = Constants;
+import config from "./config.json"
+const url = config.url;
+
 
 import HistoryPopup from "./HistoryPopup";
 
@@ -30,9 +37,9 @@ const styles = StyleSheet.create({
 class Item extends React.Component {
     render() {
         return (
-            <TouchableOpacity onPress={() => this.props.onClick(this.props.id)}>
+            <TouchableOpacity onPress={() => this.props.onClick(this.props.title, this.props.comment, this.props.id)}>
                 <View style={styles.item}>
-                    <Text style={styles.title}>{this.props.title}</Text>
+                    <Text style={styles.title}>Recorded on: {this.props.title}</Text>
                 </View>
             </TouchableOpacity>
         );
@@ -41,6 +48,7 @@ class Item extends React.Component {
 
 class NoRecording extends React.Component {
     render() {
+        console.log(this.props);
         return (
             <View>
                 {this.props.DATA.length === 0 && (
@@ -62,22 +70,81 @@ function wait(timeout) {
     });
 }
 
-function HistoryPage() {
+function getHistory() {
+    const data_base_url = url
+            ? `${url}/recordHistory`
+            : `http://${manifest.debuggerHost
+                  .split(`:`)
+                  .shift()
+                  .concat(`:3001/recordHistory`)}`;
+    
+    let res = [];
+    getJWT().then(token => {
+        return fetch(data_base_url, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+        })
+            .then(result => result.json())
+            .then(json => {
+                if (json.flag) {
+                    console.log("Found recordings: " + json.recordings)
+                    console.log("Type: " + (typeof json.recordings));
+                    res = json.recordings
+                } else {
+                    Alert.alert("You have no recordings");
+                    res = []
+                }
+            })
+            .catch(error => {
+                alert("update failed due to network issues");
+                console.log(error);
+            });
+    });
+    return res;
+}
+
+function HistoryPage(props) {
+    props.navigation.addListener("willFocus", payload => {
+        console.log("History will focus, fetch data");
+        const data_base_url = url
+        ? `${url}/recordHistory`
+        : `http://${manifest.debuggerHost
+              .split(`:`)
+              .shift()
+              .concat(`:3001/recordHistory`)}`;
+
+        getJWT().then(token => {
+            return fetch(data_base_url, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+            })
+            .then(result => result.json())
+            .then(json => {
+                if (json.flag) {
+
+                    console.log("Found recordings: " + json.recordings)
+                    setDATA(json.recordings)
+                    console.log("Time" + json.recordings[0].time)
+                } else {
+                    Alert.alert("You have no recordings");
+                }
+            })
+            .catch(error => {
+                alert("update failed due to network issues");
+                console.log(error);
+            });
+        });
+    });
+
     // Mock data, should be replaced by HTTP calls
-    const [DATA, setDATA] = React.useState([
-        {
-            id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-            title: "First Record"
-        },
-        {
-            id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-            title: "Second Record"
-        },
-        {
-            id: "58694a0f-3da1-471f-bd96-145571e29d72",
-            title: "Third Record"
-        }
-    ]);
+    const [DATA, setDATA] = React.useState([]);
+
 
     const [refreshing, setRefreshing] = React.useState(false);
 
@@ -87,6 +154,10 @@ function HistoryPage() {
     // id for which record the user is viewing
     const [viewingRecordId, setViewingRecordId] = React.useState("invalid id");
 
+    const [recordTime, setRecordTime] = React.useState("NO GOOD!!!!");
+
+    const [comment, setComment] = React.useState("NO COMMENT PROVIDED!!!!");
+
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
         alert("refreshing");
@@ -94,24 +165,19 @@ function HistoryPage() {
     }, [refreshing]);
 
     // define what action to do when a record is clicked
-    const clickedRecordAction = recordId => {
-        console.log(`clicked record of id ${recordId}`);
+    const clickedRecordAction = (time, commentP, recordId) => {
+        setRecordTime(time)
+        setComment(commentP)
         setViewingRecordId(recordId);
         setIsViewingRecord(true);
     };
 
     // action when user goes back to home page
     const backToHomepage = () => {
+        setRecordTime("RESET BACK!!!!")
+        setComment("NA")
         setIsViewingRecord(false);
         setViewingRecordId("invalid id");
-    };
-
-    // delete a recording
-    const deleteRecording = recordId => {
-        backToHomepage();
-        setDATA(DATA.filter(obj => obj.id !== recordId));
-        console.log(`delete id of ${recordId}`);
-        console.log(DATA);
     };
 
     return (
@@ -122,12 +188,13 @@ function HistoryPage() {
                 data={DATA}
                 renderItem={({ item }) => (
                     <Item
-                        title={item.title}
+                        title={item.time}
                         id={item.id}
-                        onClick={clickedRecordAction}
+                        comment={item.comment}
+                        onClick={clickedRecordAction.bind(item.time, item.id, item.comment)}
                     />
                 )}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id.toString()}
                 onRefresh={onRefresh}
                 refreshing={refreshing}
             />
@@ -136,8 +203,9 @@ function HistoryPage() {
                 style={styles.popup}
                 visible={isViewingRecord}
                 id={viewingRecordId}
+                createTime={recordTime}
+                comment={comment}
                 backToHomepage={backToHomepage}
-                deleteRecording={deleteRecording}
             />
         </SafeAreaView>
     );

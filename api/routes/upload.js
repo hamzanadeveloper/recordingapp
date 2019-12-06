@@ -13,7 +13,9 @@ const { handleJWTVerification } = require("../middleware");
 
 const storage = multer.diskStorage({
     destination: function(req, file, callback) {
-        callback(null, "uploads/recordings");
+        const path = __dirname.replace("routes", "") + "uploads/recordings";
+        console.log("Setting up destination: " + path);
+        callback(null, path);
     },
     filename: function(req, file, callback) {
         // TODO: ADD MORE FILE TYPE HERE !!!!!
@@ -52,7 +54,8 @@ router.post("/", handleJWTVerification, function(req, res, next) {
         // Everything went fine.
 
         // update recording table
-        const userId = req.body.userId;
+        // const userId = req.body.userId;
+        const userId = req.user.id;
         console.log(`User is: ${userId}`);
         Recording.create({
             url: req.file.destination + "/" + req.file.filename,

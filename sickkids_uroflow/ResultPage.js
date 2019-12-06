@@ -11,6 +11,9 @@ import {
     KeyboardAvoidingView
 } from "react-native";
 
+import config from "./config.json";
+const url = config.url;
+
 import { getJWT } from "./utils/auth";
 
 const RecordOption = {
@@ -39,11 +42,6 @@ const { manifest } = Constants;
 class ResultPage extends React.Component {
     constructor(props) {
         super(props);
-        console.log(
-            JSON.stringify(
-                this.props.navigation.getParam("uri_info", "nothing sent")
-            )
-        );
         this.sound = null;
         this.state = {
             getted_uri: this.props.navigation.getParam(
@@ -75,24 +73,24 @@ class ResultPage extends React.Component {
         const formData = new FormData();
         // Get dat file in
         const fileUri = this.state.getted_uri;
-        console.log(fileUri);
         const fileInfoList = fileUri.split(".");
         const fileExtension = fileInfoList[fileInfoList.length - 1];
-        console.log(fileExtension);
         formData.append("INPUT-FIELD-NAME-HERE", {
             uri: this.state.getted_uri,
             name: "test1." + fileExtension
         });
 
         // Get other info
-        formData.append("userId", "1");
+        // formData.append("userId", "1");
         formData.append("comment", this.state.description);
         // CHANGE LOCAL IP ADDRESS BEFORE RUN THE CODE HERE FOR NOW!
 
-        const data_base_url = `http://${manifest.debuggerHost
-            .split(`:`)
-            .shift()
-            .concat(`:3001/upload`)}`; // Switch to the route you want to use
+        const data_base_url = url
+            ? `${url}/upload`
+            : `http://${manifest.debuggerHost
+                  .split(`:`)
+                  .shift()
+                  .concat(`:3001/upload`)}`; // Switch to the route you want to use
 
         getJWT()
             .then(token => {
@@ -112,6 +110,7 @@ class ResultPage extends React.Component {
                 } else if (response.status === 400) {
                     alert(`Bad request, file upload failed`);
                     console.log("ResultPage: bad request");
+                    response.json().then(body => console.log(body));
                 }
                 this.props.navigation.goBack();
             })
