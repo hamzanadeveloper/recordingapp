@@ -89,8 +89,10 @@
   - **Recording History(Tab) with functionality adjustment due to time limit**:
       - If the user has no recording, a "no recording message" will be displayed. 
       - Make a recording and your history will be displayed here. 
-      - Click on any of the recording to view comments. 
- 
+      - Click a single recording tab will popup a new page to display information of this recording.
+      - User will be able to view information like the uploaded date time of the recording on selected.
+      - Other buttons such as 'Send to my docotr' will be an placeholder for future development. 
+
 
   - **Profile features(Tab)** 
     - **Press and hold** password or birthday or gender fields will allow input text box to appear and accepting input.
