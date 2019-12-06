@@ -55,6 +55,8 @@
  * How do you access it? Are accounts pre-created or does a user register? Where do you start? etc. 
  > Due to the fact that this application is developed for internal testing purpose, the users are pre-defined on our partner's side with some sign up mechanism. Any users who filled their information and approved by the SickKids team, will be able to log in with their email and password they provided as they first launched this application. And after initial log in, the user will be authenticated for a fixed period of time before they need to validate their credential again.
  * Provide clear steps for using each feature described above
+
+ - Before launching the app, start server using `npm start` in ./api folder. Clear instructions on how to set up are in the next section. 
  
  - As you launch the app, a login page first shows up:
     - **Log in** features: email & password combination that matches record in the database will be needed, and will be authenticated for a period of time.
@@ -103,7 +105,7 @@
  * If you cannot deploy your application for technical reasons, please let your TA know at the beginning of the iteration. You will need to demo the application to your partner either way.
      > The actual deployment of this mobile application is not a must-have at this stage, as it is only developed to test the applicability of such device and to be used with internal perspective users as oppsed to public access. And we have reached an agreement on this very issue with our partner also. We will also mention this concern in the iteration document.
 
-     > We have deployed our server/database alpha version onto heroku and heroku postgres for demo purpose. 
+     > We have deployed our server/database alpha version onto heroku and heroku postgres for demo purpose. But for development purpose, we recommend you run this app using localhost server. 
  
  ## Development requirements
 
