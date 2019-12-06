@@ -24,7 +24,22 @@ const styles = StyleSheet.create({
     },
     backButton: {
         marginVertical: 10
-    }
+    },
+    title: {
+        fontSize: 16,
+        color: "white"
+    },
+    info: {
+        fontSize: 16,
+        color: "steelblue",
+        marginTop: 10
+    },
+    description: {
+        fontSize: 16,
+        color: "#696969",
+        marginTop: 10,
+        textAlign: "center"
+    },
 });
 
 export default function HistoryPopup(prop) {
@@ -91,14 +106,9 @@ export default function HistoryPopup(prop) {
     return (
         <Modal visible={prop.visible}>
             <View style={styles.popup}>
-                <TouchableOpacity onPress={pressedPlay}>
-                    <Ionicons
-                        name={isPlaying ? "md-square" : "md-play-circle"}
-                        size={128}
-                        color="steelblue"
-                    />
-                </TouchableOpacity>
-                <Text>id: {prop.id}</Text>
+                <Text style = {styles.description}>Created At: {prop.id}</Text>
+                <Text style = {styles.description}> Record ID: {prop.createTime}</Text>
+                <Text style = {styles.description}>Comment provided: {prop.comment}</Text>
                 <View style={styles.buttons}>
                     <Button color="red" title="Delete" onPress={deleteAlert} />
                     <Button

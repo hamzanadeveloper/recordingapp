@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 class Item extends React.Component {
     render() {
         return (
-            <TouchableOpacity onPress={() => this.props.onClick(this.props.id)}>
+            <TouchableOpacity onPress={() => this.props.onClick(this.props.title, this.props.comment, this.props.id)}>
                 <View style={styles.item}>
                     <Text style={styles.title}>Recorded on: {this.props.title}</Text>
                 </View>
@@ -127,6 +127,7 @@ function HistoryPage(props) {
             .then(result => result.json())
             .then(json => {
                 if (json.flag) {
+
                     console.log("Found recordings: " + json.recordings)
                     setDATA(json.recordings)
                     console.log("Time" + json.recordings[0].time)
@@ -142,23 +143,7 @@ function HistoryPage(props) {
     });
 
     // Mock data, should be replaced by HTTP calls
-    const [DATA, setDATA] = React.useState([
-        {
-            id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-            time: "First Record",
-            comment: ""
-        },
-        {
-            id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-            time: "Second Record",
-            comment: ""
-        },
-        {
-            id: "58694a0f-3da1-471f-bd96-145571e29d72",
-            time: "Third Record",
-            comment: ""
-        }
-    ]);
+    const [DATA, setDATA] = React.useState([]);
 
 
     const [refreshing, setRefreshing] = React.useState(false);
@@ -169,6 +154,10 @@ function HistoryPage(props) {
     // id for which record the user is viewing
     const [viewingRecordId, setViewingRecordId] = React.useState("invalid id");
 
+    const [recordTime, setRecordTime] = React.useState("NO GOOD!!!!");
+
+    const [comment, setComment] = React.useState("NO COMMENT PROVIDED!!!!");
+
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
         alert("refreshing");
@@ -176,25 +165,20 @@ function HistoryPage(props) {
     }, [refreshing]);
 
     // define what action to do when a record is clicked
-    const clickedRecordAction = recordId => {
-        console.log(`clicked record of id ${recordId}`);
+    const clickedRecordAction = (time, commentP, recordId) => {
+        setRecordTime(time)
+        setComment(commentP)
         setViewingRecordId(recordId);
         setIsViewingRecord(true);
     };
 
     // action when user goes back to home page
     const backToHomepage = () => {
+        setRecordTime("RESET BACK!!!!")
+        setComment("NA")
         setIsViewingRecord(false);
         setViewingRecordId("invalid id");
     };
-
-    // delete a recording, disused functionality
-    // const deleteRecording = recordId => {
-    //     backToHomepage();
-    //     setDATA(DATA.filter(obj => obj.id !== recordId));
-    //     console.log(`delete id of ${recordId}`);
-    //     console.log(DATA);
-    // };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -206,10 +190,11 @@ function HistoryPage(props) {
                     <Item
                         title={item.time}
                         id={item.id}
-                        onClick={clickedRecordAction}
+                        comment={item.comment}
+                        onClick={clickedRecordAction.bind(item.time, item.id, item.comment)}
                     />
                 )}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id.toString()}
                 onRefresh={onRefresh}
                 refreshing={refreshing}
             />
@@ -218,8 +203,8 @@ function HistoryPage(props) {
                 style={styles.popup}
                 visible={isViewingRecord}
                 id={viewingRecordId}
-                // this needs to display date time, and comment for that recording
-                // comment={(DATA.filter(obj => obj.id === viewingRecordId))[0].comment}
+                createTime={recordTime}
+                comment={comment}
                 backToHomepage={backToHomepage}
             />
         </SafeAreaView>
