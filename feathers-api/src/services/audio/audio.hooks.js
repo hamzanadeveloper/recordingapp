@@ -1,5 +1,4 @@
 const { authenticate } = require('@feathersjs/authentication').hooks
-const parseAudio = require('./parse-audio.js')
 
 module.exports = {
   before: {

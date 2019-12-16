@@ -18,7 +18,6 @@ import * as Permissions from 'expo-permissions';
 import { Ionicons } from '@expo/vector-icons';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SyntheticPlatformEmitter } from '@unimodules/core';
-import app from "./feathers-client.js"
 
 class Icon {
   constructor(module, width, height) {
