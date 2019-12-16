@@ -3,6 +3,8 @@ import { Audio } from "expo-av";
 import { Ionicons } from "@expo/vector-icons";
 import { Text, View, Button, Alert } from "react-native";
 
+import app from "./feathers-client.js"
+
 import CheckBox from "react-native-check-box";
 import {
     StyleSheet,
@@ -48,6 +50,7 @@ class ResultPage extends React.Component {
                 "uri_info",
                 "nothing sent"
             ),
+            content_uri: this.props.navigation.getParam("contentURI"),
 
             description: "",
             firstChecked: false,
@@ -91,6 +94,11 @@ class ResultPage extends React.Component {
                   .split(`:`)
                   .shift()
                   .concat(`:3001/upload`)}`; // Switch to the route you want to use
+
+        const file_arr = this.state.getted_uri.split(".")
+        const file_type = file_arr[file_arr.length - 1]
+
+        app.service("audio").create({ file_url: this.state.getted_uri, description: this.state.description, content_uri: this.state.content_uri, file_type })
 
         getJWT()
             .then(token => {
