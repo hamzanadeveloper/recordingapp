@@ -3,9 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="0c5b4804-e1ec-434f-85f7-a96304e1292f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/feathers-api/src/services/audio/audio.hooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/feathers-api/src/services/audio/audio.hooks.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/feathers-api/src/services/audio/parse-audio.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/sickkids_uroflow/RecordPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/sickkids_uroflow/RecordPage.js" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/api/routes/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/routes/upload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feathers-api/src/models/users.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/feathers-api/src/models/users.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feathers-api/src/services/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/feathers-api/src/services/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sickkids_uroflow/RecordPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/sickkids_uroflow/RecordPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sickkids_uroflow/ResultPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/sickkids_uroflow/ResultPage.js" afterDir="false" />
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,8 +29,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sickkids_uroflow/RecordPage.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="365">
               <caret line="141" column="32" selection-start-line="141" selection-start-column="32" selection-end-line="141" selection-end-column="32" />
+=======
+            <state relative-caret-position="438">
+              <caret line="204" selection-start-line="204" selection-end-line="204" />
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -33,7 +46,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sickkids_uroflow/ResultPage.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="1783">
+=======
+            <state relative-caret-position="834">
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
               <caret line="121" column="17" lean-forward="true" selection-start-line="121" selection-start-column="17" selection-end-line="121" selection-end-column="17" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -87,7 +104,11 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
+=======
+      <file pinned="false" current-in-tab="true">
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
         <entry file="file://$PROJECT_DIR$/feathers-api/src/models/audio.model.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
@@ -96,11 +117,28 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/feathers-api/src/services/audio/audio.hooks.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
               <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feathers-api/src/services/audio/audio.hooks.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feathers-api/src/services/audio/parse-audio.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
             </state>
           </provider>
         </entry>
@@ -138,9 +176,12 @@
       <find>.info</find>
       <find>EncodingType</find>
       <find>FileSystem</find>
+<<<<<<< HEAD
       <find>_getMMSSFromMillis</find>
       <find>_stopRecordingAndEnablePlayback</find>
       <find>durationMillis</find>
+=======
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
     </findStrings>
     <replaceStrings>
       <replace />
@@ -165,10 +206,17 @@
         <option value="$PROJECT_DIR$/feathers-api/src/models/users.model.js" />
         <option value="$PROJECT_DIR$/sickkids_uroflow/feathers-client.js" />
         <option value="$PROJECT_DIR$/feathers-api/src/services/audio/parse-audio.js" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/sickkids_uroflow/ResultPage.js" />
         <option value="$PROJECT_DIR$/feathers-api/src/models/audio.model.js" />
         <option value="$PROJECT_DIR$/sickkids_uroflow/RecordPage.js" />
         <option value="$PROJECT_DIR$/feathers-api/src/services/audio/audio.hooks.js" />
+=======
+        <option value="$PROJECT_DIR$/feathers-api/src/services/audio/audio.hooks.js" />
+        <option value="$PROJECT_DIR$/sickkids_uroflow/RecordPage.js" />
+        <option value="$PROJECT_DIR$/sickkids_uroflow/ResultPage.js" />
+        <option value="$PROJECT_DIR$/feathers-api/src/models/audio.model.js" />
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
       </list>
     </option>
   </component>
@@ -288,12 +336,20 @@
       <option name="presentableId" value="Default" />
       <updated>1576176639438</updated>
       <workItem from="1576176642595" duration="23149000" />
+<<<<<<< HEAD
       <workItem from="1576506083666" duration="4166000" />
+=======
+      <workItem from="1576506083666" duration="3263000" />
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="27315000" />
+=======
+    <option name="totallyTimeSpent" value="26412000" />
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="0" width="1920" height="1080" extended-state="0" />
@@ -531,6 +587,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/sickkids_uroflow/feathers-client.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -541,6 +598,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/api/routes/upload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="35" lean-forward="true" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
+=======
+    <entry file="file://$PROJECT_DIR$/feathers-api/src/services/audio/parse-audio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feathers-api/src/services/audio/audio.hooks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feathers-api/src/models/users.model.js">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="330">
+          <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+=======
+        <state>
+          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/feathers-api/src/models/audio.model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sickkids_uroflow/ResultPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1783">
+          <caret line="121" column="17" lean-forward="true" selection-start-line="121" selection-start-column="17" selection-end-line="121" selection-end-column="17" />
+=======
+    <entry file="file://$PROJECT_DIR$/sickkids_uroflow/RecordPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="204" selection-start-line="204" selection-end-line="204" />
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/sickkids_uroflow/RecordPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="141" column="32" selection-start-line="141" selection-start-column="32" selection-end-line="141" selection-end-column="32" />
+          <folding>
+=======
     <entry file="file://$PROJECT_DIR$/api/routes/upload.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
@@ -558,33 +683,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feathers-api/src/models/audio.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sickkids_uroflow/ResultPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1783">
+        <state relative-caret-position="834">
           <caret line="121" column="17" lean-forward="true" selection-start-line="121" selection-start-column="17" selection-end-line="121" selection-end-column="17" />
           <folding>
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sickkids_uroflow/RecordPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="141" column="32" selection-start-line="141" selection-start-column="32" selection-end-line="141" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/feathers-api/src/services/audio/parse-audio.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -601,6 +711,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+=======
+    <entry file="file://$PROJECT_DIR$/feathers-api/src/models/audio.model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+>>>>>>> c46cd86b9d47a86749cb04c2b0f69cdd3e0c22dd
         </state>
       </provider>
     </entry>
