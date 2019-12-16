@@ -1,0 +1,40 @@
+const { authenticate } = require('@feathersjs/authentication').hooks
+const parseAudio = require('./parse-audio.js')
+
+module.exports = {
+  before: {
+    all: [],
+    find: [],
+    get: [],
+    create: [
+      hook => {
+        hook.data = Object.assign({}, hook.data, { user_id: hook.params.user.id })
+        console.log(hook.data)
+        return hook
+      }
+    ],
+    update: [],
+    patch: [],
+    remove: []
+  },
+
+  after: {
+    all: [],
+    find: [],
+    get: [],
+    create: [],
+    update: [],
+    patch: [],
+    remove: []
+  },
+
+  error: {
+    all: [],
+    find: [],
+    get: [],
+    create: [],
+    update: [],
+    patch: [],
+    remove: []
+  }
+};

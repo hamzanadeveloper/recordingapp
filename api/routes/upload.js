@@ -39,7 +39,7 @@ router.post("/", handleJWTVerification, function(req, res, next) {
         console.log(`Before saving file, identify user: ${req.user.id} - ${req.user.email}`);
 
         // !!!!! **********TODO*********** !!!!!: CHECK WHETHER USERID EXISTS OR NOT
-        
+
         console.log("File info: ");
         console.log(req.file);
         if (err instanceof multer.MulterError) {
@@ -55,6 +55,8 @@ router.post("/", handleJWTVerification, function(req, res, next) {
 
         // update recording table
         // const userId = req.body.userId;
+        console.log("URL: ", req.file.destination + "/" + req.file.filename)
+
         const userId = req.user.id;
         console.log(`User is: ${userId}`);
         Recording.create({

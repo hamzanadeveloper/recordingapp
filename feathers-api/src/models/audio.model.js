@@ -5,23 +5,27 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const users = sequelizeClient.define('users', {
+  const audio = sequelizeClient.define('audio', {
 
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    password: {
-      type: DataTypes.STRING,
+    file_url: {
+      type: Sequelize.STRING,
       allowNull: false
     },
-
+    file_type: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    content_uri: {
+      type: Sequelize.BLOB,
+      allowNull: false
+    },
+    description: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
+    user_id: {
+      type: Sequelize.UUID,
+    }
 
   }, {
     hooks: {
@@ -32,10 +36,10 @@ module.exports = function (app) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  users.associate = function (models) {
+  audio.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
   };
 
-  return users;
+  return audio;
 };
