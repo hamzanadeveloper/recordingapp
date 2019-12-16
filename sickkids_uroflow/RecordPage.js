@@ -18,6 +18,7 @@ import * as Permissions from 'expo-permissions';
 import { Ionicons } from '@expo/vector-icons';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SyntheticPlatformEmitter } from '@unimodules/core';
+import app from "./feathers-client.js"
 
 class Icon {
   constructor(module, width, height) {
@@ -138,7 +139,10 @@ export default class RecordPage extends React.Component {
   };
 
   _updateScreenForRecordingStatus = status => {
-    if (status.canRecord) {
+    if(status.durationMillis > 60000){
+      this._stopRecordingAndEnablePlayback();
+    }
+    else if (status.canRecord) {
       this.setState({
         isRecording: status.isRecording,
         recordingDuration: status.durationMillis,
@@ -198,10 +202,15 @@ export default class RecordPage extends React.Component {
       // Do nothing -- we are already unloaded.
     }
     const info = await FileSystem.getInfoAsync(this.recording.getURI());
+
+    const contentURI = await FileSystem.readAsStringAsync(info.uri,
+      { encoding: FileSystem.EncodingType.Base64 });
+
     this.setState({uri: info.uri})
     // console.log(`FILE INFO: ${JSON.stringify(info)}`);
     this.props.navigation.navigate('Result', {
-      uri_info: info.uri
+      uri_info: info.uri,
+      contentURI
     })
 
     await Audio.setAudioModeAsync({
@@ -293,8 +302,8 @@ export default class RecordPage extends React.Component {
             <Text style={{ fontFamily: 'cutive-mono-regular'}}>
                 { this.state.isRecording ? "Press to end recording" : "Press to begin recording" }
             </Text>
-          </View> 
-          { this.state.isRecording ? 
+          </View>
+          { this.state.isRecording ?
             <View style={styles.recordingDataContainer}>
               <Text style={[styles.liveText, { fontFamily: 'cutive-mono-regular' }]}>Live</Text>
               <View style={{flexDirection: "row"}}>
