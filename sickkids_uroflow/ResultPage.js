@@ -1,44 +1,10 @@
 import React from "react";
 import { Audio } from "expo-av";
-import { Ionicons } from "@expo/vector-icons";
 import { Text, View, Button, Alert } from "react-native";
 import app from "./feathers-client.js"
 
-import {
-  StyleSheet,
-  TextInput,
-  ScrollView,
-  KeyboardAvoidingView
-} from "react-native";
+import { TextInput, ScrollView } from "react-native";
 
-import config from "./config.json";
-const url = config.url;
-
-import { getJWT } from "./utils/auth";
-
-const RecordOption = {
-  android: {
-    extension: ".wav",
-    outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
-    audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
-    sampleRate: 44100,
-    numberOfChannels: 2,
-    bitRate: 128000
-  },
-  ios: {
-    extension: ".wav",
-    outputFormat: Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_LINEARPCM,
-    audioQuality: Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_MAX,
-    sampleRate: 44100,
-    numberOfChannels: 2,
-    bitRate: 128000,
-    linearPCMBitDepth: 16,
-    linearPCMIsBigEndian: false,
-    linearPCMIsFloat: false
-  }
-};
-import Constants from "expo-constants";
-const { manifest } = Constants;
 class ResultPage extends React.Component {
   constructor(props) {
     super(props);
@@ -48,7 +14,6 @@ class ResultPage extends React.Component {
       content_uri: this.props.navigation.getParam("contentURI"),
       description: "",
     };
-    this.recordingSettings = JSON.parse(JSON.stringify(RecordOption));
   }
 
   async _stopRecordingAndEnablePlayback() {
@@ -61,17 +26,6 @@ class ResultPage extends React.Component {
     } catch (error) {
       console.warn(error);
     }
-
-    // let playbackObject = await Audio.Sound.createAsync(
-    //   { uri: getted_uri },
-    //   { shouldPlay: true }
-    // )
-
-    // setTimeout(() => {
-    //   playbackObject.unloadAsync();
-    // }, playbackObject.playableDurationMillis + 1000);
-
-    // this.sound = playbackObject;
   }
 
   sendAudio = () => {
