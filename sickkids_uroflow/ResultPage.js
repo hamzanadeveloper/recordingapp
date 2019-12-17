@@ -72,58 +72,10 @@ class ResultPage extends React.Component {
   }
 
   sendAudio = () => {
-    const formData = new FormData();
-    // Get dat file in
-    const fileUri = this.state.getted_uri;
-    const fileInfoList = fileUri.split(".");
-    const fileExtension = fileInfoList[fileInfoList.length - 1];
-    formData.append("INPUT-FIELD-NAME-HERE", {
-      uri: this.state.getted_uri,
-      name: "test1." + fileExtension
-    });
-
     const file_arr = this.state.getted_uri.split(".")
     const file_type = file_arr[file_arr.length - 1]
 
     app.service("audio").create({ file_url: this.state.getted_uri, description: this.state.description, content_uri: this.state.content_uri, file_type })
-
-    // Get other info
-    // formData.append("userId", "1");
-    formData.append("comment", this.state.description);
-    // CHANGE LOCAL IP ADDRESS BEFORE RUN THE CODE HERE FOR NOW!
-
-    const data_base_url = url
-      ? `${url}/upload`
-      : `http://${manifest.debuggerHost
-        .split(`:`)
-        .shift()
-        .concat(`:3001/upload`)}`; // Switch to the route you want to use
-
-    getJWT()
-      .then(token => {
-        return fetch(data_base_url, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data"
-          },
-          body: formData
-        });
-      })
-      .then(response => {
-        if (response.status === 200) {
-          Alert.alert("Success", "Audio uploaded");
-          console.log("ResultPage: upload succeed");
-        } else if (response.status === 400) {
-          alert(`Bad request, file upload failed`);
-          console.log("ResultPage: bad request");
-          response.json().then(body => console.log(body));
-        }
-        this.props.navigation.goBack();
-      })
-      .catch(err => {
-        console.error(err);
-      });
   };
 
   sendPressed = () => {
