@@ -1,9 +1,7 @@
 import React from "react";
 import { Audio } from "expo-av";
-import { Text, View, Button, Alert } from "react-native";
+import { Text, View, Button, Alert, TextInput, ScrollView } from "react-native";
 import app from "./feathers-client.js"
-
-import { TextInput, ScrollView } from "react-native";
 
 class ResultPage extends React.Component {
   constructor(props) {

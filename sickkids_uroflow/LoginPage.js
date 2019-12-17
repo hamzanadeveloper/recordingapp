@@ -1,13 +1,7 @@
 import React from "react"
 import { Text, View, Button, StyleSheet, TextInput } from "react-native"
 
-import Constants from "expo-constants"
-// const { manifest } = Constants
-// import config from "./config.json"
 import app from "./feathers-client.js"
-// const url = config.url
-
-// import { setJWT } from "./utils/auth"
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -27,7 +21,7 @@ class LoginPage extends React.Component {
         console.log("Authentication Attempt")
 
         return app.authenticate({ strategy: 'local', ...options })
-          .then(result => {
+          .then(() => {
               console.log("Authentication Success")
               this.setState({ isAuthenticated: true })
               this.props.navigation.navigate("Record")
@@ -51,61 +45,6 @@ class LoginPage extends React.Component {
           .then(() => this.authenticate({ strategy: 'local', email: newEmail, password: newPass }))
           .catch(err => console.log("Registration Failure: ", err))
     }
-
-    // handleFeedback(status, body) {
-    //     const token = body.token
-    //     if (status == 200) {
-    //         setJWT(token).then(res => {
-    //             console.log("LoginPage: API call succeed")
-    //             if (res) {
-    //                 console.log(
-    //                     "LoginPage: JWT stored, redirect to history page"
-    //                 )
-    //                 this.props.navigation.navigate("Record")
-    //             } else {
-    //                 alert("JWT token storation failed")
-    //                 console.log("LoginPage: JWT storation failed")
-    //             }
-    //         })
-    //     } else if (status == 404) {
-    //         alert("User not found")
-    //         console.log("LoginPage: 404: User not found")
-    //     } else if (status == 400) {
-    //         alert("Incorrect password")
-    //         console.log("LoginPage: 400: Password entered not correct")
-    //     }
-    // }
-    //
-    // loginPressed = () => {
-    //     let status = null
-    //
-    //     const data_base_url = url
-    //         ? `${url}/login`
-    //         : `http://${manifest.debuggerHost
-    //               .split(`:`)
-    //               .shift()
-    //               .concat(`:3001/login`)}`  // Switch to the route you want to use
-    //
-    //     fetch(data_base_url, {
-    //         method: "POST",
-    //         headers: {
-    //             Accept: "application/json",
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify({
-    //             email: this.state.email,
-    //             password: this.state.password
-    //         })
-    //     })
-    //         .then(result => {
-    //             status = result.status
-    //             return result.json()
-    //         })
-    //         .then(body => this.handleFeedback(status, body))
-    //         .catch(error => {
-    //             console.log(error)
-    //         })
-    // }
 
     render() {
         const { email, password, newEmail, newPass, passwordConfirmation } = this.state
