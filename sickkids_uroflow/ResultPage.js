@@ -4,7 +4,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { Text, View, Button, Alert } from "react-native";
 import app from "./feathers-client.js"
 
-import CheckBox from "react-native-check-box";
 import {
   StyleSheet,
   TextInput,
@@ -45,37 +44,42 @@ class ResultPage extends React.Component {
     super(props);
     this.sound = null;
     this.state = {
-      getted_uri: this.props.navigation.getParam(
-        "uri_info",
-        "nothing sent"
-      ),
+      file_url: this.props.navigation.getParam("uri_info", "nothing sent"),
       content_uri: this.props.navigation.getParam("contentURI"),
-
       description: "",
-      firstChecked: false,
-      secondChecked: false,
-      thirdChecked: false,
-      forthChecked: false,
-      fifthChecked: false
     };
-    // this.recordingSettings = JSON.parse(JSON.stringify(Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY));
     this.recordingSettings = JSON.parse(JSON.stringify(RecordOption));
   }
 
   async _stopRecordingAndEnablePlayback() {
-    asset_path = this.props.navigation.getParam("uri_info", "nothing sent");
-    const playbackObject = await Audio.Sound.createAsync(
-      { uri: asset_path },
-      { shouldPlay: true }
-    );
-    this.sound = playbackObject;
+    const { file_url } = this.state
+    const soundObject = new Audio.Sound()
+
+    try {
+      await soundObject.loadAsync({ uri: file_url});
+      await soundObject.playAsync();
+    } catch (error) {
+      console.warn(error);
+    }
+
+    // let playbackObject = await Audio.Sound.createAsync(
+    //   { uri: getted_uri },
+    //   { shouldPlay: true }
+    // )
+
+    // setTimeout(() => {
+    //   playbackObject.unloadAsync();
+    // }, playbackObject.playableDurationMillis + 1000);
+
+    // this.sound = playbackObject;
   }
 
   sendAudio = () => {
-    const file_arr = this.state.getted_uri.split(".")
+    const { file_url, description, content_uri } = this.state
+    const file_arr = file_url.split(".")
     const file_type = file_arr[file_arr.length - 1]
 
-    app.service("audio").create({ file_url: this.state.getted_uri, description: this.state.description, content_uri: this.state.content_uri, file_type })
+    app.service("audio").create({ file_url, description, content_uri, file_type })
   };
 
   sendPressed = () => {
@@ -106,11 +110,10 @@ class ResultPage extends React.Component {
     this._stopRecordingAndEnablePlayback();
   };
 
-  handleDescription = text => {
-    this.setState({ description: text });
-  };
-
   render() {
+    const { description } = this.state
+    const { navigation } = this.props
+
     return (
       <ScrollView>
         <View
@@ -129,11 +132,10 @@ class ResultPage extends React.Component {
               top: 10,
               flex: 1,
               flexDirection: "column",
-              // justifyContent: "center",
               alignItems: "center"
             }}
           >
-            <Text> result will be displayed here.</Text>
+            <Text>Audio Playback</Text>
             <View
               style={{
                 flexDirection: "row",
@@ -142,23 +144,17 @@ class ResultPage extends React.Component {
                 alignItems: "center"
               }}
             >
-              <Ionicons
-                name="md-play-circle"
-                size={50}
-                color="red"
-              />
               <Button
                 title="Play Now"
                 color="blue"
                 onPress={this._onRecordPressed}
-              ></Button>
+              />
             </View>
           </View>
 
           <View>
             <TextInput
               style={{
-                // width: 230,
                 margin: "10%",
                 height: 40,
                 borderColor: "black",
@@ -169,76 +165,16 @@ class ResultPage extends React.Component {
               underlineColorAndroid="transparent"
               placeholder="Description:"
               placeholderTextColor="#9a73ef"
-              autoCapitalize="none"
               textAlign="left"
               multiline
               numberOfLines={5}
-              onChangeText={this.handleDescription}
-              value={this.state.description}
-            />
-          </View>
-
-          <View>
-            <CheckBox
-              style={{ flex: 1, paddingRight: "20%" }}
-              onClick={() => {
-                this.setState({
-                  firstChecked: !this.state.firstChecked
-                });
-              }}
-              isChecked={this.state.firstChecked}
-              leftText={"symptom 1"}
-              leftTextStyle={{ paddingLeft: "20%" }}
-            />
-            <CheckBox
-              style={{ flex: 1, paddingRight: "20%" }}
-              onClick={() => {
-                this.setState({
-                  secondChecked: !this.state.secondChecked
-                });
-              }}
-              isChecked={this.state.secondChecked}
-              leftText={"symptom 2"}
-              leftTextStyle={{ paddingLeft: "20%" }}
-            />
-            <CheckBox
-              style={{ flex: 1, paddingRight: "20%" }}
-              onClick={() => {
-                this.setState({
-                  thirdChecked: !this.state.thirdChecked
-                });
-              }}
-              isChecked={this.state.thirdChecked}
-              leftText={"symptom 3"}
-              leftTextStyle={{ paddingLeft: "20%" }}
-            />
-            <CheckBox
-              style={{ flex: 1, paddingRight: "20%" }}
-              onClick={() => {
-                this.setState({
-                  forthChecked: !this.state.forthChecked
-                });
-              }}
-              isChecked={this.state.forthChecked}
-              leftText={"symptom 4"}
-              leftTextStyle={{ paddingLeft: "20%" }}
-            />
-            <CheckBox
-              style={{ flex: 1, paddingRight: "20%" }}
-              onClick={() => {
-                this.setState({
-                  fifthChecked: !this.state.fifthChecked
-                });
-              }}
-              isChecked={this.state.fifthChecked}
-              leftText={"symptom 5"}
-              leftTextStyle={{ paddingLeft: "20%" }}
+              onChangeText={(description) => this.setState({ description })}
+              value={description}
             />
           </View>
 
           <View
             style={{
-              flexDirection: "row",
               marginTop: 15,
               marginBottom: 40,
               flex: 1,
@@ -247,15 +183,21 @@ class ResultPage extends React.Component {
               alignItems: "center"
             }}
           >
-            <Button
-              title="Send recording"
-              onPress={this.sendPressed}
-            ></Button>
-            <Button
-              title="Re-record"
-              color="red"
-              onPress={() => this.props.navigation.goBack()}
-            ></Button>
+            <View
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+              }}
+            >
+              <View style={{width: '30%'}}>
+                <Button title="Send" color="#3f51b5" onPress={this.sendPressed}/>
+              </View>
+              <View style={{width: '30%', marginTop: 15}}>
+                <Button title="Redo" color="#f44336" onPress={() => navigation.goBack()}/>
+              </View>
+            </View>
           </View>
         </View>
       </ScrollView>
