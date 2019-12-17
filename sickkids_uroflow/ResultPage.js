@@ -8,7 +8,6 @@ import { TextInput, ScrollView } from "react-native";
 class ResultPage extends React.Component {
   constructor(props) {
     super(props);
-    this.sound = null;
     this.state = {
       file_url: this.props.navigation.getParam("uri_info", "nothing sent"),
       content_uri: this.props.navigation.getParam("contentURI"),
