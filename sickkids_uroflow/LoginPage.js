@@ -94,51 +94,51 @@ class LoginPage extends React.Component {
                     value={password}
                 />
                 <View style={{width: '30%'}}>
-                    <Button style={{width: '100px'}} onPress={() => this.authenticate({ email, password })} title="Login" />
+                    <Button style={{width: '100px'}} onPress={() => this.authenticate({ email: "hamza", password: "hamza" })} title="Login" />
                 </View>
-                <View style={{
-                    fontFamily: 'Roboto',
-                    marginTop: 15,
-                    marginBottom: 15,
-                    fontSize: 22,
-                    fontWeight: '100',
-                    textAlign: 'center'
-                }}>
-                    <Text>OR</Text>
-                </View>
-                <Text style={{
-                    fontFamily: 'Roboto',
-                    fontSize: 16,
-                    fontWeight: '100',
-                }}>
-                    Register as a new user
-                </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Email"
-                  autoCapitalize="none"
-                  onChangeText={(newEmail) => this.setState({ newEmail })}
-                  value={newEmail}
-                />
-                <TextInput
-                  style={styles.input}
-                  secureTextEntry={true}
-                  placeholder="Password"
-                  autoCapitalize="none"
-                  onChangeText={(newPass) => this.setState({ newPass })}
-                  value={newPass}
-                />
-                <TextInput
-                  style={styles.input}
-                  secureTextEntry={true}
-                  placeholder="Password"
-                  autoCapitalize="none"
-                  onChangeText={(passwordConfirmation) => this.setState({ passwordConfirmation })}
-                  value={passwordConfirmation}
-                />
-                <View style={{width: '30%'}}>
-                    <Button style={{width: '100px'}} onPress={this.handleRegisterUser} title="Sign Up" />
-                </View>
+                {/*<View style={{*/}
+                    {/*fontFamily: 'Roboto',*/}
+                    {/*marginTop: 15,*/}
+                    {/*marginBottom: 15,*/}
+                    {/*fontSize: 22,*/}
+                    {/*fontWeight: '100',*/}
+                    {/*textAlign: 'center'*/}
+                {/*}}>*/}
+                    {/*<Text>OR</Text>*/}
+                {/*</View>*/}
+                {/*<Text style={{*/}
+                    {/*fontFamily: 'Roboto',*/}
+                    {/*fontSize: 16,*/}
+                    {/*fontWeight: '100',*/}
+                {/*}}>*/}
+                    {/*Register as a new user*/}
+                {/*</Text>*/}
+                {/*<TextInput*/}
+                  {/*style={styles.input}*/}
+                  {/*placeholder="Email"*/}
+                  {/*autoCapitalize="none"*/}
+                  {/*onChangeText={(newEmail) => this.setState({ newEmail })}*/}
+                  {/*value={newEmail}*/}
+                {/*/>*/}
+                {/*<TextInput*/}
+                  {/*style={styles.input}*/}
+                  {/*secureTextEntry={true}*/}
+                  {/*placeholder="Password"*/}
+                  {/*autoCapitalize="none"*/}
+                  {/*onChangeText={(newPass) => this.setState({ newPass })}*/}
+                  {/*value={newPass}*/}
+                {/*/>*/}
+                {/*<TextInput*/}
+                  {/*style={styles.input}*/}
+                  {/*secureTextEntry={true}*/}
+                  {/*placeholder="Password"*/}
+                  {/*autoCapitalize="none"*/}
+                  {/*onChangeText={(passwordConfirmation) => this.setState({ passwordConfirmation })}*/}
+                  {/*value={passwordConfirmation}*/}
+                {/*/>*/}
+                {/*<View style={{width: '30%'}}>*/}
+                    {/*<Button style={{width: '100px'}} onPress={this.handleRegisterUser} title="Sign Up" />*/}
+                {/*</View>*/}
             </View>
         )
     }

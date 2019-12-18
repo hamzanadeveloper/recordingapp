@@ -7,6 +7,11 @@ module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const audio = sequelizeClient.define('audio', {
 
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
     file_url: {
       type: Sequelize.STRING,
       allowNull: false

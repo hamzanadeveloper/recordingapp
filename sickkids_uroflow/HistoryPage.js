@@ -1,21 +1,13 @@
-import React from "react";
-import {
-    StyleSheet,
-    SafeAreaView,
-    FlatList,
-    Text,
-    View,
-    TouchableOpacity,
-    Alert
-} from "react-native";
-import { getJWT, removeJWT } from "./utils/auth";
-import Constants from "expo-constants";
-const { manifest } = Constants;
-import config from "./config.json"
-const url = config.url;
-
-
+import React, { useState, useEffect } from "react";
+import { StyleSheet, SafeAreaView, FlatList, Text, View, TouchableHighlight } from "react-native";
 import HistoryPopup from "./HistoryPopup";
+import { Audio } from 'expo-av'
+import * as FileSystem from 'expo-file-system'
+import { Ionicons } from '@expo/vector-icons'
+import { encode, decode } from 'base64-arraybuffer'
+
+
+import app from "./feathers-client.js"
 
 const styles = StyleSheet.create({
     container: {
@@ -34,181 +26,81 @@ const styles = StyleSheet.create({
     }
 });
 
-class Item extends React.Component {
-    render() {
-        return (
-            <TouchableOpacity onPress={() => this.props.onClick(this.props.title, this.props.comment, this.props.id)}>
-                <View style={styles.item}>
-                    <Text style={styles.title}>Recorded on: {this.props.title}</Text>
-                </View>
-            </TouchableOpacity>
-        );
-    }
-}
-
-class NoRecording extends React.Component {
-    render() {
-        console.log(this.props);
-        return (
-            <View>
-                {this.props.DATA.length === 0 && (
-                    <View style={{ position: "absolute", padding: 20 }}>
-                        <Text style={{ fontSize: 20 }}>
-                            It seems like you don't have any recording, start
-                            one by clicking "Record" button below!
-                        </Text>
-                    </View>
-                )}
-            </View>
-        );
-    }
-}
-
-function wait(timeout) {
-    return new Promise(resolve => {
-        setTimeout(resolve, timeout);
-    });
-}
-
-function getHistory() {
-    const data_base_url = url
-            ? `${url}/recordHistory`
-            : `http://${manifest.debuggerHost
-                  .split(`:`)
-                  .shift()
-                  .concat(`:3001/recordHistory`)}`;
-    
-    let res = [];
-    getJWT().then(token => {
-        return fetch(data_base_url, {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
-            },
-        })
-            .then(result => result.json())
-            .then(json => {
-                if (json.flag) {
-                    console.log("Found recordings: " + json.recordings)
-                    console.log("Type: " + (typeof json.recordings));
-                    res = json.recordings
-                } else {
-                    Alert.alert("You have no recordings");
-                    res = []
-                }
-            })
-            .catch(error => {
-                alert("update failed due to network issues");
-                console.log(error);
-            });
-    });
-    return res;
-}
 
 function HistoryPage(props) {
-    props.navigation.addListener("willFocus", payload => {
-        console.log("History will focus, fetch data");
-        const data_base_url = url
-        ? `${url}/recordHistory`
-        : `http://${manifest.debuggerHost
-              .split(`:`)
-              .shift()
-              .concat(`:3001/recordHistory`)}`;
+    const [history, setHistory] = useState([])
 
-        getJWT().then(token => {
-            return fetch(data_base_url, {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                },
-            })
-            .then(result => result.json())
-            .then(json => {
-                if (json.flag) {
+    useEffect(() => {
+        app.service("audio").find()
+          .then(audio => setHistory(audio.data))
+    })
 
-                    console.log("Found recordings: " + json.recordings)
-                    setDATA(json.recordings)
-                    console.log("Time" + json.recordings[0].time)
-                } else {
-                    Alert.alert("You have no recordings");
-                }
-            })
-            .catch(error => {
-                alert("update failed due to network issues");
-                console.log(error);
-            });
-        });
-    });
+    const playAudio = async (recording) => {
+        const soundObject = new Audio.Sound()
 
-    // Mock data, should be replaced by HTTP calls
-    const [DATA, setDATA] = React.useState([]);
+        try {
+            await soundObject.loadAsync({ uri: recording.file_url})
+            await soundObject.playAsync()
+        } catch (error) {
+            console.warn(error);
+        }
 
+        // let base64 = encode(recording.content_uri)
+        // const uriString = "data:audio/wav;base64," + base64
+        //
+        // console.log("Base64: ", uriString)
+        //
+        // // await FileSystem.writeAsStringAsync(recording.file_url, uriString, {
+        // //     encoding: FileSystem.EncodingType.Base64
+        // // })
+        //
+        // console.log("File URL: ", recording.file_url)
+        //
+        // const soundObject = new Audio.Sound()
+        //
+        // try {
+        //     await soundObject.loadAsync({ uri: recording.file_url});
+        //     await soundObject.playAsync();
+        // } catch (error) {
+        //     console.warn(error);
+        // }
 
-    const [refreshing, setRefreshing] = React.useState(false);
+        // try {
+        //     console.log("Begin playing")
+        //     await sound.loadAsync({ uri: uriString })
+        //     await sound.playAsync();
+        //     console.log("End playing")
+        // } catch(error) {
+        //     console.log(error)
+        // }
 
-    // boolean value, true iff user clicked a record and the modal pops up
-    const [isViewingRecord, setIsViewingRecord] = React.useState(false);
-
-    // id for which record the user is viewing
-    const [viewingRecordId, setViewingRecordId] = React.useState("invalid id");
-
-    const [recordTime, setRecordTime] = React.useState("NO GOOD!!!!");
-
-    const [comment, setComment] = React.useState("NO COMMENT PROVIDED!!!!");
-
-    const onRefresh = React.useCallback(() => {
-        setRefreshing(true);
-        alert("refreshing");
-        wait(2000).then(() => setRefreshing(false));
-    }, [refreshing]);
-
-    // define what action to do when a record is clicked
-    const clickedRecordAction = (time, commentP, recordId) => {
-        setRecordTime(time)
-        setComment(commentP)
-        setViewingRecordId(recordId);
-        setIsViewingRecord(true);
-    };
-
-    // action when user goes back to home page
-    const backToHomepage = () => {
-        setRecordTime("RESET BACK!!!!")
-        setComment("NA")
-        setIsViewingRecord(false);
-        setViewingRecordId("invalid id");
-    };
+    }
 
     return (
         <SafeAreaView style={styles.container}>
-            <NoRecording DATA={DATA} />
-
-            <FlatList
-                data={DATA}
-                renderItem={({ item }) => (
-                    <Item
-                        title={item.time}
-                        id={item.id}
-                        comment={item.comment}
-                        onClick={clickedRecordAction.bind(item.time, item.id, item.comment)}
-                    />
-                )}
-                keyExtractor={item => item.id.toString()}
-                onRefresh={onRefresh}
-                refreshing={refreshing}
-            />
-
-            <HistoryPopup
-                style={styles.popup}
-                visible={isViewingRecord}
-                id={viewingRecordId}
-                createTime={recordTime}
-                comment={comment}
-                backToHomepage={backToHomepage}
-            />
+            {history.map(recording => (
+              <TouchableHighlight onPress={() => playAudio(recording)}>
+                  <View
+                    style={{
+                        width: '100%',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        borderBottomColor: '#787878',
+                        borderBottomWidth: 1,
+                        paddingBottom: 5,
+                        paddingTop: 5
+                    }}>
+                      <Ionicons name="ios-play" size={45} style={{paddingLeft: 15}}/>
+                      <View style={{flexDirection: 'column', marginLeft: 15}}>
+                          <Text style={{fontSize: 18}}>{recording.description}</Text>
+                          <Text style={{fontSize: 12, color: '#787878'}}>{recording.createdAt}</Text>
+                      </View>
+                      <Ionicons name="ios-trash" size={45} style={{position: 'relative', marginLeft: 'auto', right: 15}}/>
+                  </View>
+              </TouchableHighlight>
+            ))}
         </SafeAreaView>
-    );
+    )
 }
 HistoryPage.navigationOptions = {
     title: "History"

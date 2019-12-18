@@ -3,7 +3,12 @@ const { authenticate } = require('@feathersjs/authentication').hooks
 module.exports = {
   before: {
     all: [],
-    find: [],
+    find: [
+      hook => {
+        hook.params.query = Object.assign({}, hook.params.query, { user_id: hook.params.user.id })
+        return hook
+      }
+    ],
     get: [],
     create: [
       hook => {
