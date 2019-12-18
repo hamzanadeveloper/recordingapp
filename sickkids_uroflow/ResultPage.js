@@ -32,6 +32,8 @@ class ResultPage extends React.Component {
     const file_type = file_arr[file_arr.length - 1]
 
     app.service("audio").create({ file_url, description, content_uri, file_type, length })
+
+    this.props.navigation.navigate('History')
   };
 
   sendPressed = () => {
