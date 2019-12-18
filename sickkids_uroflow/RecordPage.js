@@ -179,7 +179,7 @@ export default class RecordPage extends React.Component {
 
     this.setState({ uri: info.uri })
 
-    this.props.navigation.navigate('Result', { uri_info: info.uri, contentURI })
+    this.props.navigation.navigate('Result', { uri_info: info.uri, length: this._getMMSSFromMillis(this.state.recordingDuration), contentURI })
 
     await Audio.setAudioModeAsync({
       allowsRecordingIOS: false,

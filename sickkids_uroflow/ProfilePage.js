@@ -11,8 +11,6 @@ import {
 } from "react-native";
 import PasswordInputText from "react-native-hide-show-password-input";
 
-import { getJWT, removeJWT } from "./utils/auth";
-
 import Constants from "expo-constants";
 const { manifest } = Constants;
 import config from "./config.json";
@@ -43,41 +41,6 @@ export default class Profile extends Component {
     updateInfo = () => {
         console.log("Enter Did Mount");
         this.setState({ isLoading: true });
-        const data_base_url = url
-            ? `${url}/update`
-            : `http://${manifest.debuggerHost
-                  .split(`:`)
-                  .shift()
-                  .concat(`:3001/update`)}`;
-        getJWT().then(token => {
-            return fetch(data_base_url, {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                }
-            })
-                .then(result => result.json())
-                .then(json => {
-                    if (json.flag) {
-                        const user = json.user;
-                        this.setState({ Email: user.email });
-                        this.setState({ Gender: user.gender });
-                        if (user.birthday) {
-                            const birthdayInfo = user.birthday.split("T");
-                            this.setState({ Birthday: birthdayInfo[0] });
-                        } else {
-                            this.setState({ Birthday: user.birthday });
-                        }
-                    } else {
-                        alert("Cannot get data");
-                    }
-                })
-                .catch(error => {
-                    alert("update failed due to network issues");
-                    console.log("error:"+error);
-                });
-        });
     };
 
     logOut = () => {
@@ -94,9 +57,6 @@ export default class Profile extends Component {
                 {
                     text: "Log Out",
                     onPress: () => {
-                        removeJWT().then(res =>
-                            console.log(`JWT removed: ${res}`)
-                        );
                         this.props.navigation.navigate("Login");
                     }
                 }
@@ -106,105 +66,15 @@ export default class Profile extends Component {
     };
 
     patchPassword = () => {
-        const data_base_url = url
-            ? `${url}/update/password`
-            : `http://${manifest.debuggerHost
-                  .split(`:`)
-                  .shift()
-                  .concat(`:3001/update/password`)}`; // Switch to the route you want to use
 
-        getJWT().then(token => {
-            return fetch(data_base_url, {
-                method: "PATCH",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    password: this.state.Password
-                })
-            })
-                .then(result => result.json())
-                .then(json => {
-                    if (json.flag) {
-                        alert("update success");
-                    } else {
-                        alert("update failed: bad request");
-                    }
-                })
-                .catch(error => {
-                    alert("update failed due to network issues");
-                    console.log("error:"+error);
-                });
-        });
     };
 
     patchBirthday = () => {
-        const data_base_url = url
-            ? `${url}/update/birthday`
-            : `http://${manifest.debuggerHost
-                  .split(`:`)
-                  .shift()
-                  .concat(`:3001/update/birthday`)}`; // Switch to the route you want to use
 
-        getJWT().then(token => {
-            return fetch(data_base_url, {
-                method: "PATCH",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    birthday: this.state.Birthday
-                })
-            })
-                .then(result => result.json())
-                .then(json => {
-                    if (json.flag) {
-                        alert("update success");
-                    } else {
-                        alert("update failed: bad request");
-                    }
-                })
-                .catch(error => {
-                    alert("update failed due to network issues");
-                    console.log("error:"+error);
-                });
-        });
     };
 
     patchGender = () => {
-        const data_base_url = url
-            ? `${url}/update/gender`
-            : `http://${manifest.debuggerHost
-                  .split(`:`)
-                  .shift()
-                  .concat(`:3001/update/gender`)}`; // Switch to the route you want to use
 
-        getJWT().then(token => {
-            return fetch(data_base_url, {
-                method: "PATCH",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    gender: this.state.Gender
-                })
-            })
-                .then(result => result.json())
-                .then(json => {
-                    if (json.flag) {
-                        alert("update success");
-                    } else {
-                        alert("update failed: bad request");
-                    }
-                })
-                .catch(error => {
-                    alert("update failed due to network issues");
-                    console.log("error:"+error);
-                });
-        });
     };
 
     render() {

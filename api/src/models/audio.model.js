@@ -24,6 +24,10 @@ module.exports = function (app) {
       type: Sequelize.TEXT,
       allowNull: false
     },
+    length: {
+      type: Sequelize.TEXT,
+      allowNull: false
+    },
     description: {
       type: Sequelize.TEXT,
       allowNull: true

@@ -9,6 +9,7 @@ class ResultPage extends React.Component {
     this.state = {
       file_url: this.props.navigation.getParam("uri_info", "nothing sent"),
       content_uri: this.props.navigation.getParam("contentURI"),
+      length: this.props.navigation.getParam("length"),
       description: "",
     };
   }
@@ -17,7 +18,6 @@ class ResultPage extends React.Component {
     const { file_url } = this.state
     const soundObject = new Audio.Sound()
 
-    console.log(file_url)
     try {
       await soundObject.loadAsync({ uri: file_url});
       await soundObject.playAsync();
@@ -27,11 +27,11 @@ class ResultPage extends React.Component {
   }
 
   sendAudio = () => {
-    const { file_url, description, content_uri } = this.state
+    const { file_url, description, content_uri, length } = this.state
     const file_arr = file_url.split(".")
     const file_type = file_arr[file_arr.length - 1]
 
-    app.service("audio").create({ file_url, description, content_uri, file_type })
+    app.service("audio").create({ file_url, description, content_uri, file_type, length })
   };
 
   sendPressed = () => {

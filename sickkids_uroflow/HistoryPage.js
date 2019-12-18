@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, SafeAreaView, FlatList, Text, View, TouchableHighlight } from "react-native";
-import HistoryPopup from "./HistoryPopup";
-import { Audio } from 'expo-av'
-import * as FileSystem from 'expo-file-system'
+import { StyleSheet, SafeAreaView, Text, View, TouchableHighlight } from "react-native";
 import { Ionicons } from '@expo/vector-icons'
-import { encode, decode } from 'base64-arraybuffer'
+import { formatDistance } from 'date-fns'
+
 
 import app from "./feathers-client.js"
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 8
     },
     item: {
         backgroundColor: "steelblue",
@@ -25,12 +22,11 @@ const styles = StyleSheet.create({
     }
 });
 
-
 function HistoryPage(props) {
     const [history, setHistory] = useState([])
 
     useEffect(() => {
-        app.service("audio").find({ query: { $select: ['id', 'file_url', 'description', 'createdAt'] }})
+        app.service("audio").find({ query: { $select: ['id', 'file_url', 'description', 'createdAt', 'length'] }})
           .then(audio => setHistory(audio.data))
     })
 
@@ -38,21 +34,35 @@ function HistoryPage(props) {
         <SafeAreaView style={styles.container}>
             {history.map(recording => (
               <TouchableHighlight onPress={() => props.navigation.navigate('Replay', { recording })}>
-                  <View
-                    style={{
-                        width: '100%',
-                        display: 'flex',
-                        flexDirection: 'row',
-                        borderBottomColor: '#787878',
-                        borderBottomWidth: 1,
-                        paddingBottom: 5,
-                        paddingTop: 5
-                    }}>
-                      <View style={{flexDirection: 'column', marginLeft: 15}}>
-                          <Text style={{fontSize: 18}}>{recording.description}</Text>
-                          <Text style={{fontSize: 12, color: '#787878'}}>{recording.createdAt}</Text>
+                  <View style={{
+                      backgroundColor: 'rgb(245,245,245)',
+                      borderBottomColor: 'rgb(230,230,230)',
+                      borderBottomWidth: 1,
+                      paddingTop: 5,
+                      paddingBottom: 5
+                  }}>
+                      <View
+                        style={{
+                            width: '100%',
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            paddingTop: 5
+                        }}>
+                              <Text style={{fontSize: 22, fontFamily: "Avenir-Heavy", marginLeft: 15}}>{recording.description}</Text>
+                              <Text style={{fontSize: 22, fontFamily: "Avenir-Light", marginRight: 15}}>{recording.length}</Text>
                       </View>
-                      <Ionicons name="ios-trash" size={45} style={{position: 'relative', marginLeft: 'auto', right: 15}}/>
+                      <View
+                        style={{
+                            width: '100%',
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            paddingBottom: 5,
+                        }}>
+                          <Text style={{fontSize: 14, fontFamily: "Avenir-Medium", marginLeft: 15}}>{formatDistance(new Date(recording.createdAt), new Date())} ago</Text>
+                          <Ionicons name="ios-arrow-dropright" size={18} color="#64b5f6" style={{marginRight: 15}} />
+                      </View>
                   </View>
               </TouchableHighlight>
             ))}
@@ -60,7 +70,7 @@ function HistoryPage(props) {
     )
 }
 HistoryPage.navigationOptions = {
-    title: "History"
+    title: "Recording History"
 };
 
 export default HistoryPage;
