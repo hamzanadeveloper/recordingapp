@@ -36,50 +36,28 @@ function HistoryPage(props) {
     })
 
     const playAudio = async (recording) => {
+        let fileURLArr = recording.file_url.split('.')
+
+        fileURLArr[fileURLArr.length - 2] += '_remake'
+        let newFileURL = fileURLArr.join('.')
+
+        await FileSystem.writeAsStringAsync(newFileURL, recording.content_uri, {
+            encoding: FileSystem.EncodingType.Base64
+        })
+
         const soundObject = new Audio.Sound()
 
         try {
-            await soundObject.loadAsync({ uri: recording.file_url})
+            await soundObject.loadAsync({ uri: newFileURL })
             await soundObject.playAsync()
         } catch (error) {
             console.warn(error);
         }
-
-        // let base64 = encode(recording.content_uri)
-        // const uriString = "data:audio/wav;base64," + base64
-        //
-        // console.log("Base64: ", uriString)
-        //
-        // // await FileSystem.writeAsStringAsync(recording.file_url, uriString, {
-        // //     encoding: FileSystem.EncodingType.Base64
-        // // })
-        //
-        // console.log("File URL: ", recording.file_url)
-        //
-        // const soundObject = new Audio.Sound()
-        //
-        // try {
-        //     await soundObject.loadAsync({ uri: recording.file_url});
-        //     await soundObject.playAsync();
-        // } catch (error) {
-        //     console.warn(error);
-        // }
-
-        // try {
-        //     console.log("Begin playing")
-        //     await sound.loadAsync({ uri: uriString })
-        //     await sound.playAsync();
-        //     console.log("End playing")
-        // } catch(error) {
-        //     console.log(error)
-        // }
-
     }
 
     return (
         <SafeAreaView style={styles.container}>
             {history.map(recording => (
-              <TouchableHighlight onPress={() => playAudio(recording)}>
                   <View
                     style={{
                         width: '100%',
@@ -90,14 +68,15 @@ function HistoryPage(props) {
                         paddingBottom: 5,
                         paddingTop: 5
                     }}>
-                      <Ionicons name="ios-play" size={45} style={{paddingLeft: 15}}/>
+                      <TouchableHighlight onPress={() => playAudio(recording)}>
+                        <Ionicons name="ios-play" size={45} style={{paddingLeft: 15}}/>
+                      </TouchableHighlight>
                       <View style={{flexDirection: 'column', marginLeft: 15}}>
                           <Text style={{fontSize: 18}}>{recording.description}</Text>
                           <Text style={{fontSize: 12, color: '#787878'}}>{recording.createdAt}</Text>
                       </View>
                       <Ionicons name="ios-trash" size={45} style={{position: 'relative', marginLeft: 'auto', right: 15}}/>
                   </View>
-              </TouchableHighlight>
             ))}
         </SafeAreaView>
     )

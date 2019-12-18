@@ -13,19 +13,19 @@ module.exports = function (app) {
       primaryKey: true,
     },
     file_url: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       allowNull: false
     },
     file_type: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       allowNull: false
     },
     content_uri: {
-      type: Sequelize.BLOB,
+      type: Sequelize.TEXT,
       allowNull: false
     },
     description: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       allowNull: true
     },
     user_id: {
