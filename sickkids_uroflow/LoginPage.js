@@ -60,7 +60,6 @@ class LoginPage extends React.Component {
               }}
             >
                 <Text style={{
-                    fontFamily: 'Roboto',
                     fontSize: 28,
                     fontWeight: 'bold',
                     textAlign: 'center',
@@ -71,7 +70,6 @@ class LoginPage extends React.Component {
                 </Text>
                 <View>
                     <Text style={{
-                        fontFamily: 'Roboto',
                         fontSize: 16,
                         fontWeight: '100',
                     }}>
@@ -97,7 +95,6 @@ class LoginPage extends React.Component {
                     <Button style={{width: '100px'}} onPress={() => this.authenticate({ email: "hamza", password: "hamza" })} title="Login" />
                 </View>
                 {/*<View style={{*/}
-                    {/*fontFamily: 'Roboto',*/}
                     {/*marginTop: 15,*/}
                     {/*marginBottom: 15,*/}
                     {/*fontSize: 22,*/}
@@ -107,7 +104,6 @@ class LoginPage extends React.Component {
                     {/*<Text>OR</Text>*/}
                 {/*</View>*/}
                 {/*<Text style={{*/}
-                    {/*fontFamily: 'Roboto',*/}
                     {/*fontSize: 16,*/}
                     {/*fontWeight: '100',*/}
                 {/*}}>*/}
