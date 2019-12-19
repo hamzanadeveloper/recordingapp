@@ -263,7 +263,7 @@ export default class RecordPage extends React.Component {
     return (
       <View style={container}>
         <LinearGradient colors={['#fff', '#E4E5E6']} style={gradient}>
-          <View style={infoContainer}>
+            <View style={infoContainer}>
             <Text style={{ fontSize: 22, fontFamily: "Avenir-Heavy"}}>
               { isRecording ? "End Recording" : "Begin Recording" }
             </Text>

@@ -24,7 +24,7 @@ class ResultPage extends React.Component {
     const soundObject = new Audio.Sound()
 
     try {
-      await soundObject.loadAsync({ uri: file_url});
+      await soundObject.loadAsync({ uri: file_url });
       await soundObject.playAsync();
     } catch (error) {
       console.warn(error);
