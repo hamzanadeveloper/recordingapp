@@ -6,6 +6,7 @@ import * as FileSystem from 'expo-file-system'
 import * as Font from 'expo-font'
 import * as Permissions from 'expo-permissions'
 import { Ionicons } from '@expo/vector-icons'
+import { LinearGradient } from 'expo-linear-gradient';
 
 class Icon {
   constructor(module, width, height) {
@@ -239,7 +240,7 @@ export default class RecordPage extends React.Component {
 
   render() {
     const { fontLoaded, haveRecordingPermissions, isLoading, isRecording } = this.state
-    const { container, emptyContainer, noPermissionsText, recordButtonContainer, image, infoContainer, recordingDataContainer, liveText } = styles
+    const { container, emptyContainer, noPermissionsText, recordButtonContainer, infoContainer, recordingDataContainer, gradient, microphone } = styles
 
     if(!fontLoaded) {
         return (
@@ -261,38 +262,22 @@ export default class RecordPage extends React.Component {
 
     return (
       <View style={container}>
-          <View style={recordButtonContainer}>
-            <TouchableHighlight
-              underlayColor='#FFFFFF'
-              onPress={this._onRecordPressed}
-              disabled={isLoading}>
-              <Ionicons name="ios-microphone" size={90} style={[image, { opacity: isRecording ? 0.7 : 1.0 }]}/>
-            </TouchableHighlight>
-          </View>
+        <LinearGradient colors={['#fff', '#E4E5E6']} style={gradient}>
           <View style={infoContainer}>
-            <Text style={{ fontFamily: 'cutive-mono-regular'}}>
-                { isRecording ? "Press to end recording" : "Press to begin recording" }
+            <Text style={{ fontSize: 22, fontFamily: "Avenir-Heavy"}}>
+              { isRecording ? "End Recording" : "Begin Recording" }
             </Text>
           </View>
-          { isRecording ?
-            <View style={recordingDataContainer}>
-              <Text style={[liveText, { fontFamily: 'cutive-mono-regular' }]}>Live</Text>
-              <View style={{flexDirection: "row"}}>
-                <Image
-                    style={[image, {marginRight: 5}]}
-                    source={ICON_RECORDING.module}
-                  />
-                <Text style={{ fontFamily: 'cutive-mono-regular' }}>
-                  {this._getRecordingTimestamp()}
-                </Text>
-              </View>
-            </View> :
-            <View style={recordingDataContainer}>
-              <Text style={{ fontFamily: 'cutive-mono-regular' }}>
-                {this._getRecordingTimestamp()}
-              </Text>
-            </View> }
-        </View>
+          <View style={recordButtonContainer}>
+            <TouchableHighlight onPress={this._onRecordPressed} disabled={isLoading} style={microphone}>
+              <Ionicons color="#fff" name={isRecording ? 'ios-mic-off' : 'ios-mic'} size={120} style={{backgroundColor: 'transparent'}}/>
+            </TouchableHighlight>
+          </View>
+          <View style={recordingDataContainer}>
+            <Text style={{fontSize: 44, fontFamily: "Avenir-Light", paddingTop: 10}}>{this._getRecordingTimestamp()}</Text>
+          </View>
+        </LinearGradient>
+      </View>
     )
   }
 }
@@ -305,12 +290,32 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     backgroundColor: '#FFFFFF',
   },
+  microphone: {
+    backgroundColor: '#b71c1c',
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  gradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: '100%',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'transparent',
     minWidth: DEVICE_WIDTH,
     maxWidth: DEVICE_WIDTH,
     minHeight: DEVICE_HEIGHT,
@@ -320,13 +325,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   recordButtonContainer: {
-    top: '30%',
-    backgroundColor: '#FFFFFF'
+    top: '20%',
+    backgroundColor: 'transparent'
   },
   recordingDataContainer: {
-    top: '40%',
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    height: '30%',
+    backgroundColor: 'white',
     alignItems: 'center',
   },
   infoContainer: {

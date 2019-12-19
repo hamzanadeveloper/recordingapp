@@ -61,7 +61,10 @@ const MainStack = createBottomTabNavigator(
         }),
         tabBarOptions: {
             activeTintColor: "tomato",
-            inactiveTintColor: "gray"
+            inactiveTintColor: "gray",
+            style: {
+                borderTopColor: 'transparent'
+            }
         }
     }
 );

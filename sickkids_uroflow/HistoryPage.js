@@ -3,24 +3,7 @@ import { StyleSheet, SafeAreaView, Text, View, TouchableHighlight } from "react-
 import { Ionicons } from '@expo/vector-icons'
 import { formatDistance } from 'date-fns'
 
-
 import app from "./feathers-client.js"
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    item: {
-        backgroundColor: "steelblue",
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16
-    },
-    title: {
-        fontSize: 16,
-        color: "white"
-    }
-});
 
 function HistoryPage(props) {
     const [history, setHistory] = useState([])
@@ -34,32 +17,12 @@ function HistoryPage(props) {
         <SafeAreaView style={styles.container}>
             {history.map(recording => (
               <TouchableHighlight onPress={() => props.navigation.navigate('Replay', { recording })}>
-                  <View style={{
-                      backgroundColor: 'rgb(245,245,245)',
-                      borderBottomColor: 'rgb(230,230,230)',
-                      borderBottomWidth: 1,
-                      paddingTop: 5,
-                      paddingBottom: 5
-                  }}>
-                      <View
-                        style={{
-                            width: '100%',
-                            display: 'flex',
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            paddingTop: 5
-                        }}>
+                  <View style={styles.itemContainer}>
+                      <View style={styles.itemTop}>
                               <Text style={{fontSize: 22, fontFamily: "Avenir-Heavy", marginLeft: 15}}>{recording.description}</Text>
                               <Text style={{fontSize: 22, fontFamily: "Avenir-Light", marginRight: 15}}>{recording.length}</Text>
                       </View>
-                      <View
-                        style={{
-                            width: '100%',
-                            display: 'flex',
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            paddingBottom: 5,
-                        }}>
+                      <View style={styles.itemBottom}>
                           <Text style={{fontSize: 14, fontFamily: "Avenir-Medium", marginLeft: 15}}>{formatDistance(new Date(recording.createdAt), new Date())} ago</Text>
                           <Ionicons name="ios-arrow-dropright" size={18} color="#64b5f6" style={{marginRight: 15}} />
                       </View>
@@ -72,5 +35,36 @@ function HistoryPage(props) {
 HistoryPage.navigationOptions = {
     title: "Recording History"
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    itemContainer: {
+        backgroundColor: 'rgb(245,245,245)',
+        borderBottomColor: 'rgb(230,230,230)',
+        borderBottomWidth: 1,
+        paddingTop: 5,
+        paddingBottom: 5
+    },
+    itemTop: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingTop: 5
+    },
+    itemBottom: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingBottom: 5,
+    },
+    title: {
+        fontSize: 16,
+        color: "white"
+    }
+});
 
 export default HistoryPage;

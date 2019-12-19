@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo/vector-icons": "^10.0.0",
     "@feathersjs/authentication-client": "^4.4.3",
     "@feathersjs/client": "^4.4.3",
     "@feathersjs/feathers": "^4.4.3",
@@ -22,6 +23,7 @@
     "expo-av": "^7.0.1",
     "expo-file-system": "~7.0.0",
     "expo-font": "~7.0.0",
+    "expo-linear-gradient": "~7.0.0",
     "fbjs": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
     "react": "16.8.3",
