@@ -1,7 +1,12 @@
 import React from "react";
 import { Audio } from "expo-av";
-import { Text, View, Button, Alert, TextInput, ScrollView } from "react-native";
+import {Text, View, Button, Alert, TextInput, ScrollView, StyleSheet, Dimensions, TouchableHighlight } from "react-native";
 import app from "./feathers-client.js"
+import RecordPage from "./RecordPage";
+import { LinearGradient } from "expo-linear-gradient";
+import {Ionicons} from "@expo/vector-icons";
+
+const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window')
 
 class ResultPage extends React.Component {
   constructor(props) {
@@ -69,94 +74,117 @@ class ResultPage extends React.Component {
     const { navigation } = this.props
 
     return (
-      <ScrollView>
-        <View
-          style={{
-            flexDirection: "column",
-            position: "relative",
-            marginTop: 3,
-            marginBottom: 1,
-            flex: 1
-          }}
-        >
-          <View
-            style={{
-              marginTop: 2,
-              marginBottom: 1,
-              top: 10,
-              flex: 1,
-              flexDirection: "column",
-              alignItems: "center"
-            }}
-          >
-            <Text>Audio Playback</Text>
-            <View
-              style={{
-                flexDirection: "row",
-                marginTop: 20,
-                marginBottom: 10,
-                alignItems: "center"
-              }}
-            >
-              <Button
-                title="Play Now"
-                color="blue"
-                onPress={this._onRecordPressed}
-              />
-            </View>
+      <View style={styles.container}>
+        <LinearGradient colors={['#fff', '#E4E5E6']} style={styles.gradient}>
+          <View style={styles.infoContainer}>
+            <Text style={{ fontSize: 22, fontFamily: "Avenir-Heavy"}}>Playback</Text>
           </View>
-
-          <View>
+          <View style={styles.recordButtonContainer}>
+            <TouchableHighlight style={styles.microphone} onPress={this._onRecordPressed}>
+              <Ionicons color="#fff" name='ios-play' size={120} style={{backgroundColor: 'transparent', marginLeft: 13, marginTop: 5}}/>
+            </TouchableHighlight>
+          </View>
+          <View style={styles.recordingDataContainer}>
             <TextInput
-              style={{
-                margin: "10%",
-                height: 40,
-                borderColor: "black",
-                borderBottomWidth: 1,
-                borderTopWidth: 1,
-                justifyContent: "flex-end"
-              }}
+              style={styles.description}
               underlineColorAndroid="transparent"
-              placeholder="Description:"
-              placeholderTextColor="#9a73ef"
-              textAlign="left"
-              multiline
-              numberOfLines={5}
+              placeholder="Add a Title..."
+              placeholderTextColor="#424242"
               onChangeText={(description) => this.setState({ description })}
               value={description}
             />
-          </View>
-
-          <View
-            style={{
-              marginTop: 15,
-              marginBottom: 40,
-              flex: 1,
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            <View
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '100%',
-              }}
-            >
-              <View style={{width: '30%'}}>
-                <Button title="Send" color="#3f51b5" onPress={this.sendPressed}/>
-              </View>
-              <View style={{width: '30%', marginTop: 15}}>
-                <Button title="Redo" color="#f44336" onPress={() => navigation.goBack()}/>
-              </View>
+            <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+              <TouchableHighlight style={styles.deleteButton} onPress={() => navigation.goBack()}>
+                <Text style={{color: '#ffffff', fontFamily: 'Avenir-Heavy', fontSize: 16}}> DELETE </Text>
+              </TouchableHighlight>
+              <TouchableHighlight style={styles.submitButton} onPress={this.sendPressed}>
+                <Text style={{color: '#ffffff', fontFamily: 'Avenir-Heavy', fontSize: 16}}> SUBMIT </Text>
+              </TouchableHighlight>
             </View>
           </View>
-        </View>
-      </ScrollView>
+        </LinearGradient>
+      </View>
     );
   }
 }
+
+ResultPage.navigationOptions = {
+  title: "Review Audio"
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    minWidth: DEVICE_WIDTH,
+    maxWidth: DEVICE_WIDTH,
+    minHeight: DEVICE_HEIGHT,
+    maxHeight: DEVICE_HEIGHT,
+  },
+  infoContainer: {
+    top: '10%'
+  },
+  description: {
+    marginTop: 12,
+    marginBottom: 12,
+    fontSize: 16,
+    width: '60%',
+    textAlign: 'center',
+    fontWeight: '700'
+  },
+  deleteButton: {
+    alignItems: 'center',
+    width: '40%',
+    margin: 10,
+    borderRadius: 30,
+    backgroundColor: '#b71c1c',
+    padding: 10
+  },
+  recordButtonContainer: {
+    top: '20%',
+    backgroundColor: 'transparent'
+  },
+  submitButton: {
+    alignItems: 'center',
+    width: '40%',
+    margin: 10,
+    borderRadius: 30,
+    backgroundColor: '#3f51b5',
+    padding: 10
+  },
+  microphone: {
+    backgroundColor: '#b71c1c',
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  gradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: '100%',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  recordingDataContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    height: '33%',
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+})
 
 export default ResultPage;
