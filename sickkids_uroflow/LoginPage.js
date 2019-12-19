@@ -1,7 +1,10 @@
 import React from "react"
-import { Text, View, Button, StyleSheet, TextInput } from "react-native"
+import { Text, View, Button, StyleSheet, TextInput, ScrollView, Dimensions } from "react-native"
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import app from "./feathers-client.js"
+
+const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window')
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -49,93 +52,97 @@ class LoginPage extends React.Component {
     render() {
         const { email, password, newEmail, newPass, passwordConfirmation } = this.state
         return (
-            <View
-              style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: '100%',
-                  width: '100%',
-                  position: 'absolute'
-              }}
-            >
-                <Text style={{
-                    fontSize: 28,
-                    fontWeight: 'bold',
-                    textAlign: 'center',
-                    marginTop: 10,
-                    marginBottom: 10,
-                }}>
-                    Uroflow App
-                </Text>
-                <View>
+          <KeyboardAwareScrollView>
+              <ScrollView>
+                <View
+                  style={{
+                      top: -50,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      height: DEVICE_HEIGHT,
+                      width: DEVICE_WIDTH
+                  }}
+                >
                     <Text style={{
-                        fontSize: 16,
-                        fontWeight: '100',
+                        fontSize: 28,
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                        marginTop: 10,
+                        marginBottom: 10,
                     }}>
-                        Already have an account?
+                        Uroflow App
                     </Text>
+                    <View>
+                        <Text style={{
+                            fontSize: 16,
+                            fontWeight: '100',
+                        }}>
+                            Already have an account?
+                        </Text>
+                    </View>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Email"
+                        autoCapitalize="none"
+                        onChangeText={(email) => this.setState({ email })}
+                        value={email}
+                    />
+                    <TextInput
+                        style={styles.input}
+                        secureTextEntry={true}
+                        placeholder="Password"
+                        autoCapitalize="none"
+                        onChangeText={(password) => this.setState({ password })}
+                        value={password}
+                    />
+                    <View style={{width: '30%'}}>
+                        <Button style={{width: '100px'}} onPress={() => this.authenticate({ email: "hamza", password: "hamza" })} title="Login" />
+                    </View>
+                    {/*<View style={{*/}
+                        {/*marginTop: 15,*/}
+                        {/*marginBottom: 15,*/}
+                        {/*fontSize: 22,*/}
+                        {/*fontWeight: '100',*/}
+                        {/*textAlign: 'center'*/}
+                    {/*}}>*/}
+                        {/*<Text>OR</Text>*/}
+                    {/*</View>*/}
+                    {/*<Text style={{*/}
+                        {/*fontSize: 16,*/}
+                        {/*fontWeight: '100',*/}
+                    {/*}}>*/}
+                        {/*Register as a new user*/}
+                    {/*</Text>*/}
+                    {/*<TextInput*/}
+                      {/*style={styles.input}*/}
+                      {/*placeholder="Email"*/}
+                      {/*autoCapitalize="none"*/}
+                      {/*onChangeText={(newEmail) => this.setState({ newEmail })}*/}
+                      {/*value={newEmail}*/}
+                    {/*/>*/}
+                    {/*<TextInput*/}
+                      {/*style={styles.input}*/}
+                      {/*secureTextEntry={true}*/}
+                      {/*placeholder="Password"*/}
+                      {/*autoCapitalize="none"*/}
+                      {/*onChangeText={(newPass) => this.setState({ newPass })}*/}
+                      {/*value={newPass}*/}
+                    {/*/>*/}
+                    {/*<TextInput*/}
+                      {/*style={styles.input}*/}
+                      {/*secureTextEntry={true}*/}
+                      {/*placeholder="Password"*/}
+                      {/*autoCapitalize="none"*/}
+                      {/*onChangeText={(passwordConfirmation) => this.setState({ passwordConfirmation })}*/}
+                      {/*value={passwordConfirmation}*/}
+                    {/*/>*/}
+                    {/*<View style={{width: '30%'}}>*/}
+                        {/*<Button style={{width: '100px'}} onPress={this.handleRegisterUser} title="Sign Up" />*/}
+                    {/*</View>*/}
                 </View>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email"
-                    autoCapitalize="none"
-                    onChangeText={(email) => this.setState({ email })}
-                    value={email}
-                />
-                <TextInput
-                    style={styles.input}
-                    secureTextEntry={true}
-                    placeholder="Password"
-                    autoCapitalize="none"
-                    onChangeText={(password) => this.setState({ password })}
-                    value={password}
-                />
-                <View style={{width: '30%'}}>
-                    <Button style={{width: '100px'}} onPress={() => this.authenticate({ email: "hamza", password: "hamza" })} title="Login" />
-                </View>
-                {/*<View style={{*/}
-                    {/*marginTop: 15,*/}
-                    {/*marginBottom: 15,*/}
-                    {/*fontSize: 22,*/}
-                    {/*fontWeight: '100',*/}
-                    {/*textAlign: 'center'*/}
-                {/*}}>*/}
-                    {/*<Text>OR</Text>*/}
-                {/*</View>*/}
-                {/*<Text style={{*/}
-                    {/*fontSize: 16,*/}
-                    {/*fontWeight: '100',*/}
-                {/*}}>*/}
-                    {/*Register as a new user*/}
-                {/*</Text>*/}
-                {/*<TextInput*/}
-                  {/*style={styles.input}*/}
-                  {/*placeholder="Email"*/}
-                  {/*autoCapitalize="none"*/}
-                  {/*onChangeText={(newEmail) => this.setState({ newEmail })}*/}
-                  {/*value={newEmail}*/}
-                {/*/>*/}
-                {/*<TextInput*/}
-                  {/*style={styles.input}*/}
-                  {/*secureTextEntry={true}*/}
-                  {/*placeholder="Password"*/}
-                  {/*autoCapitalize="none"*/}
-                  {/*onChangeText={(newPass) => this.setState({ newPass })}*/}
-                  {/*value={newPass}*/}
-                {/*/>*/}
-                {/*<TextInput*/}
-                  {/*style={styles.input}*/}
-                  {/*secureTextEntry={true}*/}
-                  {/*placeholder="Password"*/}
-                  {/*autoCapitalize="none"*/}
-                  {/*onChangeText={(passwordConfirmation) => this.setState({ passwordConfirmation })}*/}
-                  {/*value={passwordConfirmation}*/}
-                {/*/>*/}
-                {/*<View style={{width: '30%'}}>*/}
-                    {/*<Button style={{width: '100px'}} onPress={this.handleRegisterUser} title="Sign Up" />*/}
-                {/*</View>*/}
-            </View>
+              </ScrollView>
+          </KeyboardAwareScrollView>
         )
     }
 }

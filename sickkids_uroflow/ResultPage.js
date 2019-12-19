@@ -5,6 +5,7 @@ import app from "./feathers-client.js"
 import RecordPage from "./RecordPage";
 import { LinearGradient } from "expo-linear-gradient";
 import {Ionicons} from "@expo/vector-icons";
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window')
 
@@ -74,36 +75,40 @@ class ResultPage extends React.Component {
     const { navigation } = this.props
 
     return (
-      <View style={styles.container}>
-        <LinearGradient colors={['#fff', '#E4E5E6']} style={styles.gradient}>
-          <View style={styles.infoContainer}>
-            <Text style={{ fontSize: 22, fontFamily: "Avenir-Heavy"}}>Playback</Text>
+      <KeyboardAwareScrollView>
+        <ScrollView>
+          <View style={styles.container}>
+            <LinearGradient colors={['#fff', '#E4E5E6']} style={styles.gradient}>
+              <View style={styles.infoContainer}>
+                <Text style={{ fontSize: 22, fontFamily: "Avenir-Heavy"}}>Playback</Text>
+              </View>
+              <View style={styles.recordButtonContainer}>
+                <TouchableHighlight style={styles.microphone} onPress={this._onRecordPressed}>
+                  <Ionicons color="#fff" name='ios-play' size={120} style={{backgroundColor: 'transparent', marginLeft: 13, marginTop: 5}}/>
+                </TouchableHighlight>
+              </View>
+              <View style={styles.recordingDataContainer}>
+                <TextInput
+                  style={styles.description}
+                  underlineColorAndroid="transparent"
+                  placeholder="Add a Title..."
+                  placeholderTextColor="#424242"
+                  onChangeText={(description) => this.setState({ description })}
+                  value={description}
+                />
+                <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                  <TouchableHighlight style={styles.deleteButton} onPress={() => navigation.goBack()}>
+                    <Text style={{color: '#ffffff', fontFamily: 'Avenir-Heavy', fontSize: 16}}> DELETE </Text>
+                  </TouchableHighlight>
+                  <TouchableHighlight style={styles.submitButton} onPress={this.sendPressed}>
+                    <Text style={{color: '#ffffff', fontFamily: 'Avenir-Heavy', fontSize: 16}}> SUBMIT </Text>
+                  </TouchableHighlight>
+                </View>
+              </View>
+            </LinearGradient>
           </View>
-          <View style={styles.recordButtonContainer}>
-            <TouchableHighlight style={styles.microphone} onPress={this._onRecordPressed}>
-              <Ionicons color="#fff" name='ios-play' size={120} style={{backgroundColor: 'transparent', marginLeft: 13, marginTop: 5}}/>
-            </TouchableHighlight>
-          </View>
-          <View style={styles.recordingDataContainer}>
-            <TextInput
-              style={styles.description}
-              underlineColorAndroid="transparent"
-              placeholder="Add a Title..."
-              placeholderTextColor="#424242"
-              onChangeText={(description) => this.setState({ description })}
-              value={description}
-            />
-            <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-              <TouchableHighlight style={styles.deleteButton} onPress={() => navigation.goBack()}>
-                <Text style={{color: '#ffffff', fontFamily: 'Avenir-Heavy', fontSize: 16}}> DELETE </Text>
-              </TouchableHighlight>
-              <TouchableHighlight style={styles.submitButton} onPress={this.sendPressed}>
-                <Text style={{color: '#ffffff', fontFamily: 'Avenir-Heavy', fontSize: 16}}> SUBMIT </Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-        </LinearGradient>
-      </View>
+        </ScrollView>
+      </KeyboardAwareScrollView>
     );
   }
 }
