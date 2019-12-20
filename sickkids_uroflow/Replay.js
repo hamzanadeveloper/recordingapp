@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, SafeAreaView, FlatList, Text, View, TouchableWithoutFeedback } from "react-native";
+import { StyleSheet, SafeAreaView, Text, View, TouchableWithoutFeedback } from "react-native";
 import { Audio } from 'expo-av'
 import * as FileSystem from 'expo-file-system'
 import { LinearGradient } from "expo-linear-gradient";

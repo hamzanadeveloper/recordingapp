@@ -17,7 +17,6 @@ class Icon {
   }
 }
 
-const ICON_RECORDING = new Icon(require('./assets/images/record_icon.png'), 20, 14)
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window')
 const RecordOption = {
   android: {

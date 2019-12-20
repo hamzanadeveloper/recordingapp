@@ -1,11 +1,10 @@
 import React from "react";
 import { Audio } from "expo-av";
-import {Text, View, Button, Alert, TextInput, ScrollView, StyleSheet, Dimensions, TouchableHighlight } from "react-native";
+import { Text, View, Alert, TextInput, ScrollView, StyleSheet, Dimensions, TouchableHighlight } from "react-native";
 import app from "./feathers-client.js"
-import RecordPage from "./RecordPage";
 import { LinearGradient } from "expo-linear-gradient";
-import {Ionicons} from "@expo/vector-icons";
-import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
+import { Ionicons } from "@expo/vector-icons";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window')
 
@@ -137,7 +136,11 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     fontSize: 16,
     width: '60%',
-    textAlign: 'center',
+    textAlign: 'left',
+    borderWidth: 1,
+    borderColor: 'rgb(200,200,200)',
+    borderRadius: 3,
+    padding: 5,
     fontWeight: '700'
   },
   deleteButton: {
@@ -186,7 +189,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-    height: '33%',
+    height: '35%',
     backgroundColor: 'white',
     alignItems: 'center',
   },

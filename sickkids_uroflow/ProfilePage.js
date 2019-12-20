@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import {TextInput, Button, Alert, ScrollView, SafeAreaView} from "react-native";
-import { StyleSheet, Text, View, Image, TouchableOpacity as TouchableHighlight } from "react-native";
+import { Alert, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity as TouchableHighlight } from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
 
 import app from "./feathers-client.js"
