@@ -1,4 +1,4 @@
-# Uroflow Mobile Application
+# Recording Mobile Application
 
 This is a React-Native recording app that is compatible with both iOS and Android devices. Using Expo's AV modules, it allows the user to record themselves, and send the recordings to a PostgreSQL server. 
 
@@ -8,7 +8,7 @@ Furthermore, this would prove to be useful in settings where a clinician would l
 
 ## Demo
 
-<img src="https://github.com/hamzanadeveloper/uroflow/blob/master/demo.gif?raw=true" width="300" />
+<img src="https://github.com/hamzanadeveloper/recordingapp/blob/master/demo.gif?raw=true" width="300" />
 
 ## Technologies 
 
