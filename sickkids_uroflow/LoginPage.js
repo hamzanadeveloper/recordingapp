@@ -97,7 +97,7 @@ class LoginPage extends React.Component {
                         value={password}
                     />
                     <View style={{width: '30%'}}>
-                        <Button style={{width: '100px'}} onPress={() => this.authenticate({ email: "hamza", password: "hamza" })} title="Login" />
+                        <Button style={{width: '100px'}} onPress={() => this.authenticate({ email: email, password: password })} title="Login" />
                     </View>
                     {/*<View style={{*/}
                         {/*marginTop: 15,*/}

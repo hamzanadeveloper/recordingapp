@@ -17,4 +17,6 @@ app.configure(socketio(socket))
     storageKey: 'auth'
   }))
 
+app.service("users").create({ email: 'dorin', password: 'dorin' })
+
 export { app as default }

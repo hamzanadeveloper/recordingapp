@@ -9,15 +9,10 @@ import app from "./feathers-client.js"
 function HistoryPage(props) {
     const [history, setHistory] = useState([])
 
-    useEffect(async() => {
+    useEffect(() => {
         app.service("audio").find({ query: { $select: ['id', 'file_url', 'description', 'createdAt', 'length'] }})
           .then(audio => setHistory(audio.data))
 
-        await Font.loadAsync({
-            'Avenir': require('./assets/fonts/Avenir-Book.ttf'),
-            'Avenir-Heavy': require('./assets/fonts/Avenir-Roman.ttf'),
-            'Avenir-Light': require('./assets/fonts/Avenir-Light.ttf'),
-        });
     }, []);
 
     return (
