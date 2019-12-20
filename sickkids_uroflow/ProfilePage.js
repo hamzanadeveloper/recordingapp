@@ -3,6 +3,8 @@ import {TextInput, Button, Alert, ScrollView, SafeAreaView} from "react-native";
 import { StyleSheet, Text, View, Image, TouchableOpacity as TouchableHighlight } from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
 
+import app from "./feathers-client.js"
+
 export default class Profile extends Component {
     constructor(props) {
         super(props);
@@ -12,7 +14,7 @@ export default class Profile extends Component {
         this.setState({ isLoading: false });
         return Alert.alert(
             "Logging Out",
-            "All unsaved information will be lost",
+            "Are you sure you would like to log out?",
             [
                 {
                     text: "Cancel",
@@ -22,7 +24,8 @@ export default class Profile extends Component {
                 {
                     text: "Log Out",
                     onPress: () => {
-                        this.props.navigation.navigate("Login");
+                        app.logout()
+                          .then(() => this.props.navigation.navigate("Login"))
                     }
                 }
             ],
