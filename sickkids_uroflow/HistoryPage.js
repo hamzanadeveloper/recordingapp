@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, SafeAreaView, Text, View, TouchableHighlight } from "react-native";
+import { StyleSheet, SafeAreaView, Text, View, TouchableHighlight, ScrollView } from "react-native";
 import { Ionicons } from '@expo/vector-icons'
-import * as Font from 'expo-font'
 import { formatDistance } from 'date-fns'
 
 import app from "./feathers-client.js"
@@ -17,27 +16,28 @@ function HistoryPage(props) {
 
     return (
         <SafeAreaView style={styles.container}>
-            { history.length == 0 ?
-              <View style={{display: 'flex', top: '10%'}}>
-                  <Text style={{fontFamily: 'Avenir-Heavy', fontSize: 16, textAlign: 'center'}}>Looks like you don't have any recordings. Press the Record tab and make some recordings!</Text>
-              </View>
-              :
-              history.map(recording => (
-                    <TouchableHighlight onPress={() => props.navigation.navigate('Replay', { recording })}>
-                        <View style={styles.itemContainer}>
-                            <View style={styles.itemTop}>
-                                <Text style={{fontSize: 22, fontFamily: "Avenir-Heavy", marginLeft: 15}}>{recording.description}</Text>
-                                <Text style={{fontSize: 22, fontFamily: "Avenir-Light", marginRight: 15}}>{recording.length}</Text>
+            <ScrollView>
+                { history.length == 0 ?
+                  <View style={{display: 'flex', top: '10%'}}>
+                      <Text style={{fontFamily: 'Avenir-Heavy', fontSize: 16, textAlign: 'center'}}>Looks like you don't have any recordings. Press the Record tab and make some recordings!</Text>
+                  </View>
+                  :
+                  history.map(recording => (
+                        <TouchableHighlight onPress={() => props.navigation.navigate('Replay', { recording })}>
+                            <View style={styles.itemContainer}>
+                                <View style={styles.itemTop}>
+                                    <Text style={{fontSize: 22, fontFamily: "Avenir-Heavy", marginLeft: 15}}>{recording.description}</Text>
+                                    <Text style={{fontSize: 22, fontFamily: "Avenir-Light", marginRight: 15}}>{recording.length}</Text>
+                                </View>
+                                <View style={styles.itemBottom}>
+                                    <Text style={{fontSize: 14, fontFamily: "Avenir", marginLeft: 15}}>{formatDistance(new Date(recording.createdAt), new Date())} ago</Text>
+                                    <Ionicons name="ios-arrow-dropright" size={18} color="#64b5f6" style={{marginRight: 15}} />
+                                </View>
                             </View>
-                            <View style={styles.itemBottom}>
-                                <Text style={{fontSize: 14, fontFamily: "Avenir", marginLeft: 15}}>{formatDistance(new Date(recording.createdAt), new Date())} ago</Text>
-                                <Ionicons name="ios-arrow-dropright" size={18} color="#64b5f6" style={{marginRight: 15}} />
-                            </View>
-                        </View>
-                    </TouchableHighlight>
-                  ))
-            }
-
+                        </TouchableHighlight>
+                      ))
+                }
+            </ScrollView>
         </SafeAreaView>
     )
 }
