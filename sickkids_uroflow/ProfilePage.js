@@ -4,10 +4,21 @@ import { StyleSheet, Text, View, TouchableOpacity as TouchableHighlight } from "
 import {LinearGradient} from "expo-linear-gradient";
 
 import app from "./feathers-client.js"
+import * as Font from "expo-font";
 
 export default class Profile extends Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        (async () => {
+            await Font.loadAsync({
+                'Avenir': require('./assets/fonts/Avenir-Book.ttf'),
+                'Avenir-Heavy': require('./assets/fonts/Avenir-Roman.ttf'),
+                'Avenir-Light': require('./assets/fonts/Avenir-Light.ttf'),
+            })
+        })()
     }
 
     logOut = () => {

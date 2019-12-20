@@ -67,7 +67,9 @@ export default class RecordPage extends React.Component {
   componentDidMount() {
     (async () => {
       await Font.loadAsync({
-        'cutive-mono-regular': require('./assets/fonts/CutiveMono-Regular.ttf'),
+        'Avenir': require('./assets/fonts/Avenir-Book.ttf'),
+        'Avenir-Heavy': require('./assets/fonts/Avenir-Roman.ttf'),
+        'Avenir-Light': require('./assets/fonts/Avenir-Light.ttf'),
       })
       this.setState({ fontLoaded: true })
     })()
@@ -251,7 +253,7 @@ export default class RecordPage extends React.Component {
         return (
             <View style={container}>
                 <View />
-                <Text style={[noPermissionsText, { fontFamily: 'cutive-mono-regular' }]}>
+                <Text style={[noPermissionsText, { fontFamily: 'Avenir-Light' }]}>
                   You must enable audio recording permissions in order to use this app.
                 </Text>
                 <View />

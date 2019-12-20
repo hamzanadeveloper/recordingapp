@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     info: {
         paddingRight: 30,
         fontSize: 14,
-        fontFamily: 'Avenir-Medium'
+        fontFamily: 'Avenir'
     },
     gradient: {
         position: 'absolute',

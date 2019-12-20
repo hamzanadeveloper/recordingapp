@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, SafeAreaView, Text, View, TouchableHighlight } from "react-native";
 import { Ionicons } from '@expo/vector-icons'
+import * as Font from 'expo-font'
 import { formatDistance } from 'date-fns'
 
 import app from "./feathers-client.js"
@@ -8,10 +9,16 @@ import app from "./feathers-client.js"
 function HistoryPage(props) {
     const [history, setHistory] = useState([])
 
-    useEffect(() => {
+    useEffect(async() => {
         app.service("audio").find({ query: { $select: ['id', 'file_url', 'description', 'createdAt', 'length'] }})
           .then(audio => setHistory(audio.data))
-    })
+
+        await Font.loadAsync({
+            'Avenir': require('./assets/fonts/Avenir-Book.ttf'),
+            'Avenir-Heavy': require('./assets/fonts/Avenir-Roman.ttf'),
+            'Avenir-Light': require('./assets/fonts/Avenir-Light.ttf'),
+        });
+    }, []);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -23,7 +30,7 @@ function HistoryPage(props) {
                               <Text style={{fontSize: 22, fontFamily: "Avenir-Light", marginRight: 15}}>{recording.length}</Text>
                       </View>
                       <View style={styles.itemBottom}>
-                          <Text style={{fontSize: 14, fontFamily: "Avenir-Medium", marginLeft: 15}}>{formatDistance(new Date(recording.createdAt), new Date())} ago</Text>
+                          <Text style={{fontSize: 14, fontFamily: "Avenir", marginLeft: 15}}>{formatDistance(new Date(recording.createdAt), new Date())} ago</Text>
                           <Ionicons name="ios-arrow-dropright" size={18} color="#64b5f6" style={{marginRight: 15}} />
                       </View>
                   </View>

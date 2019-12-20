@@ -5,6 +5,7 @@ import app from "./feathers-client.js"
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import * as Font from "expo-font";
 
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window')
 
@@ -17,6 +18,16 @@ class ResultPage extends React.Component {
       length: this.props.navigation.getParam("length"),
       description: "",
     };
+  }
+
+  componentDidMount() {
+    (async () => {
+      await Font.loadAsync({
+        'Avenir': require('./assets/fonts/Avenir-Book.ttf'),
+        'Avenir-Heavy': require('./assets/fonts/Avenir-Roman.ttf'),
+        'Avenir-Light': require('./assets/fonts/Avenir-Light.ttf'),
+      })
+    })()
   }
 
   async _stopRecordingAndEnablePlayback() {
