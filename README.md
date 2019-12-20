@@ -6,6 +6,15 @@ The audio is converted into a base64 encoded data URI that is stored as a text f
 
 Furthermore, this would prove to be useful in settings where a clinician would like to process user audio via the stored data URIs. 
 
+## Technologies 
+
+The following technologies were used to make this app.
+
+- React-Native
+- Expo CLI, Expo Client, Expo AV modules
+- FeathersJS (authentication)
+- PostgreSQL server.
+
 ## Key Features
  - As you launch the app, a login page first shows up:
     - **Log in**: Using FeathersJS authentication, email & password combination that matches record in the database will be needed, and will be authenticated for a period of time.
