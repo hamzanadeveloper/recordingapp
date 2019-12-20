@@ -6,6 +6,10 @@ The audio is converted into a base64 encoded data URI that is stored as a text f
 
 Furthermore, this would prove to be useful in settings where a clinician would like to process user audio via the stored data URIs. 
 
+## Demo
+
+<img src="https://github.com/hamzanadeveloper/uroflow/blob/master/demo.gif?raw=true" width="300" />
+
 ## Technologies 
 
 The following technologies were used to make this app.
