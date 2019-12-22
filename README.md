@@ -1,6 +1,6 @@
 # Recording Mobile Application
 
-This is a React-Native recording app that is compatible with both iOS and Android devices. Using Expo's AV modules, it allows the user to record themselves, and send the recordings to a PostgreSQL server. 
+This is a React-Native recording app that is compatible with both iOS and Android devices. Using Expo's AV modules, it allows the user to record themselves and send the recordings to a PostgreSQL server. 
 
 The audio is converted into a base64 encoded data URI that is stored as a text field on the server. That, alongside its location on the local device, is stored. Upon viewing your recording history, the base64 string is reconstructed into an audio file and stored in a separate location on the user's device.
 
